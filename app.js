@@ -11,41 +11,27 @@
  * morgan, the routers and flash.
  */
 const express = require('express')
-const session = require('express-session')
-const MongoDBSession = require('connect-mongodb-session')(session)
-const URI = 'mongodb+srv://lnu:LNU1234@a2cluster.9f4oq.mongodb.net/my_database?retryWrites=true&w=majority'
+const mysql = require('mysql')
 const path = require('path')
 const logger = require('morgan')
+const connection = mysql.createConnection({
+  host : 'localhost',
+  user: 'jacob1983',
+  password: '12345'
+  database: 'my_db'
+})
+
+
 const app = express()
 const home = require('./routes/homeRouter')
-const signup = require('./routes/signupRouter')
-const signin = require('./routes/signinRouter')
 const addSnippet = require('./routes/addRouter')
-const signout = require('./routes/signoutRouter')
 const edit = require('./routes/editRouter')
 const search = require('./routes/searchRouter')
-const DB = require('./mongoose')
 const flash = require('connect-flash')
 
 app.set('view engine', 'ejs')
-DB.connect().then(() => {}).catch((err) => {
-  console.log(err)
-  process.exit(1)
-})
-const store = new MongoDBSession({
-  uri: URI,
-  collection: 'sessions'
-})
-app.use(session({
-  secret: 'o-19&yhXq$0m3&!k7y?mK%O98&rX6&9o-=1q$%',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 2,
-    httpOnly: true
-  },
-  store: store
-}))
+
+
 
 /**
  * Middlewares.
