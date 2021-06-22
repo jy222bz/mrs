@@ -16,8 +16,8 @@ const path = require('path')
 const logger = require('morgan')
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'jacob1983',
-  password: '12345',
+  user: 'root',
+  password: 'jacob1983',
   database: 'my_db'
 })
 
