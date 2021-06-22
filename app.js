@@ -14,6 +14,12 @@ const express = require('express')
 const mysql = require('mysql')
 const path = require('path')
 const logger = require('morgan')
+const home = require('./routes/homeRouter')
+const addPost = require('./routes/addRouter')
+const edit = require('./routes/editRouter')
+const search = require('./routes/searchRouter')
+const flash = require('connect-flash')
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -22,11 +28,6 @@ const connection = mysql.createConnection({
 })
 
 const app = express()
-const home = require('./routes/homeRouter')
-const addPost = require('./routes/addRouter')
-const edit = require('./routes/editRouter')
-const search = require('./routes/searchRouter')
-const flash = require('connect-flash')
 
 app.set('view engine', 'ejs')
 
