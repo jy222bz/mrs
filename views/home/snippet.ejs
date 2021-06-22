@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/html.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <title>Snippet</title>
+</head>
+<body class="body">
+    <%- include('../partials/panel_header.ejs') %>
+    <main id="main" class="main">
+        <div>
+            <a class="single" href="/edit/<%= snippet._id %>">
+                <button id="edit_btn" class="btn1" data-doc="<%= snippet._id %>"><span>Edit </span></button></a>
+            <button id="delete_btn" class="btn1" data-doc="<%= snippet._id %>" ><span>Delete </span></button>
+        </div>
+  <div class="div1">
+    <p class="line"> TAG: <span class="par"><%= snippet.tag %>  </span> </p>
+      <pre class="snippet"> <%= snippet.snippet %> </pre>
+      <p class="line"> Title: <span style="text-transform:uppercase"><%= snippet.title %></span> </p>
+      <p class="line"> Author: <span style="text-transform:uppercase"><%= snippet.author %></span> </p>
+      <p class="line"> Created At: <span style="text-transform:uppercase"><%= snippet.createdAt %></span> </p>
+      <p class="line"> Updated At: <span style="text-transform:uppercase"><%= snippet.updatedAt %></span> </p>
+  </div>
+    </main>
+    <script>
+     const delete_btn = document.getElementById('delete_btn')
+     const endpoint = `/snippets/${delete_btn.dataset.doc}`
+    delete_btn.addEventListener('click', (e) => {
+        fetch(endpoint, {
+            method: 'DELETE'
+        })
+        .then((res) => res.json())
+        .then((data) => window.location.href = data.redirect)
+        .catch((err) => console.log(err) )
+    })
+    </script>
+    
+</body>
+
+</html>

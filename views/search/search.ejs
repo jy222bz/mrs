@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" href="css/html.css">
+    <link rel="stylesheet" href="css/html.css">
+    <link rel="stylesheet" href="css/header.css">
+    <title>Home</title>
+</head>
+<body class="body">
+    <%- include('../partials/panel_header.ejs') %>
+
+
+    <main id="main" class="main">
+        <h2 class="headline">Results:</h2>
+            <% if (result.length > 0) { %>
+                <% result.forEach(snippet => { %>
+            <a class="single" href="/snippets/<%= snippet._id %>">
+                <div class="div1">
+                    <p class="line"> TAG: <span class="par"><%= snippet.tag %>  </span> </p>
+                    <pre class="snippet"> <%= snippet.snippet %> </pre>
+                    <p class="line"> Title: <span style="text-transform:uppercase"><%= snippet.title %></span> </p>
+                    <p class="line"> Author: <span style="text-transform:uppercase"><%= snippet.author %></span> </p>
+                    <p class="line"> Created At: <span style="text-transform:uppercase"><%= snippet.createdAt %></span> </p>
+                    <p class="line"> Updated At: <span style="text-transform:uppercase"><%= snippet.updatedAt %></span> </p>
+                </div>
+            </a>
+               <% }) %>
+            <% } else { %>
+            <div class="div1">
+                <p class="line"> There is no match!</p>
+            </div>
+            <% } %>
+    </main>
+</body>
+
+</html>

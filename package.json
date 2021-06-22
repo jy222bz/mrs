@@ -1,0 +1,56 @@
+{
+ "name": "crud-with-sql",
+ "version": "1.0.0",
+ "description": "Aa application that supports CRUD.",
+ "main": "app.js",
+ "scripts": {
+  "start": "node app.js",
+  "lint": "npx eslint ./ || exit 0",
+  "fix": "npx eslint ./ --fix || exit 0",
+  "stylelint": "npx stylelint \"./public/**/*.css\" || exit 0",
+  "test": "npm run lint && npm run stylelint",
+  "style": "npx stylelint \"**/*.css\" --fix",
+  "devstart": "nodemon --inspect ./app.js",
+  "clean": "rm -rf build/ node_modules/"
+ },
+ "author": "JACOB YOUSIF",
+ "license": "MIT",
+ "devDependencies": {
+  "@lnu/eslint-config": "^1.1.0",
+  "eslint": "^7.9.0",
+  "eslint-config-standard": "^14.1.1",
+  "eslint-plugin-import": "^2.22.0",
+  "eslint-plugin-jsdoc": "^30.5.1",
+  "eslint-plugin-standard": "^4.0.1",
+  "htmlhint": "^0.14.1",
+  "nodemon": "^2.0.7",
+  "snazzy": "^9.0.0",
+  "standard": "*",
+  "stylelint": "^13.7.1"
+ },
+ "dependencies": {
+  "bcrypt": "^5.0.1",
+  "body-parser": "^1.19.0",
+  "cheerio": "^1.0.0-rc.3",
+  "connect-flash": "^0.1.1",
+  "connect-mongodb-session": "^2.4.1",
+  "csurf": "^1.11.0",
+  "dotenv": "^8.2.0",
+  "ejs": "^3.1.6",
+  "esm": "^3.2.25",
+  "express": "^4.17.1",
+  "express-hbs": "^2.3.4",
+  "express-session": "^1.17.1",
+  "jsdom": "^16.4.0",
+  "moment": "^2.29.1",
+  "mongoose": "^5.11.8",
+  "mongose": "0.0.2-security",
+  "morgan": "^1.10.0",
+  "node-fetch": "^2.6.1",
+  "request": "^2.88.2",
+  "request-promise": "^4.2.6"
+ },
+ "nodemonConfig": {
+  "ext": "js,json,ejs,hbs,html,css"
+ }
+}

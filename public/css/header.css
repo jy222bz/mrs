@@ -1,0 +1,93 @@
+/*
+Jacob Yousif
+A01
+*/
+
+
+/* This a reusable component for the header. */
+
+.header {
+  overflow: hidden;
+  padding: 20px 10px;
+  font-family: Geneva;
+  color: white;
+}
+
+.header img {
+  float: left;
+  height: 50px;
+  width: 80px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 1150px;
+}
+
+.header a {
+  float: right;
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 10px;
+  border-radius: 4px;
+}
+
+.header a:hover {
+  text-transform: uppercase;
+  color: #0652dd;
+}
+
+
+.header-items {
+  float: right;
+}
+
+@media screen and (max-width: 800px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-items {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-items {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-items {
+    float: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .header-items {
+    float: none;
+  }
+}

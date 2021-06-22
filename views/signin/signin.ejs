@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Web site created using create-snowpack-app" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/html.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/style_form.css">
+        <link rel="stylesheet" href="css/html.css">
+        <title>Sign-in</title>
+    </head>
+
+<body>
+    <%- include('../partials/header.ejs') %>
+    <% if (message.length > 0) { %>
+        <div class="div2">
+            <p class="line"> <%= message %> </p>
+        </div>
+   <% } %>
+    <main class="sec2">
+        <section class="sec3">
+            <h2>Sign-in:</h2>
+            <form action="/sign-in" method="POST">
+                <label for="email">E-mail:</label><br>
+                <input type="email" id="email" name="email"  placeholder="name@domain.com" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" placeholder="password" autocomplete="on" required><br>
+                <input type="hidden" name="_csrf" value="<%= csrfTocken %>"><br>
+                <input type="submit" value="Sign"><br>
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>
+<!-- This the html for the form.html.-->

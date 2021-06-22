@@ -1,0 +1,185 @@
+/**********************************************
+*** Index
+**********************************************/
+
+.main {
+  position: relative;
+}
+
+.line {
+  font-family: Geneva;
+  color: white;
+  margin: 0.67em 0;
+  font-size: 1em;
+  width: 70%;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.par {
+  text-transform: uppercase;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 20px;
+  text-shadow: 2px 2px 2px black;
+  color: white;
+  font-style: italic;
+}
+
+.banner {
+  font-family: 'Chilanka', cursive;
+  font-size: 2em;
+  margin-top: 20px;
+  margin-left: 20px;
+  color: white;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  max-height: 120px;
+}
+
+.btn1 {
+  background-color: #1e272e;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  height: 40px;
+  width: 60px;
+  font-family: 'Chilanka', cursive;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8em;
+  margin: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn {
+  float: left;
+  width: 10%;
+  border-radius: 10px;
+  padding: 14px;
+  background: #1e272e;
+  color: white;
+  font-size: 17px;
+  height: 46px;
+  margin-top: 49px;
+  border: 1px solid #45aaf2;
+  border-left: none;
+  cursor: pointer;
+}
+
+
+
+.snippet {
+  font-family: Consolas, "courier new";
+  color: #05c46b;
+  padding: 10px;
+  font-size: 105%;
+  font-size: 1em;
+  width: 70%;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.div1 {
+  margin-left: 20px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: #1e272e;
+  border: 1px solid;
+  width: 50%;
+  position: relative;
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.div2 {
+  margin-left: 30px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #6d214f;
+  border: 1px solid white;
+  width: 79%;
+  position: relative;
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.div3 {
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  margin-top: 40px;
+  display: inline-block;
+  font-family: sans-serif;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: #0984e3;
+  color: white;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 10px;
+  font-size: 2vw;
+  text-align: center;
+  font-family: 'Chilanka', cursive;
+  color: #c7ecee;
+  margin-bottom: 20px;
+}
+
+.headline {
+  margin: 20px;
+  font-size: 2vw;
+  font-family: 'Chilanka', cursive;
+  color: white;
+}
+
+.h {
+  margin: 10px;
+  margin-top: 15px;
+  font-size: 1vw;
+  text-align: center;
+  font-family: 'Chilanka', cursive;
+  color: white;
+}
+
+
+
+code {
+  font-family: Consolas, "courier new";
+  color: crimson;
+  background-color: #f1f1f1;
+  padding: 1px;
+  font-size: 10px;
+  margin: 2px;
+}
+
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button span::after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+button:hover span {
+  padding-right: 5px;
+  text-transform: uppercase;
+}

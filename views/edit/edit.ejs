@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Web site created using create-snowpack-app" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/html.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/header.css">
+        <link rel="stylesheet" href="../css/style_form.css">
+        <link rel="stylesheet" href="../css/html.css">
+        <title>Edit Snippet</title>
+    </head>
+
+<body>
+    <%- include('../partials/panel_header.ejs') %>
+    <main class="sec2">
+
+        <section class="sec3">
+            <h2>Snippet:</h2>
+            <form action="/edit/<%= snippet._id %>" method="POST">
+                <label for="tag">Tag:</label><br>
+                <input type="text" id="tag" name="tag" value="<%= snippet.tag %>"  required><br>
+                <label for="title">Title:</label><br>
+                <input type="title" id="title" name="title" value="<%= snippet.title %>"  required><br>
+                <br>
+                <textarea id="snippet" name="snippet" rows="12" cols="50" required ><%= snippet.snippet %></textarea>
+                <br/>
+                <input type="hidden" name="_csrf" value="<%= csrfTocken %>"><br>
+                <input type="submit" value="Update"><br>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
+

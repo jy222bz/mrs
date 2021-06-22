@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Web site created using create-snowpack-app" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/html.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/style_form.css">
+        <link rel="stylesheet" href="css/html.css">
+        <title>Sign-up</title>
+    </head>
+
+<body>
+    <%- include('../partials/header.ejs') %>
+    <% if (message.length > 0) { %>
+        <div class="div2">
+            <p class="line"><%= message %></p>
+        </div>
+   <% } %>
+    <main class="sec2">
+        <section class="sec3">
+            <h2>Registration:</h2>
+            <form action="/sign-up" method="POST">
+                <label for="name">Username:</label><br>
+                <input type="text" id="name" name="name"  placeholder="username" required><br>
+                <label for="email">E-mail:</label><br>
+                <input type="email" id="email" name="email"  placeholder="name@domain.com" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" autocomplete="on" placeholder="password" required><br>
+                <input type="hidden" name="_csrf" value="<%= csrfTocken %>"><br>
+                <input type="submit" value="Register"><br>
+                <div class="div3">
+                    <p>Be Adviced! The username should ONLY contain letters. The password should be at least 8 characters that include at least one of each of the following: a letter in uppercase, a letter in lowercase, and one digit.</p>
+                   </div>
+            </form>
+        </section>
+    </main>
+
+</body>
+
+</html>
+<!-- This the html for the form.html.-->
