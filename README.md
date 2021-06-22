@@ -3,7 +3,7 @@
 1. ### Clone the repo:
 
 ~~~
-clone git@github.com:jy222bz/a02-crud-code-snippets.git
+clone git remote add origin https://github.com/jy222bz/crud-with-sql.git
 ~~~
 
 2. ### Install the dependencies:
