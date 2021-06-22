@@ -41,11 +41,13 @@
   "express": "^4.17.1",
   "express-hbs": "^2.3.4",
   "express-session": "^1.17.1",
+  "faker": "^5.5.3",
   "jsdom": "^16.4.0",
   "moment": "^2.29.1",
   "mongoose": "^5.11.8",
   "mongose": "0.0.2-security",
   "morgan": "^1.10.0",
+  "mysql": "^2.18.1",
   "node-fetch": "^2.6.1",
   "request": "^2.88.2",
   "request-promise": "^4.2.6"
