@@ -15,23 +15,20 @@ const mysql = require('mysql')
 const path = require('path')
 const logger = require('morgan')
 const connection = mysql.createConnection({
-  host : 'localhost',
+  host: 'localhost',
   user: 'jacob1983',
-  password: '12345'
+  password: '12345',
   database: 'my_db'
 })
 
-
 const app = express()
 const home = require('./routes/homeRouter')
-const addSnippet = require('./routes/addRouter')
+const addPost = require('./routes/addRouter')
 const edit = require('./routes/editRouter')
 const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 
 app.set('view engine', 'ejs')
-
-
 
 /**
  * Middlewares.
@@ -44,7 +41,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addSnippet, signout, signup, edit, search, signin)
+app.use(home, addPost, edit, search)
 
 /**
  * It handels the 404 error and renders the error page.
