@@ -20,13 +20,20 @@ const edit = require('./routes/editRouter')
 const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'jacob1983',
   database: 'my_db'
 })
 
+db.connect((error) => {
+  if (error) {
+    console.log(error)
+    process.exit(1)
+  }
+  console.log('MySQL is connected...')
+})
 const app = express()
 
 app.set('view engine', 'ejs')
