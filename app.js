@@ -21,6 +21,7 @@ const addSnippet = require('./routes/addSnippetRouter')
 const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 const app = express()
+const port = process.env.PORT || 3000
 
 /**
  * DB connection.
@@ -71,4 +72,4 @@ app.use((err, req, res, next) => {
   res.render(path.join(__dirname, 'views', 'errors', 'internal.ejs'))
 })
 
-app.listen(3000)
+app.listen(port)
