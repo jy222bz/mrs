@@ -19,31 +19,23 @@ const addPost = require('./routes/addRouter')
 const edit = require('./routes/editRouter')
 const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
+const app = express()
 
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1983July!'
+  password: 'jacob1983',
+  database: 'posts_db',
+  port: '3306'
 })
 
 db.connect((error) => {
   if (error) {
     console.log(error)
     process.exit(1)
+  } else {
+    console.log('MySQL is connected...')
   }
-  console.log('MySQL is connected...')
-})
-const app = express()
-
-app.get('/createdb', (req, res) => {
-  const sql = 'CREATE DATABASE'
-  db.query(sql, (err, result) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log('Database is created...')
-    }
-  })
 })
 
 app.set('view engine', 'ejs')
@@ -56,7 +48,11 @@ app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
 
-
+/**
+ * Routes.
+ */
+ app.use(home)
+ 
 /**
  * It handels the 404 error and renders the error page.
  * 404 - Page not found.
@@ -83,4 +79,4 @@ app.use((err, req, res, next) => {
   res.render(path.join(__dirname, 'views', 'errors', 'internal.ejs'))
 })
 
-app.listen(8000)
+app.listen(3000)

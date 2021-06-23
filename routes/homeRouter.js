@@ -16,8 +16,5 @@ const controller = require('../controllers/homeController')
  */
 router
   .get('/', controller.index)
-  .get('/snippets', controller.index)
-  .get('/snippets/:id', controller.indexGetSnippet)
-  .delete('/snippets/:id', controller.indexDeleteSnippet)
 
 module.exports = router
