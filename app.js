@@ -17,14 +17,14 @@ const logger = require('morgan')
 const home = require('./routes/homeRouter')
 const addPost = require('./routes/addRouter')
 const addAuthor = require('./routes/addAuthorRouter')
+const addSnippet = require('./routes/addSnippetRouter')
 const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 const app = express()
 
 /**
- * DB.
+ * DB connection.
  */
-
 sql.connect()
 
 /**
@@ -43,7 +43,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addPost, addAuthor, search)
+app.use(home, addPost, addAuthor, search, addSnippet)
 
 /**
  * It handels the 404 error and renders the error page.
