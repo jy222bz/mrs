@@ -11,32 +11,25 @@
  * morgan, the routers and flash.
  */
 const express = require('express')
-const mysql = require('mysql2')
+const sql = require('./database')
 const path = require('path')
 const logger = require('morgan')
 const home = require('./routes/homeRouter')
 const addPost = require('./routes/addRouter')
 const addAuthor = require('./routes/addAuthorRouter')
+const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 const app = express()
 
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'jacob1983',
-  database: 'posts_db',
-  port: '3306'
-})
+/**
+ * DB.
+ */
 
-db.connect((error) => {
-  if (error) {
-    console.log(error)
-    process.exit(1)
-  } else {
-    console.log('MySQL is connected...')
-  }
-})
+sql.connect()
 
+/**
+ * Set view engine.
+ */
 app.set('view engine', 'ejs')
 
 /**
@@ -50,7 +43,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addPost, addAuthor)
+app.use(home, addPost, addAuthor, search)
 
 /**
  * It handels the 404 error and renders the error page.
