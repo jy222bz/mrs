@@ -16,6 +16,7 @@ const path = require('path')
 const logger = require('morgan')
 const home = require('./routes/homeRouter')
 const addPost = require('./routes/addRouter')
+const addAuthor = require('./routes/addAuthorRouter')
 const flash = require('connect-flash')
 const app = express()
 
@@ -49,7 +50,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addPost)
+app.use(home, addPost, addAuthor)
 
 /**
  * It handels the 404 error and renders the error page.
