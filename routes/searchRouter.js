@@ -14,5 +14,6 @@ const controller = require('../controllers/searchController')
  */
 router
   .get('/search', controller.get)
+  .post('/search', controller.post)
 
 module.exports = router
