@@ -1,9 +1,11 @@
-body {
-  margin: 20px;
-  font-family: sans-serif;
-  font-size: 1rem;
-  line-height: 1.5;
-  max-height: max-content;
-  color: #000;
-  background-color: #fff;
+/*
+Jacob Yousif
+A01
+This a reusable component for the HTML document.
+*/
+
+.body {
+  background-color: #0984e3;
+  font-family: Geneva;
 }
+

@@ -3,8 +3,6 @@
  * The main entery point to the server.
  */
 
-'use strict'
-
 /**
  * The required imports:
  * Express, express-session, connect-mongodb-session, path,
@@ -19,7 +17,7 @@ const addPost = require('./routes/addRouter')
 const addAuthor = require('./routes/addAuthorRouter')
 const addSnippet = require('./routes/addSnippetRouter')
 const search = require('./routes/searchRouter')
-const flash = require('connect-flash')
+const hbs = require('express-handlebars')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -31,12 +29,12 @@ sql.connect()
 /**
  * Set view engine.
  */
-app.set('view engine', 'ejs')
+app.engine('hbs', hbs({ extname: '.hbs' }))
+app.set('view engine', 'hbs')
 
 /**
  * Middlewares.
  */
-app.use(flash())
 app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
@@ -56,7 +54,7 @@ app.use(home, addPost, addAuthor, search, addSnippet)
  */
 app.use('*', (req, res, next) => {
   res.status(404)
-  res.render('errors/404.ejs')
+  res.render('errors/404')
 })
 
 /**
@@ -69,7 +67,7 @@ app.use('*', (req, res, next) => {
  */
 app.use((err, req, res, next) => {
   res.status(err.status || 500)
-  res.render(path.join(__dirname, 'views', 'errors', 'internal.ejs'))
+  res.render('errors/internal')
 })
 
 app.listen(port)

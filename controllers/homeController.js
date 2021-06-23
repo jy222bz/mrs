@@ -16,7 +16,7 @@ const homeController = {}
  * @param {object} res the Express response.
  */
 homeController.index = (req, res) => {
-  res.render('home/index')
+  res.render('home')
 }
 
 module.exports = homeController

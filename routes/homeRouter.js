@@ -15,6 +15,6 @@ const controller = require('../controllers/homeController')
  * The routes for the home.
  */
 router
-  .get('/', controller.index)
+  .get('', controller.index)
 
 module.exports = router
