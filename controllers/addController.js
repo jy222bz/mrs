@@ -5,7 +5,6 @@
 
 'use strict'
 const addController = {}
-const Snippet = require('../models/snippetSchema')
 
 /**
  * This method it responds to the GET request when
@@ -17,14 +16,7 @@ const Snippet = require('../models/snippetSchema')
  */
 addController.get = async (req, res) => {
   try {
-    if (typeof req.session !== 'undefined' && req.session.isAuth) {
-      const message = req.flash('message')
-      delete req.session.message
-      await res.render('add/add', { message: message, csrfTocken: req.csrfToken() })
-    } else {
-      res.status(403)
-      await res.render('forbidden/forbidden')
-    }
+    await res.render('add/add')
   } catch (error) {
     console.log(error)
   }
@@ -40,21 +32,7 @@ addController.get = async (req, res) => {
  */
 addController.post = async (req, res) => {
   try {
-    if (typeof req.session !== 'undefined' && req.session.isAuth) {
-      const { tag, title, snippet } = req.body
-      const snippetNEW = new Snippet({
-        tag: tag,
-        title: title,
-        author: req.session.username,
-        snippet: snippet,
-        ownerID: req.session.userID
-      })
-      await snippetNEW.save()
-      res.redirect('/')
-    } else {
-      res.status(403)
-      await res.render('forbidden/forbidden')
-    }
+    await res.render('add/add')
   } catch (error) {
     console.log(error)
   }

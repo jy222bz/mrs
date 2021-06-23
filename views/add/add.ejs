@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/style_form.css">
         <link rel="stylesheet" href="css/html.css">
-        <title>Add Snippet</title>
+        <title>Add Post</title>
     </head>
 
 <body>
@@ -20,17 +20,34 @@
     <main class="sec2">
 
         <section class="sec3">
-            <h2>Snippet:</h2>
-            <form action="/add-snippet" method="POST">
-                <label for="tag">Tag:</label><br>
-                <input type="text" id="tag" name="tag" placeholder="Write a TAG: JavaScript, Java, Python, C#." required><br>
+            <h2>Post:</h2>
+            <form action="/create-a-post" method="POST">
+                <form>
+                    <label for="author">Select Author:</label><br>
+                     <select name="author"> 
+                        <option value="anonymous">Anonymous</option> 
+                     </select> 
+                </form>
+                <form>
+                    <label for="category">Select Category:</label><br>
+                     <select name="category"> 
+                        <option value="General">General</option> 
+                        <option value="Computer Science">Computer Science</option> 
+                        <option value="Mathematics">Mathematics</option> 
+                        <option value="Finance">Finance</option> 
+                        <option value="Politics">Politics</option> 
+                        <option value="Health and Safety">Health and Safety</option> 
+                        <option value="Entertainment">Entertainment</option> 
+                        <option value="Education">Education</option> 
+                        <option value="Food">Food</option> 
+                     </select> 
+                </form>
                 <label for="title">Title:</label><br>
                 <input type="title" id="title" name="title" placeholder="Title"  required><br>
                 <br>
-                <textarea id="snippet" name="snippet" rows="12" cols="50" placeholder="Write your snippet here...." required></textarea>
+                <textarea id="post" name="post" rows="12" cols="50" placeholder="Write your post here...." required></textarea>
                 <br/>
-                <input type="hidden" name="_csrf" value="<%= csrfTocken %>"><br>
-                <input type="submit" value="Add"><br>
+                <input type="submit" value="Post"><br>
             </form>
         </section>
     </main>

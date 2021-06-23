@@ -16,8 +16,6 @@ const path = require('path')
 const logger = require('morgan')
 const home = require('./routes/homeRouter')
 const addPost = require('./routes/addRouter')
-const edit = require('./routes/editRouter')
-const search = require('./routes/searchRouter')
 const flash = require('connect-flash')
 const app = express()
 
@@ -51,8 +49,8 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
- app.use(home)
- 
+app.use(home, addPost)
+
 /**
  * It handels the 404 error and renders the error page.
  * 404 - Page not found.
