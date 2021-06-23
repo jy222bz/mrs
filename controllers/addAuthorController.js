@@ -16,7 +16,7 @@ const controller = {}
  */
 controller.get = async (req, res) => {
   try {
-    await res.render('add/add_author')
+    await res.render('add/add-author')
   } catch (error) {
     console.log(error)
   }
@@ -32,7 +32,7 @@ controller.get = async (req, res) => {
  */
 controller.post = async (req, res) => {
   try {
-    await res.render('add/add_author')
+    await res.render('add/add-author')
   } catch (error) {
     console.log(error)
   }
