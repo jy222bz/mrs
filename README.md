@@ -1,4 +1,4 @@
-# CRUD WITH SQL
+# MMS - Movie Management System WITH SQL
 ## Installation and Configurations:
 1. ### Clone the repo:
 
