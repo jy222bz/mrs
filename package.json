@@ -1,5 +1,5 @@
 {
- "name": "crud-with-sql",
+ "name": "movie-management-system-with-sql",
  "version": "1.0.0",
  "description": "Aa application that supports CRUD.",
  "main": "app.js",
