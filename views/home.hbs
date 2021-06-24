@@ -47,7 +47,7 @@
 </table>
 {{/if}}
 
-{{#if movies.length}}
+{{#if series.length}}
 <br> <br>
 <h1 class="headline">Serieses: </h1>
 <table class="table table-dark table-striped">
@@ -63,9 +63,9 @@
   </tr>
  </thead>
  <tbody>
-  {{#each movies}}
+  {{#each series}}
   <tr>
-   <td>{{this.movie_name}}</td>
+   <td>{{this.name}}</td>
    <td>{{this.category}}</td>
    <td>{{this.seasons}}</td>
    <td>{{this.episodes}}</td>
