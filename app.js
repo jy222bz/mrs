@@ -9,7 +9,8 @@
  * morgan, the routers and flash.
  */
 const express = require('express')
-const sql = require('./database')
+require('dotenv').config()
+const mysql = require('mysql2')
 const path = require('path')
 const logger = require('morgan')
 const home = require('./routes/homeRouter')
@@ -24,7 +25,22 @@ const port = process.env.PORT || 3000
 /**
  * DB connection.
  */
-sql.connect()
+const db = mysql.createPool({
+  connectionLimit: 100,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+})
+
+db.getConnection((error, connection) => {
+  if (error) {
+    console.log(error)
+    process.exit(1)
+  } else {
+    console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+  }
+})
 
 /**
  * Set view engine.
