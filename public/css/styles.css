@@ -9,6 +9,16 @@ This a reusable component for the HTML document.
   font-family: Geneva;
 }
 
+.headline{
+  color: #dfe4ea;
+}
+td{
+  color: #f1f1f1;
+}
+th{
+  color: #dfe4ea;
+}
+
 .form input[type=text] {
   padding: 10px;
   font-size: 17px;

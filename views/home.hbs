@@ -1,4 +1,5 @@
-{{#if directors.length}} <h1>Directors: </h1>
+<div class="table-responsive">
+ {{#if directors.length}} <h1 class="headline">Directors: </h1>
 <table class="table table-dark table-striped">
  <thead>
   <tr>
@@ -21,7 +22,7 @@
 
 {{#if movies.length}}
 <br> <br>
-<h1>Movies: </h1>
+<h1 class="headline">Movies: </h1>
 <table class="table table-dark table-striped">
  <thead>
   <tr>
@@ -48,7 +49,7 @@
 
 {{#if movies.length}}
 <br> <br>
-<h1>Serieses: </h1>
+<h1 class="headline">Serieses: </h1>
 <table class="table table-dark table-striped">
  <thead>
   <tr>
@@ -76,3 +77,4 @@
  </tbody>
 </table>
 {{/if}}
+</div>
