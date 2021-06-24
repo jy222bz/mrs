@@ -1,7 +1,7 @@
 {
  "name": "movie-management-system-with-sql",
  "version": "1.0.0",
- "description": "Aa application that supports CRUD.",
+ "description": "Aa application that supports Data Managment with MySQL.",
  "main": "app.js",
  "scripts": {
   "start": "nodemon app.js",
