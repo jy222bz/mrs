@@ -5,6 +5,7 @@
 
 const mysql = require('mysql2')
 require('dotenv').config()
+
 const controller = {}
 
 /**
@@ -16,6 +17,23 @@ const controller = {}
  * @param {object} res the Express response.
  */
 controller.get = async (req, res) => {
+  try {
+    await res.render('add/add-director')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/**
+ * This method it responds to the Post request when
+ * the user wants to create a snippet.
+ * It create a snippet and saves in the DB.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+controller.post = async (req, res) => {
+  const {first_name, last_name, age} = req.body
   try {
     /**
      * DB connection.
@@ -42,29 +60,13 @@ controller.get = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('SELECT * FROM directors_table', (err, rows) => {
+      connection.query('INSERT INTO directors_table SET first_name = ?, last_name = ?, age = ?',[first_name, last_name, age], (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-director', { rows })
+          res.render('add/add-director')
         }
       })
     })
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-/**
- * This method it responds to the Post request when
- * the user wants to create a snippet.
- * It create a snippet and saves in the DB.
- *
- * @param {object} req the Express request.
- * @param {object} res the Express response.
- */
-controller.post = async (req, res) => {
-  try {
-    await res.render('add/add-director')
   } catch (error) {
     console.log(error)
   }
