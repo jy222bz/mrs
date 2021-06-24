@@ -7,13 +7,13 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/addUserController')
+const controller = require('../controllers/addDirectorController')
 
 /**
  * The routes for the create form.
  */
 router
-  .get('/add-user', controller.get)
-  .post('/add-user', controller.post)
+  .get('/add-director', controller.get)
+  .post('/add-director', controller.post)
 
 module.exports = router

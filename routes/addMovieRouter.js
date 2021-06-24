@@ -7,7 +7,7 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/addController')
+const controller = require('../controllers/addMovieController')
 
 /**
  * The routes for the create form.

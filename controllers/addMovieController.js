@@ -16,7 +16,7 @@ const addController = {}
  */
 addController.get = async (req, res) => {
   try {
-    await res.render('add/add')
+    await res.render('add/add-movie')
   } catch (error) {
     console.log(error)
   }
@@ -32,7 +32,7 @@ addController.get = async (req, res) => {
  */
 addController.post = async (req, res) => {
   try {
-    await res.render('add/add')
+    await res.render('add/add-movie')
   } catch (error) {
     console.log(error)
   }
