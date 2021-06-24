@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Web site created using create-snowpack-app" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/html.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/style_form.css">
+        <link rel="stylesheet" href="css/html.css">
+        <title>Add Author</title>
+    </head>
+
+<body>
+    <%- include('../partials/panel_header.ejs') %>
+    <main class="sec2">
+        <form action="/add-author" method="POST">
+        <section class="sec3">
+            <h2>Author information:</h2>
+                <label for="fname">First Name:</label><br>
+                <input type="text" id="fname" name="lname" placeholder="First Name"  required><br>
+                <label for="lname">Last Name:</label><br>
+                <input type="text" id="lname" name="lname" placeholder="Last Name"  required><br>
+                <label for="job">Job:</label><br>
+                <input type="text" id="job" name="job" placeholder="Job"  required><br>
+                <form>
+                    <label for="prof">You are:</label><br>
+                     <select name="prof"> 
+                        <option value="Actor">Actor</option> 
+                        <option value="Director">Director</option> 
+                     </select> 
+                </form>
+        </section>
+    </form>
+    </main>
+    
+</body>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Web site created using create-snowpack-app" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/html.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/style_form.css">
+        <link rel="stylesheet" href="css/html.css">
+        <title>Add Snippet</title>
+    </head>
+
+<body>
+    <%- include('../partials/panel_header.ejs') %>
+    <main class="sec2">
+
+        <section class="sec3">
+            <h2>Snippet:</h2>
+            <form action="/add-snippet" method="POST">
+                <form>
+                    <label for="author">Select Author:</label><br>
+                     <select name="author"> 
+                        <option value="anonymous">Anonymous</option> 
+                     </select> 
+                </form>
+                <form>
+                    <label for="language">Select Programming Language:</label><br>
+                     <select name="language"> 
+                        <option value="Java">Java</option> 
+                        <option value="Python">Python</option> 
+                        <option value="JavaScript">JavaScript</option> 
+                        <option value="C#">C#</option> 
+                        <option value="C++">C++</option> 
+                        <option value="Kotln">Kotln</option> 
+                        <option value="Other">Other</option> 
+                     </select> 
+                </form>
+                <label for="title">Title:</label><br>
+                <input type="title" id="title" name="title" placeholder="Title"  required><br>
+                <br>
+                <textarea id="snippet" name="snippet" rows="12" cols="50" placeholder="Write your snippet here...." required></textarea>
+                <br/>
+                <input type="submit" value="Post"><br>
+            </form>
+        </section>
+    </main>
+    
+</body>
+
+</html>

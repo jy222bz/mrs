@@ -1,1 +1,78 @@
-<h1>Hello</h1>
+{{#if directors.length}} <h1>Directors: </h1>
+<table class="table table-dark table-striped">
+ <thead>
+  <tr>
+   <th scope="col">First Name</th>
+   <th scope="col">Last Name</th>
+   <th scope="col">Age</th>
+  </tr>
+ </thead>
+ <tbody>
+  {{#each directors}}
+  <tr>
+   <td>{{this.first_name}}</td>
+   <td>{{this.last_name}}</td>
+   <td>{{this.age}}</td>
+  </tr>
+  {{/each}}
+ </tbody>
+</table>
+{{/if}}
+
+{{#if movies.length}}
+<br> <br>
+<h1>Movies: </h1>
+<table class="table table-dark table-striped">
+ <thead>
+  <tr>
+   <th scope="col">Name</th>
+   <th scope="col">Category</th>
+   <th scope="col">Rating</th>
+   <th scope="col">Director</th>
+   <th scope="col">Year</th>
+  </tr>
+ </thead>
+ <tbody>
+  {{#each movies}}
+  <tr>
+   <td>{{this.movie_name}}</td>
+   <td>{{this.category}}</td>
+   <td>{{this.rating}}</td>
+   <td>{{this.director}}</td>
+   <td>{{this.year}}</td>
+  </tr>
+  {{/each}}
+ </tbody>
+</table>
+{{/if}}
+
+{{#if movies.length}}
+<br> <br>
+<h1>Serieses: </h1>
+<table class="table table-dark table-striped">
+ <thead>
+  <tr>
+   <th scope="col">Name</th>
+   <th scope="col">Category</th>
+   <th scope="col">Seasons</th>
+   <th scope="col">Episodes</th>
+   <th scope="col">Rating</th>
+   <th scope="col">Director</th>
+   <th scope="col">Year</th>
+  </tr>
+ </thead>
+ <tbody>
+  {{#each movies}}
+  <tr>
+   <td>{{this.movie_name}}</td>
+   <td>{{this.category}}</td>
+   <td>{{this.seasons}}</td>
+   <td>{{this.episodes}}</td>
+   <td>{{this.rating}}</td>
+   <td>{{this.director}}</td>
+   <td>{{this.year}}</td>
+  </tr>
+  {{/each}}
+ </tbody>
+</table>
+{{/if}}

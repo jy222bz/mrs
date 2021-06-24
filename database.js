@@ -1,6 +1,9 @@
 const mysql = require('mysql2')
 require('dotenv').config()
 
+/**
+ * DB connection.
+ */
 const db = mysql.createPool({
   connectionLimit: 100,
   host: process.env.DB_HOST,
@@ -9,6 +12,13 @@ const db = mysql.createPool({
   database: process.env.DB_NAME
 })
 
+/**
+ * Exporting the DB connection.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+
 db.getConnection((error, connection) => {
   if (error) {
     console.log(error)
@@ -16,6 +26,12 @@ db.getConnection((error, connection) => {
   } else {
     console.log('MySQL is connected. Connection ID: ' + connection.threadId)
   }
+  connection.query('SELECT * FROM directors_table', (err, rows) => {
+    connection.release()
+    if (!err) {
+      return rows
+    }
+  })
 })
 
 module.exports = db
