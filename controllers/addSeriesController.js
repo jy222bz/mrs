@@ -17,6 +17,8 @@ const controller = {}
  */
 controller.get = async (req, res) => {
   try {
+    const message = req.flash('message')
+    delete req.session.message
     /**
      * DB connection.
      */
@@ -45,7 +47,7 @@ controller.get = async (req, res) => {
       connection.query('SELECT * FROM directors_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-series', { rows })
+          res.render('add/add-series', { rows, message: message })
         }
       })
     })
