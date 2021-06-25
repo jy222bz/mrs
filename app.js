@@ -17,6 +17,7 @@ const addMovie = require('./routes/addMovieRouter')
 const addDirector = require('./routes/addDirectorRouter')
 const addSeries = require('./routes/addSeriesRouter')
 const search = require('./routes/addToMMSRouter')
+const directors = require('./routes/directorsRouter')
 const bestBox = require('./routes/searchRouter')
 const hbs = require('express-handlebars')
 const app = express()
@@ -54,7 +55,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addMovie, addDirector, search, addSeries, bestBox)
+app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors)
 
 /**
  * It handels the 404 error and renders the error page.
