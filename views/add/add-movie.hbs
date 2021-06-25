@@ -18,32 +18,29 @@
             <section class="sec3">
                   <h2>Movie Information:</h2>
                   <form action="/add-movie" method="POST">
-                        <form>
-                              <label for="director">Select Director:</label><br>
-                              <select name="director" required>
-                                    <option value="Unregistered">Unregistered</option>
-                                    {{#if rows.length}}
-                                    {{#each rows}}
-                                    <option value="{{this.fullName}}">{{this.fullName}}</option>
-                                    {{/each}}
-                                    {{/if}}
-                              </select>
-                        </form>
-                        <form>
-                              <label for="category">Select Category:</label><br>
-                              <select name="category" required>
-                                    <option value="Action">Action</option>
-                                    <option value="Crime">Crime</option>
-                                    <option value="Drama">Drama</option>
-                                    <option value="Adventure">Adventure</option>
-                                    <option value="War">War</option>
-                                    <option value="Mystery">Mystery</option>
-                                    <option value="Thriller">Thriller</option>
-                                    <option value="Comedy">Comedy</option>
-                                    <option value="Horror">Horror</option>
-                              </select>
-                        </form>
+                        <label for="director">Select Director:</label><br>
+                        <select name="director" id="director" required>
+                              <option value="Unregistered">Unregistered</option>
+                              {{#if rows.length}}
+                              {{#each rows}}
+                              <option value="{{this.fullName}}">{{this.fullName}}</option>
+                              {{/each}}
+                              {{/if}}
+                        </select>
                         <br>
+                        <label for="category">Select Category:</label><br>
+                        <select name="category" id="category" required>
+                              <option value="Action">Action</option>
+                              <option value="Crime">Crime</option>
+                              <option value="Drama">Drama</option>
+                              <option value="Adventure">Adventure</option>
+                              <option value="War">War</option>
+                              <option value="Mystery">Mystery</option>
+                              <option value="Thriller">Thriller</option>
+                              <option value="Comedy">Comedy</option>
+                              <option value="Horror">Horror</option>
+                        </select>
+                        <br> <br>
                         <label for="movieName">Name:</label><br>
                         <input type="title" id="movieName" name="movieName" placeholder="Name" required><br>
                         <label for="year">Year:</label><br>
@@ -54,15 +51,15 @@
                         <input type="number" min="1" id="price" name="price" placeholder="Price" required><br>
                         <br>
                         <label for="note"> Note:</label><br>
-                        <textarea id="post" name="post" rows="12" cols="50" placeholder="Write the note here...."></textarea>
+                        <textarea id="note" name="note" rows="12" cols="50" placeholder="Write the note here...."></textarea>
                         <input type="submit" value="Add"><br>
                   </form>
-                  {{#if message.length}}
+            </section>
+            {{#if message.length}}
                   <div class="div2">
                         <p class="line"> {{message}} </p>
                   </div>
                   {{/if}}
-            </section>
       </main>
 </body>
 

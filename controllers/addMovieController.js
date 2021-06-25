@@ -65,7 +65,7 @@ addController.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 addController.post = async (req, res) => {
-  const { director, category, movieName, year, rating, price } = req.body
+  const { director, category, movieName, year, rating, price, note } = req.body
   var directorId
   try {
     /**
@@ -106,11 +106,11 @@ addController.post = async (req, res) => {
           }
         })
       }
-      connection.query('INSERT INTO movies_table SET director = ?, category = ?, movieNmae = ?, year = ?, rating = ?, directorId = ?, price = ?', [director, category, movieName, year, rating, directorId, price], (err, rows) => {
+      connection.query('INSERT INTO movies_table SET movieName = ?, rating = ?, category = ?, director = ?, note = ?, year = ?, directorId = ?, price = ?', [movieName, rating, category, director, note, year, directorId, price], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
-          res.redirect('add/add-movie')
+          res.redirect('/add-movie')
         }
       })
     })
