@@ -19,6 +19,30 @@ th{
   color: #dfe4ea;
 }
 
+.line {
+  font-family: Geneva;
+  color: white;
+  margin: 0.67em 0;
+  font-size: 1em;
+  width: 70%;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.div2 {
+  margin-left: 13px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #6d214f;
+  border: 1px solid white;
+  width: 78%;
+  position: absolute;
+  float: left;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+}
 .form input[type=text] {
   padding: 10px;
   font-size: 17px;

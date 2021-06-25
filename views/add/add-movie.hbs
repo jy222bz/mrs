@@ -15,7 +15,6 @@
 
 <body class="body">
  <main class="sec2">
-
   <section class="sec3">
    <h2>Movie Information:</h2>
    <form action="/add-movie" method="POST">
@@ -52,8 +51,12 @@
     <input type="submit" value="Add"><br>
    </form>
   </section>
+         {{#if message.length}}
+         <div class="div2">
+          <p class="line"> {{message}} </p>
+         </div>
+         {{/if}}
  </main>
-
 </body>
 
 </html>

@@ -18,7 +18,9 @@ const controller = {}
  */
 controller.get = async (req, res) => {
   try {
-    await res.render('add/add-director')
+    const message = req.flash('message')
+    delete req.session.message
+    await res.render('add/add-director', { message: message })
   } catch (error) {
     console.log(error)
   }
@@ -33,7 +35,7 @@ controller.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.post = async (req, res) => {
-  const {first_name, last_name, age} = req.body
+  const { first_name, last_name, age } = req.body
   try {
     /**
      * DB connection.
@@ -60,10 +62,11 @@ controller.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('INSERT INTO directors_table SET first_name = ?, last_name = ?, age = ?',[first_name, last_name, age], (err, rows) => {
+      connection.query('INSERT INTO directors_table SET first_name = ?, last_name = ?, age = ?', [first_name, last_name, age], (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-director')
+          req.flash('message', 'It was successfully added!')
+          res.redirect('/add-director')
         }
       })
     })

@@ -19,6 +19,8 @@ const addSnippet = require('./routes/addSeriesRouter')
 const search = require('./routes/searchRouter')
 const hbs = require('express-handlebars')
 const app = express()
+const flash = require('connect-flash')
+const session = require('express-session')
 const port = process.env.PORT || 3000
 
 /**
@@ -27,9 +29,20 @@ const port = process.env.PORT || 3000
 app.engine('hbs', hbs({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+app.use(session({
+  secret: 'o-19&yhXq$0m3&!k7y?mK%O98&rX6&9o-=1q$%',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 2,
+    httpOnly: true
+  }
+}))
+
 /**
  * Middlewares.
  */
+app.use(flash())
 app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
