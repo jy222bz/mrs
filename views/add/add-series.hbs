@@ -22,6 +22,11 @@
      <label for="author">Select Director:</label><br>
      <select name="author">
       <option value="Unregistered">Unregistered</option>
+      {{#if rows.length}}
+      {{#each rows}}
+      <option value="{{this.fullName}}">{{this.fullName}}</option>
+      {{/each}}
+      {{/if}}
      </select>
     </form>
      <form>

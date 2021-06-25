@@ -9,13 +9,15 @@ This a reusable component for the HTML document.
   font-family: Geneva;
 }
 
-.headline{
+.headline {
   color: #dfe4ea;
 }
-td{
+
+td {
   color: #f1f1f1;
 }
-th{
+
+th {
   color: #dfe4ea;
 }
 
@@ -43,6 +45,7 @@ th{
   box-sizing: border-box;
   resize: none;
 }
+
 .form input[type=text] {
   padding: 10px;
   font-size: 17px;
