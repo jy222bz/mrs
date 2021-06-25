@@ -35,7 +35,7 @@ controller.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.post = async (req, res) => {
-  const { firstName, lastName, age } = req.body
+  const { firstName, lastName, age, origin } = req.body
   const fullName = firstName + ' ' + lastName
   try {
     /**
@@ -63,7 +63,7 @@ controller.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('INSERT INTO directors_table SET firstName = ?, lastName = ?, age = ?, fullName = ?', [firstName, lastName, age, fullName], (err, rows) => {
+      connection.query('INSERT INTO directors_table SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName, lastName, age, fullName, origin], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
