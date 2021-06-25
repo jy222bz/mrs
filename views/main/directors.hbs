@@ -43,5 +43,18 @@
   <h1 class="headline">No Data in The Database </h1>
   {{/if}}
  </main>
- <script type="module" src="/index.js"></script>
+ <script>  document.getElementById('addDirector').addEventListener('click', async (e) => {
+   var posts = new XMLHttpRequest()
+   /**
+    * Redirect the request.
+    */
+   posts.onreadystatechange = () => {
+    if (posts.readyState === 4 && posts.status === 200) {
+     window.location = '/add-director'
+    }
+   }
+   posts.open('GET', '/add-director', true)
+   posts.send()
+  })</script>
 </body>
+</html>
