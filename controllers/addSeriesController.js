@@ -45,7 +45,7 @@ controller.get = async (req, res) => {
       connection.query('SELECT * FROM directors_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-movie', { rows })
+          res.render('add/add-series', { rows })
         }
       })
     })
@@ -64,7 +64,7 @@ controller.get = async (req, res) => {
  */
 controller.post = async (req, res) => {
   try {
-    await res.render('add/add-series')
+    await res.render('add-series')
   } catch (error) {
     console.log(error)
   }
