@@ -33,7 +33,7 @@ app.set('view engine', 'hbs')
  * Set the session.
  */
 app.use(session({
-  secret: 'o-19&yhXq$0m3&!k7y?mK%O98&rX6&9o-=1q$%',
+  secret: process.env.SECERT,
   resave: false,
   saveUninitialized: false,
   cookie: {
