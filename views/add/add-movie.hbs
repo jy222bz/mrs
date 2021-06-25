@@ -28,22 +28,22 @@
                                     {{/each}}
                                     {{/if}}
                               </select>
-                              </form>
-                              <form>
-                                    <label for="category">Select Category:</label><br>
-                                    <select name="category" required>
-                                          <option value="Action">Action</option>
-                                          <option value="Crime">Crime</option>
-                                          <option value="Drama">Drama</option>
-                                          <option value="Adventure">Adventure</option>
-                                          <option value="War">War</option>
-                                          <option value="Mystery">Mystery</option>
-                                          <option value="Thriller">Thriller</option>
-                                          <option value="Comedy">Comedy</option>
-                                          <option value="Horror">Horror</option>
-                                    </select>
-                              </form>
-                              <br>
+                        </form>
+                        <form>
+                              <label for="category">Select Category:</label><br>
+                              <select name="category" required>
+                                    <option value="Action">Action</option>
+                                    <option value="Crime">Crime</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Adventure">Adventure</option>
+                                    <option value="War">War</option>
+                                    <option value="Mystery">Mystery</option>
+                                    <option value="Thriller">Thriller</option>
+                                    <option value="Comedy">Comedy</option>
+                                    <option value="Horror">Horror</option>
+                              </select>
+                        </form>
+                        <br>
                         <label for="movieName">Name:</label><br>
                         <input type="title" id="movieName" name="movieName" placeholder="Name" required><br>
                         <label for="year">Year:</label><br>
@@ -52,18 +52,18 @@
                         <input type="number" min="1" max="10" id="rating" name="rating" placeholder="Rating" required><br>
                         <label for="price"> Price:</label><br>
                         <input type="number" min="1" id="price" name="price" placeholder="Price" required><br>
-                        <br />
+                        <br>
+                        <label for="note"> Note:</label><br>
                         <textarea id="post" name="post" rows="12" cols="50" placeholder="Write the note here...."></textarea>
-                        <br />
                         <input type="submit" value="Add"><br>
-                        </form>
-                        </section>
-                        {{#if message.length}}
-                        <div class="div2">
-                              <p class="line"> {{message}} </p>
-                        </div>
-                        {{/if}}
-                        </main>
+                  </form>
+                  {{#if message.length}}
+                  <div class="div2">
+                        <p class="line"> {{message}} </p>
+                  </div>
+                  {{/if}}
+            </section>
+      </main>
 </body>
 
 </html>

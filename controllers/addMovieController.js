@@ -93,15 +93,20 @@ addController.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('Select * FROM directors_table WHERE fullName LIKE ?', ['%' + director + '%'], (err, rows) => {
-        connection.release()
-        if (!err) {
-          rows.forEach(element => {
-            directorId = element.directorID
-          })
-        }
-      })
-      connection.query('INSERT INTO movies_table SET director = ?, category = ?, movieNmae = ?, year = ?, rating = ?, dariectorId = ?, price = ?', [director, category, movieName, year, rating, directorId, price], (err, rows) => {
+      if (director === 'Unregistered') {
+        directorId = -1
+      } else {
+        connection.query('SELECT * FROM directors_table WHERE fullName LIKE ?', ['%' + director + '%'], (err, rows) => {
+          connection.release()
+          if (!err) {
+            rows.forEach(element => {
+              directorId = element.directorID
+              console.log(element)
+            })
+          }
+        })
+      }
+      connection.query('INSERT INTO movies_table SET director = ?, category = ?, movieNmae = ?, year = ?, rating = ?, directorId = ?, price = ?', [director, category, movieName, year, rating, directorId, price], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')

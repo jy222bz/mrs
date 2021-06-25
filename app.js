@@ -13,9 +13,9 @@ require('dotenv').config()
 const path = require('path')
 const logger = require('morgan')
 const home = require('./routes/homeRouter')
-const addPost = require('./routes/addMovieRouter')
-const addAuthor = require('./routes/addDirectorRouter')
-const addSnippet = require('./routes/addSeriesRouter')
+const addMovie = require('./routes/addMovieRouter')
+const addDirector = require('./routes/addDirectorRouter')
+const addSeries = require('./routes/addSeriesRouter')
 const search = require('./routes/searchRouter')
 const hbs = require('express-handlebars')
 const app = express()
@@ -29,6 +29,9 @@ const port = process.env.PORT || 3000
 app.engine('hbs', hbs({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+/**
+ * Set the session.
+ */
 app.use(session({
   secret: 'o-19&yhXq$0m3&!k7y?mK%O98&rX6&9o-=1q$%',
   resave: false,
@@ -50,7 +53,7 @@ app.use(express.urlencoded({ extended: false }))
 /**
  * Routes.
  */
-app.use(home, addPost, addAuthor, search, addSnippet)
+app.use(home, addMovie, addDirector, search, addSeries)
 
 /**
  * It handels the 404 error and renders the error page.
