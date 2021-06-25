@@ -17,6 +17,8 @@ const addController = {}
  */
 addController.get = async (req, res) => {
   try {
+    const message = req.flash('message')
+    delete req.session.message
     /**
      * DB connection.
      */
@@ -45,7 +47,7 @@ addController.get = async (req, res) => {
       connection.query('SELECT * FROM directors_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-movie', { rows })
+          res.render('add/add-movie', { rows, message: message })
         }
       })
     })
@@ -63,8 +65,50 @@ addController.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 addController.post = async (req, res) => {
+  const { director, category, movieName, year, rating, price } = req.body
+  var directorId
   try {
-    await res.render('add/add-movie')
+    /**
+     * DB connection.
+     */
+    const db = mysql.createPool({
+      connectionLimit: 100,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    })
+
+    /**
+     * Exporting the DB connection.
+     *
+     * @param {object} req the Express request.
+     * @param {object} res the Express response.
+     */
+
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      } else {
+        console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+      }
+      connection.query('Select * FROM directors_table WHERE fullName LIKE ?', ['%' + director + '%'], (err, rows) => {
+        connection.release()
+        if (!err) {
+          rows.forEach(element => {
+            directorId = element.directorID
+          })
+        }
+      })
+      connection.query('INSERT INTO movies_table SET director = ?, category = ?, movieNmae = ?, year = ?, rating = ?, dariectorId = ?, price = ?', [director, category, movieName, year, rating, directorId, price], (err, rows) => {
+        connection.release()
+        if (!err) {
+          req.flash('message', 'It was successfully added!')
+          res.redirect('add/add-movie')
+        }
+      })
+    })
   } catch (error) {
     console.log(error)
   }
