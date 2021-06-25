@@ -14,6 +14,6 @@ const controller = require('../controllers/addSeriesController')
  */
 router
   .get('/add-series', controller.get)
-  .post('/add-seies', controller.post)
+  .post('/add-series', controller.post)
 
 module.exports = router
