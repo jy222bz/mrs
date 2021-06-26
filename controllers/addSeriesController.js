@@ -65,8 +65,7 @@ controller.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.post = async (req, res) => {
-  const { director, category, name, year, rating, price, note, seasons, episodes } = req.body
-  var directorId
+  const { director, category, name, year, ageLimit, price, note, seasons, episodes, language, origin } = req.body
   try {
     /**
      * DB connection.
@@ -93,20 +92,7 @@ controller.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      if (director === 'Unregistered') {
-        directorId = -1
-      } else {
-        connection.query('SELECT * FROM directors_table WHERE fullName LIKE ?', ['%' + director + '%'], (err, rows) => {
-          connection.release()
-          if (!err) {
-            rows.forEach(element => {
-              directorId = element.directorID
-              console.log(element)
-            })
-          }
-        })
-      }
-      connection.query('INSERT INTO series_table SET name = ?, seasons = ?, episodes = ?, director = ?, directorId = ?, year = ?,  rating = ?, note = ?, category = ?,  price = ?', [name, seasons, episodes, director, directorId, year, rating, note, category, price], (err, rows) => {
+      connection.query('INSERT INTO series_table SET name = ?, seasons = ?, episodes = ?, director = ?, ageLimit = ?, year = ?,  origin = ?, note = ?, category = ?, language = ?,  price = ?', [name, seasons, episodes, director, ageLimit, year, origin, note, category, language, price], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
