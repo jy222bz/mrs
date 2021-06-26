@@ -1,84 +1,41 @@
-<div class="table-responsive">
- {{#if directors.length}} <h1 class="headline">Directors: </h1>
-<table class="table table-dark table-striped">
- <thead>
-  <tr>
-   <th scope="col">Name</th>
-   <th scope="col">Age</th>
-   <th scope="col">Origin</th>
-  </tr>
- </thead>
- <tbody>
-  {{#each directors}}
-  <tr>
-   <td>{{this.fullName}}</td>
-   <td>{{this.age}}</td>
-   <td>{{this.origin}}</td>
-  </tr>
-  {{/each}}
- </tbody>
-</table>
-{{/if}}
-
-{{#if movies.length}}
-<br> <br>
-<h1 class="headline">Movies: </h1>
-<table class="table table-dark table-striped">
- <thead>
-  <tr>
-   <th scope="col">Name</th>
-   <th scope="col">Category</th>
-   <th scope="col">Rating</th>
-   <th scope="col">Director</th>
-   <th scope="col">Year</th>
-      <th scope="col">Price in SEK:</th>
-  </tr>
- </thead>
- <tbody>
-  {{#each movies}}
-  <tr>
-   <td>{{this.movieName}}</td>
-   <td>{{this.category}}</td>
-   <td>{{this.rating}}</td>
-   <td>{{this.director}}</td>
-   <td>{{this.year}}</td>
-    <td>{{this.price}}</td>
-  </tr>
-  {{/each}}
- </tbody>
-</table>
-{{/if}}
-
-{{#if series.length}}
-<br> <br>
-<h1 class="headline">Serieses: </h1>
-<table class="table table-dark table-striped">
- <thead>
-  <tr>
-   <th scope="col">Name</th>
-   <th scope="col">Category</th>
-   <th scope="col">Seasons</th>
-   <th scope="col">Episodes</th>
-   <th scope="col">Rating</th>
-   <th scope="col">Director</th>
-   <th scope="col">Year</th>
-      <th scope="col">Price in SEK:</th>
-  </tr>
- </thead>
- <tbody>
-  {{#each series}}
-  <tr>
-   <td>{{this.name}}</td>
-   <td>{{this.category}}</td>
-   <td>{{this.seasons}}</td>
-   <td>{{this.episodes}}</td>
-   <td>{{this.rating}}</td>
-   <td>{{this.director}}</td>
-   <td>{{this.year}}</td>
-     <td>{{this.price}}</td>
-  </tr>
-  {{/each}}
- </tbody>
-</table>
-{{/if}}
-</div>
+<main>
+   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <button type="button" id="addToBox" class="btn btn-dark" style="width: 100px">
+         <i class="bi bi-plus-lg"></i>
+      </button>
+   </div>
+   <div class="table-responsive">
+      {{#if rows.length}}
+      <br> <br>
+      <h1 class="headline">MMS Top Movies & TV Showes: </h1>
+      <table class="table table-dark table-striped">
+         <thead>
+            <tr>
+               <th scope="col">Name</th>
+               <th scope="col">Type</th>
+               <th scope="col">Rating</th>
+               <th scope="col">Budget in USD:</th>
+               <th scope="col">US Gross in USD:</th>
+               <th scope="col">Gross Worldwide in USD:</th>
+               <th scope="col">Reviews</th>
+               </tr>
+               </thead>
+               <tbody>
+            {{#each rows}}
+            <tr>
+               <td>{{this.name}}</td>
+               <td>{{this.type}}</td>
+               <td>{{this.rating}}</td>
+               <td>{{this.budget}}</td>
+               <td>{{this.gross}}</td>
+               <td>{{this.grossWorldwide}}</td>
+               <td>{{this.reviews}}</td>
+               </tr>
+               {{/each}}
+               </tbody>
+               </table>
+      {{else}}
+      <h1 class="headline">No Data in The Database </h1>
+      {{/if}}
+      </div>
+</main>

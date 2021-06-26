@@ -43,24 +43,10 @@ homeController.index = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      var directors, movies, series
-      connection.query('SELECT * FROM directors_table', (err, rows) => {
+      connection.query('SELECT * FROM box_office_table', (err, rows) => {
         connection.release()
         if (!err) {
-          directors = rows
-        }
-      })
-      connection.query('SELECT * FROM movies_table', (err, rows) => {
-        connection.release()
-        if (!err) {
-          movies = rows
-        }
-      })
-      connection.query('SELECT * FROM series_table', (err, rows) => {
-        connection.release()
-        if (!err) {
-          series = rows
-          res.render('home', { directors, movies, series })
+          res.render('home', { rows })
         }
       })
     })

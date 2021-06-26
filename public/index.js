@@ -10,6 +10,7 @@ function run () {
   onAdd('addDirector', '/directors/add-director')
   onAdd('addMovie', '/movies/add-movie')
   onAdd('addSeries', '/serieses/add-series')
+  onAdd('addToBox', '/add-to-bestbox')
 }
 
 /**
