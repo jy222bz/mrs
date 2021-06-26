@@ -65,7 +65,7 @@ addController.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 addController.post = async (req, res) => {
-  const { director, category, mName, year, ageLimit, price, note, length, origin, language } = req.body
+  const { director, category, mName, year, ageLimit, mPrice, note, length, origin, language } = req.body
   try {
     /**
      * DB connection.
@@ -92,7 +92,7 @@ addController.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('INSERT INTO movies_table SET mName = ?, ageLimit = ?, category = ?, director = ?, note = ?, year = ?, length = ?, price = ?, origin = ?, language = ?, type = ?', [mName, ageLimit, category, director, note, year, length, price, origin, language, 'Movie'], (err, rows) => {
+      connection.query('INSERT INTO movies_table SET mName = ?, ageLimit = ?, category = ?, director = ?, note = ?, year = ?, length = ?, mPrice = ?, origin = ?, language = ?', [mName, ageLimit, category, director, note, year, length, mPrice, origin, language], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')

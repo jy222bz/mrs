@@ -14,6 +14,7 @@ const controller = require('../controllers/searchController')
  */
 router
   .get('/search', controller.get)
-  .post('/search', controller.post)
+  .get('/mutual-directors', controller.getMutual)
+  .get('/cross-join', controller.crossJoins)
 
 module.exports = router

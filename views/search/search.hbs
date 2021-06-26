@@ -19,31 +19,71 @@
    <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
      <li class="nav-item">
-      <button class="button-link active" aria-current="page" href="#">Home</button>
+      <a class="nav-link active" aria-current="page" href="/mutual-directors">Movies & Srieses with mutual Directors</a>
      </li>
      <li class="nav-item">
-      <a class="nav-link" href="#">Features</a>
+      <a class="nav-link" href="/cross-join">Cross Join</a>
      </li>
      <li class="nav-item">
       <a class="nav-link" href="#">Pricing</a>
-     </li>
-     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-       aria-expanded="false">
-       Dropdown link
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-       <li><a class="dropdown-item" href="#">Action</a></li>
-       <li><a class="dropdown-item" href="#">Another action</a></li>
-       <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
      </li>
     </ul>
    </div>
   </div>
  </nav>
  <main id="main" class="main">
-  <h2 class="headline">Results:</h2>
+  {{#if mutual.length}} <h1 class="headline">Movies & Srieses with mutual Directors: </h1>
+  <table class="table table-dark table-striped">
+   <thead>
+    <tr>
+     <th scope="col">Director Name</th>
+     <th scope="col">Age</th>
+     <th scope="col">Origin</th>
+     <th scope="col">Movie Name</th>
+     <th scope="col">Series Name</th>
+    </tr>
+   </thead>
+   <tbody>
+    {{#each mutual}}
+    <tr>
+     <td>{{this.fullName}}</td>
+     <td>{{this.age}}</td>
+     <td>{{this.origin}}</td>
+     <td>{{this.mName}}</td>
+     <td>{{this.name}}</td>
+    </tr>
+    {{/each}}
+   </tbody>
+  </table>
+  {{/if}}
+  {{#if joins.length}} <h1 class="headline">If you buy a movie and a series, you will get a 10 USD discount from the
+   total
+   amount. Here is a list
+   of all combinations with the prices. : </h1>
+  <table class="table table-dark table-striped">
+   <thead>
+    <tr>
+     <th scope="col">Combination: Movie Name & Series Name</th>
+     <th scope="col">The inital price of the Movie in USD</th>
+     <th scope="col">The inital price of the Series in USD</th>
+     <th scope="col">Actual Price for both before discount in USD</th>
+     <th scope="col">Actual Price for both after discount in USD</th>
+    </tr>
+   </thead>
+   <tbody>
+    {{#each joins}}
+    <tr>
+     <td>{{this.mName}} & {{this.name}}</td>
+     <td>{{this.mPrice}}</td>
+     <td> {{this.price}} </td>
+     <td>{{this.total_before}} </td>
+     <td>{{this.total_after}} </td>
+  
+    </tr>
+    {{/each}}
+   </tbody>
+  </table>
+  {{/if}}
  </main>
 </body>
 
