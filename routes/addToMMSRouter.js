@@ -13,7 +13,7 @@ const controller = require('../controllers/addToMMSController')
  * The routes for the create form.
  */
 router
-  .get('/add-to-bestbox', controller.get)
-  .post('/add-to-bestbox', controller.post)
+  .get('/best-box/add-to-bestbox', controller.get)
+  .post('/best-box/add-to-bestbox', controller.post)
 
 module.exports = router

@@ -16,5 +16,6 @@ const controller = require('../controllers/homeController')
  */
 router
   .get('', controller.index)
+  .get('/best-box', controller.index)
 
 module.exports = router

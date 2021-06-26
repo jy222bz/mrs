@@ -95,7 +95,7 @@ addController.post = async (req, res) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
-          res.redirect('/add-to-bestbox')
+          res.redirect('/best-box/add-to-bestbox')
         }
       })
     })
