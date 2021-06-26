@@ -18,9 +18,9 @@
                <th scope="col">US Gross in USD:</th>
                <th scope="col">Gross Worldwide in USD:</th>
                <th scope="col">Reviews</th>
-               </tr>
-               </thead>
-               <tbody>
+            </tr>
+            </thead>
+            <tbody>
             {{#each rows}}
             <tr>
                <td>{{this.name}}</td>
@@ -30,12 +30,14 @@
                <td>{{this.gross}}</td>
                <td>{{this.grossWorldwide}}</td>
                <td>{{this.reviews}}</td>
-               </tr>
-               {{/each}}
-               </tbody>
-               </table>
+            </tr>
+            {{/each}}
+            </tbody>
+            </table>
       {{else}}
-      <h1 class="headline">No Data in The Database </h1>
-      {{/if}}
+      <div class="container-fluid pt-5 pb-5">
+         <h1 class="headline">No Data In The Database </h1>
       </div>
+      {{/if}}
+   </div>
 </main>
