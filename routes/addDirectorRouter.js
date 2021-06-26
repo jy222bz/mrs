@@ -13,7 +13,7 @@ const controller = require('../controllers/addDirectorController')
  * The routes for the create form.
  */
 router
-  .get('/add-director', controller.get)
-  .post('/add-director', controller.post)
+  .get('/directors/add-director', controller.get)
+  .post('/directors/add-director', controller.post)
 
 module.exports = router

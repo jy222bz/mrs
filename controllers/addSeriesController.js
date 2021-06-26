@@ -110,7 +110,7 @@ controller.post = async (req, res) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
-          res.redirect('/add-series')
+          res.redirect('/serieses/add-series')
         }
       })
     })

@@ -13,7 +13,7 @@ const controller = require('../controllers/addMovieController')
  * The routes for the create form.
  */
 router
-  .get('/add-movie', controller.get)
-  .post('/add-movie', controller.post)
+  .get('/movies/add-movie', controller.get)
+  .post('/movies/add-movie', controller.post)
 
 module.exports = router

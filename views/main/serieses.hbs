@@ -67,10 +67,10 @@
      */
     posts.onreadystatechange = () => {
       if (posts.readyState === 4 && posts.status === 200) {
-        window.location = '/add-series'
+        window.location = 'serieses/add-series'
       }
     }
-    posts.open('GET', '/add-series', true)
+           posts.open('GET', '/serieses/add-series', true)
     posts.send()
   })</script>
 </body>

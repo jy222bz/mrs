@@ -13,7 +13,7 @@ const controller = require('../controllers/addSeriesController')
  * The routes for the create form.
  */
 router
-  .get('/add-series', controller.get)
-  .post('/add-series', controller.post)
+  .get('/serieses/add-series', controller.get)
+  .post('/serieses/add-series', controller.post)
 
 module.exports = router

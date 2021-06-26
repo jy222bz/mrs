@@ -66,10 +66,10 @@
     */
    posts.onreadystatechange = () => {
     if (posts.readyState === 4 && posts.status === 200) {
-     window.location = '/add-movie'
+      window.location = '/movies/add-movie'
     }
    }
-   posts.open('GET', '/add-movie', true)
+            posts.open('GET', '/movies/add-movie', true)
    posts.send()
   })</script>
 </body>

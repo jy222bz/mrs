@@ -65,8 +65,7 @@ addController.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 addController.post = async (req, res) => {
-  const { director, category, movieName, year, rating, price, note } = req.body
-  var directorId
+  const { director, category, name, year, ageLimit, price, note, length, origin, language } = req.body
   try {
     /**
      * DB connection.
@@ -93,24 +92,11 @@ addController.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      if (director === 'Unregistered') {
-        directorId = -1
-      } else {
-        connection.query('SELECT * FROM directors_table WHERE fullName LIKE ?', ['%' + director + '%'], (err, rows) => {
-          connection.release()
-          if (!err) {
-            rows.forEach(element => {
-              directorId = element.directorID
-              console.log(element)
-            })
-          }
-        })
-      }
-      connection.query('INSERT INTO movies_table SET movieName = ?, rating = ?, category = ?, director = ?, note = ?, year = ?, directorId = ?, price = ?', [movieName, rating, category, director, note, year, directorId, price], (err, rows) => {
+      connection.query('INSERT INTO movies_table SET name = ?, ageLimit = ?, category = ?, director = ?, note = ?, year = ?, length = ?, price = ?, origin = ?, language = ?', [name, ageLimit, category, director, note, year, length, price, origin, language], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
-          res.redirect('/add-movie')
+          res.redirect('/movies/add-movie')
         }
       })
     })
