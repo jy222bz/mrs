@@ -18,8 +18,8 @@
   <section class="sec3">
    <h2>Best Movie Information:</h2>
    <form action="/add-to-bestbox" method="POST">
-    <label for="director">Select Director:</label><br>
-    <select name="director" id="director" required>
+    <label for="name">Select Movie:</label><br>
+    <select name="name" id="name" required>
      {{#if rows.length}}
      {{#each rows}}
      <option value="{{this.name}}">{{this.name}}</option>
@@ -31,10 +31,10 @@
     <input type="number" min="1" max="100" id="rating" name="rating" placeholder="Rating: 1-100" required><br>
     <label for="budget">Budget in USD:</label><br>
     <input type="number" min="1" id="budget" name="budget" placeholder="Budget in USD" required><br>
-    <label for="sales">Gross in USD:</label><br>
-    <input type="number" min="1" id="sales" name="sales" placeholder="Gross in USD" required><br>
-    <label for="salesCumulative">Cumulative Worldwide Gross in USD:</label><br>
-    <input type="number" min="1" id="salesCumulative" name="salesCumulative"
+    <label for="gross">Gross in USD:</label><br>
+    <input type="number" min="1" id="gross" name="gross" placeholder="Gross in USD" required><br>
+    <label for="grossWorldwide">Cumulative Worldwide Gross in USD:</label><br>
+    <input type="number" min="1" id="grossWorldwide" name="grossWorldwide"
      placeholder="Cumulative Worldwide Gross in USD" required><br>
     <br>
     <label for="reviews"> Reviews:</label><br>
