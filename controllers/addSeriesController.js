@@ -92,7 +92,7 @@ controller.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('INSERT INTO series_table SET name = ?, seasons = ?, episodes = ?, director = ?, ageLimit = ?, year = ?,  origin = ?, note = ?, category = ?, language = ?,  price = ?', [name, seasons, episodes, director, ageLimit, year, origin, note, category, language, price], (err, rows) => {
+      connection.query('INSERT INTO series_table SET name = ?, seasons = ?, episodes = ?, director = ?, ageLimit = ?, year = ?,  origin = ?, note = ?, category = ?, language = ?,  price = ?, type = ?', [name, seasons, episodes, director, ageLimit, year, origin, note, category, language, price, 'Series'], (err, rows) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
