@@ -67,7 +67,7 @@ controller.post = async (req, res) => {
         connection.release()
         if (!err) {
           req.flash('message', 'It was successfully added!')
-          res.redirect('directors/add-director')
+          res.redirect('/directors/add-director')
         }
       })
     })

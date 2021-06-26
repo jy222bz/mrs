@@ -67,7 +67,7 @@
      */
     posts.onreadystatechange = () => {
       if (posts.readyState === 4 && posts.status === 200) {
-        window.location = 'serieses/add-series'
+        window.location = '/serieses/add-series'
       }
     }
            posts.open('GET', '/serieses/add-series', true)
