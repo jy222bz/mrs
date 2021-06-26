@@ -1,7 +1,21 @@
 /**
+ * @author Jacob Yousif
+ * The main entery point to the server.
+ */
+
+/**
  * The main run method for the client-side.
  */
 function run () {
+  onAddDirector()
+  onAddMovie()
+  onAddSeries()
+}
+
+/**
+ * It handels the addDirector button and it makes a GET request to re-direct the page.
+ */
+function onAddDirector () {
   if (document.getElementById('addDirector') !== null) {
     document.getElementById('addDirector').addEventListener('click', async (e) => {
       var posts = new XMLHttpRequest()
@@ -17,7 +31,12 @@ function run () {
       posts.send()
     })
   }
+}
 
+/**
+ * It handels the addMovie button and it makes a GET request to re-direct the page.
+ */
+function onAddMovie () {
   if (document.getElementById('addMovie') !== null) {
     document.getElementById('addMovie').addEventListener('click', async (e) => {
       var posts = new XMLHttpRequest()
@@ -33,7 +52,12 @@ function run () {
       posts.send()
     })
   }
+}
 
+/**
+ * It handels the addSeries button and it makes a GET request to re-direct the page.
+ */
+function onAddSeries () {
   if (document.getElementById('addSeries') !== null) {
     document.getElementById('addSeries').addEventListener('click', async (e) => {
       var posts = new XMLHttpRequest()
