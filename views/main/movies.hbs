@@ -37,33 +37,33 @@
             <th scope="col">Length in Minutes:</th>
             <th scope="col">Language:</th>
             <th scope="col">Origin:</th>
+          </tr>
+          </thead>
+          <tbody>
+            {{#each rows}}
+            <tr>
+              <td>{{this.name}}</td>
+              <td>{{this.category}}</td>
+              <td>{{this.director}}</td>
+              <td>{{this.year}}</td>
+              <td>{{this.price}}</td>
+              <td>{{this.ageLimit}}</td>
+              <td>{{this.length}}</td>
+              <td>{{this.language}}</td>
+              <td>{{this.origin}}</td>
             </tr>
-            </thead>
-            <tbody>
-              {{#each rows}}
-              <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.category}}</td>
-                <td>{{this.director}}</td>
-                <td>{{this.year}}</td>
-                <td>{{this.price}}</td>
-                <td>{{this.ageLimit}}</td>
-                <td>{{this.length}}</td>
-                <td>{{this.language}}</td>
-                <td>{{this.origin}}</td>
-              </tr>
-              {{/each}}
-            </tbody>
-            </table>
-                {{else}}
-                <div class="container-fluid pt-5 pb-5">
-                  <h1 class="headline">No Data In The Database </h1>
-                </div>
-    {{/if}}
+            {{/each}}
+          </tbody>
+          </table>
+          {{else}}
+          <div class="container-fluid pt-5 pb-5">
+            <h1 class="headline">No Data In The Database </h1>
+          </div>
+          {{/if}}
 
     </div>
-    </main>
-      <script type="module" src="/index.js"></script>
+  </main>
+  <script type="module" src="/index.js"></script>
 </body>
 
 </html>
