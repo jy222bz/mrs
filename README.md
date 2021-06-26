@@ -3,7 +3,7 @@
 1. ### Clone the repo:
 
 ~~~
-clone git remote add origin https://github.com/jy222bz/crud-with-sql.git
+clone https://github.com/jy222bz/movie-management-system-with-sql.git
 ~~~
 
 2. ### Install the dependencies:
