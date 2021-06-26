@@ -7,69 +7,30 @@
  * The main run method for the client-side.
  */
 function run () {
-  onAddDirector()
-  onAddMovie()
-  onAddSeries()
+  onAdd('addDirector', '/directors/add-director')
+  onAdd('addMovie', '/movies/add-movie')
+  onAdd('addSeries', '/serieses/add-series')
 }
 
 /**
- * It handels the addDirector button and it makes a GET request to re-direct the page.
+ * It handels the add button and it makes a GET request to re-direct the page.
+ *
+ * @param {string}  btnName the name of the add button.
+ * @param {string}  url for the re-direction.
  */
-function onAddDirector () {
-  if (document.getElementById('addDirector') !== null) {
-    document.getElementById('addDirector').addEventListener('click', async (e) => {
+function onAdd (btnName, url) {
+  if (document.getElementById(btnName) !== null) {
+    document.getElementById(btnName).addEventListener('click', async (e) => {
       var posts = new XMLHttpRequest()
       /**
        * Redirect the request.
        */
       posts.onreadystatechange = () => {
         if (posts.readyState === 4 && posts.status === 200) {
-          window.location = '/directors/add-director'
+          window.location = url
         }
       }
-      posts.open('GET', '/directors/add-director', true)
-      posts.send()
-    })
-  }
-}
-
-/**
- * It handels the addMovie button and it makes a GET request to re-direct the page.
- */
-function onAddMovie () {
-  if (document.getElementById('addMovie') !== null) {
-    document.getElementById('addMovie').addEventListener('click', async (e) => {
-      var posts = new XMLHttpRequest()
-      /**
-       * Redirect the request.
-       */
-      posts.onreadystatechange = () => {
-        if (posts.readyState === 4 && posts.status === 200) {
-          window.location = '/movies/add-movie'
-        }
-      }
-      posts.open('GET', '/movies/add-movie', true)
-      posts.send()
-    })
-  }
-}
-
-/**
- * It handels the addSeries button and it makes a GET request to re-direct the page.
- */
-function onAddSeries () {
-  if (document.getElementById('addSeries') !== null) {
-    document.getElementById('addSeries').addEventListener('click', async (e) => {
-      var posts = new XMLHttpRequest()
-      /**
-       * Redirect the request.
-       */
-      posts.onreadystatechange = () => {
-        if (posts.readyState === 4 && posts.status === 200) {
-          window.location = '/serieses/add-series'
-        }
-      }
-      posts.open('GET', '/serieses/add-series', true)
+      posts.open('GET', url, true)
       posts.send()
     })
   }
