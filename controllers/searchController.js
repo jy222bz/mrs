@@ -117,7 +117,7 @@ searchController.crossJoins = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.innerJoins = async (req, res) => {
+searchController.innerJoins = async (req, res) => {
   try {
     /**
      * DB connection.
