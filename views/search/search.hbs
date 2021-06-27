@@ -22,7 +22,7 @@
       <a class="nav-link active" aria-current="page" href="/mutual-directors">Movies & Srieses with mutual Directors</a>
      </li>
      <li class="nav-item">
-      <a class="nav-link" href="/cross-join">Cross Join</a>
+      <a class="nav-link" href="/cross-join">Sets of two items: one Movie and one Series</a>
      </li>
      <li class="nav-item">
       <a class="nav-link" href="/inner-join">Inner Join</a>
@@ -63,18 +63,14 @@
    </tbody>
   </table>
   {{/if}}
-  {{#if joins.length}} <h1 class="headline">If you buy a movie and a series, you will get a 100 USD discount from the
-   total
-   amount. Here is a list
-   of all combinations with the prices. : </h1>
+{{#if joins.length}} <h1 class="headline">The combinations of a set of two items; one Movie and one Series: </h1>
   <table class="table table-dark table-striped">
    <thead>
     <tr>
      <th scope="col">Combination: Movie Name & Series Name</th>
      <th scope="col">The inital price of the Movie in USD</th>
      <th scope="col">The inital price of the Series in USD</th>
-     <th scope="col">Actual Price for both before discount in USD</th>
-     <th scope="col">Actual Price for both after discount in USD</th>
+   <th scope="col">Actual Price for both items in USD</th>
     </tr>
    </thead>
    <tbody>
@@ -83,9 +79,7 @@
      <td>{{this.name1}} & {{this.name2}}</td>
      <td>{{this.price1}}</td>
      <td> {{this.price2}} </td>
-     <td>{{this.total_before}} </td>
-     <td>{{this.total_after}} </td>
-  
+   <td>{{this.total}} </td>
     </tr>
     {{/each}}
     </tbody>

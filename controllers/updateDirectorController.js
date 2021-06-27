@@ -62,6 +62,8 @@ controller.update = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.updateDirector = async (req, res) => {
+  const { firstName, lastName, age, origin, id } = req.body
+  const fullName = firstName + ' ' + lastName
   try {
   /**
    * DB connection.
@@ -88,10 +90,10 @@ controller.updateDirector = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('SELECT DISTINCT d.fullName, d.age, d.origin, m.name AS name1, s.name AS name2 FROM directors_table d, movies_table m, series_table s WHERE d.fullName = m.director AND d.fullName = s.director', (err, rows) => {
+      connection.query('UPDATE directors_table SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ? WHERE id = ?', [firstName, lastName, age, fullName, origin, id], (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('search/search', { mutual: rows })
+          res.redirect('/directors')
         }
       })
     })

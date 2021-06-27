@@ -1,4 +1,4 @@
-# MMS - Movie Registry WITH SQL
+# Movie BLOG WITH SQL
 ## Installation and Configurations:
 1. ### Clone the repo:
 
