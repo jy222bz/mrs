@@ -25,7 +25,7 @@
       <a class="nav-link" href="/cross-join">Cross Join</a>
      </li>
      <li class="nav-item">
-      <a class="nav-link" href="#">Pricing</a>
+      <a class="nav-link" href="/inner-join">Inner Join</a>
      </li>
     </ul>
    </div>
@@ -49,14 +49,14 @@
      <td>{{this.fullName}}</td>
      <td>{{this.age}}</td>
      <td>{{this.origin}}</td>
-     <td>{{this.mName}}</td>
-     <td>{{this.name}}</td>
+     <td>{{this.name1}}</td>
+     <td>{{this.name2}}</td>
     </tr>
     {{/each}}
    </tbody>
   </table>
   {{/if}}
-  {{#if joins.length}} <h1 class="headline">If you buy a movie and a series, you will get a 10 USD discount from the
+  {{#if joins.length}} <h1 class="headline">If you buy a movie and a series, you will get a 100 USD discount from the
    total
    amount. Here is a list
    of all combinations with the prices. : </h1>
@@ -73,12 +73,38 @@
    <tbody>
     {{#each joins}}
     <tr>
-     <td>{{this.mName}} & {{this.name}}</td>
-     <td>{{this.mPrice}}</td>
-     <td> {{this.price}} </td>
+     <td>{{this.name1}} & {{this.name2}}</td>
+     <td>{{this.price1}}</td>
+     <td> {{this.price2}} </td>
      <td>{{this.total_before}} </td>
      <td>{{this.total_after}} </td>
   
+    </tr>
+    {{/each}}
+    </tbody>
+    </table>
+    {{/if}}
+    {{#if innerJoins.length}} <h1 class="headline">Inner Joins: </h1>
+    <table class="table table-dark table-striped">
+     <thead>
+      <tr>
+       <th scope="col">Movie Name </th>
+       <th scope="col">Director</th>
+       <th scope="col">Category</th>
+       <th scope="col">Rating</th>
+       <th scope="col">Gross</th>
+       <th scope="col">Gross Worldwide</th>
+      </tr>
+     </thead>
+     <tbody>
+      {{#each innerJoins}}
+      <tr>
+       <td>{{this.name}} </td>
+       <td>{{this.director}}</td>
+       <td> {{this.category}} </td>
+       <td>{{this.rating}} </td>
+       <td>{{this.gross}} </td>
+       <td>{{this.grossWorldwide}} </td>
     </tr>
     {{/each}}
    </tbody>

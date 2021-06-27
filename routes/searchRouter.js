@@ -16,5 +16,6 @@ router
   .get('/search', controller.get)
   .get('/mutual-directors', controller.getMutual)
   .get('/cross-join', controller.crossJoins)
+  .get('/inner-join', controller.innerJoins)
 
 module.exports = router
