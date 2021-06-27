@@ -20,5 +20,4 @@ router
   .get('/aggregate-cheapest', controller.aggregateCheapest)
   .get('/aggregate-expensive', controller.aggregateExpensive)
 
-
 module.exports = router

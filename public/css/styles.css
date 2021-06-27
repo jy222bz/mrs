@@ -45,7 +45,20 @@ th {
   box-sizing: border-box;
   resize: none;
 }
+a:link
+{
+    color:#FFFFFF;
+}
 
+a:visited
+{
+    color:#FFFFFF;
+}
+
+a:hover 
+{
+    color:#FFFFFF;
+}
 .form input[type=text] {
   padding: 10px;
   font-size: 17px;

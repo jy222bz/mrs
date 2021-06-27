@@ -42,12 +42,6 @@ controller.get = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('SELECT m.name AS mName, MIN(m.price) AS mPrice, s.name AS sName, MIN(s.price) AS bPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
-        connection.release()
-        if (!err) {
-          console.log(rows)
-        }
-      })
       connection.query('SELECT * FROM movies_table', (err, rows) => {
         connection.release()
         if (!err) {

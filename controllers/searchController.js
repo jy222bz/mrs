@@ -164,7 +164,7 @@ searchController.innerJoins = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.innerJoins = async (req, res) => {
+searchController.innerJoins = async (req, res) => {
   try {
     /**
      * DB connection.
@@ -211,7 +211,7 @@ searchController.innerJoins = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.aggregateExpensive = async (req, res) => {
+searchController.aggregateExpensive = async (req, res) => {
   try {
     /**
      * DB connection.
@@ -257,7 +257,7 @@ searchController.innerJoins = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.aggregateCheapest = async (req, res) => {
+searchController.aggregateCheapest = async (req, res) => {
   try {
     /**
      * DB connection.
@@ -284,7 +284,7 @@ searchController.innerJoins = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('SELECT m.name AS mName, MIN(m.price) AS mPrice, s.name AS sName, MIN(s.price) AS sPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
+      connection.query('SELECT m.name AS mName, MIN(m.price) AS mPrice, s.name AS sName, MIN(s.price) AS Price FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
         connection.release()
         if (!err) {
           res.render('search/search', { cheap: rows })
