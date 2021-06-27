@@ -15,9 +15,9 @@
 
 <body class="body">
  <main class="sec2" class="table-responsive">
+  {{#if rows.length}}
+  {{#each rows}}
   <form action="/directors/{{this.id}}" method="POST">
-   {{#if rows.length}}
-   {{#each rows}}
    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
     <a type="button" id="deleteDirector" href="/delete-direcotr/{{this.id}}" class="btn btn-dark" style="width: 100px">
      <i class="bi bi-trash"></i>
@@ -30,17 +30,17 @@
     <label for="lastName">Last Name:</label><br>
     <input type="text" id="lastName" name="lastName" value="{{this.lastName}}" placeholder="Last Name" required><br>
     <label for="age">Age:</label><br>
-    <input type="number" min="18" id="age" name="age" value="{{this.age}}" placeholder="age" required><br>
+    <input type="number" min="18" id="age" name="age" value="{{this.age}}" placeholder="Age" required><br>
     <label for="origin">Origin:</label><br>
     <input type="text" id="origin" name="origin" value="{{this.origin}}" placeholder="Origin" required><br>
     <input type="hidden" id="id" name="id" value="{{this.id}}">
     <br />
-    <input type="submit" value="Add"><br>
+    <input type="submit" value="Update"><br>
    </section>
-   {{/each}}
-   {{/if}}
-  </form>
  </main>
+ {{/each}}
+ {{/if}}
+ </form>
 </body>
 
 </html>
