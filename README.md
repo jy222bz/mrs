@@ -1,4 +1,4 @@
-# MMS - Movie Management System WITH SQL
+# MMS - Movie Registry WITH SQL
 ## Installation and Configurations:
 1. ### Clone the repo:
 

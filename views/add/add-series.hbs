@@ -22,7 +22,7 @@
                         <select name="director" id="director" required>
                               {{#if rows.length}}
                               {{#each rows}}
-                              <option value="{{this.fullName}}">{{this.fullName}}</option>
+                              <option value="{{this.fullName}}|{{this.id}}">{{this.fullName}}</option>
                               {{/each}}
                               {{/if}}
                         </select>
