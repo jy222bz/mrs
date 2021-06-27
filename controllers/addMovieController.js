@@ -36,7 +36,6 @@ addController.get = async (req, res) => {
      * @param {object} req the Express request.
      * @param {object} res the Express response.
      */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
@@ -84,7 +83,6 @@ addController.post = async (req, res) => {
      * @param {object} req the Express request.
      * @param {object} res the Express response.
      */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)

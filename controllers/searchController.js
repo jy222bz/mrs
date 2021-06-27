@@ -157,4 +157,143 @@ searchController.innerJoins = async (req, res) => {
   }
 }
 
+/**
+ * This method it responds to the GET request when
+ * the user wans to search for a specific tag.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+ searchController.innerJoins = async (req, res) => {
+  try {
+    /**
+     * DB connection.
+     */
+    const db = mysql.createPool({
+      connectionLimit: 100,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    })
+
+    /**
+     * Exporting the DB connection.
+     *
+     * @param {object} req the Express request.
+     * @param {object} res the Express response.
+     */
+
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      } else {
+        console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+      }
+      connection.query('SELECT m.name, m.director, m.category, b.rating, b.gross, b.grossWorldwide FROM movies_table m INNER JOIN box_office_table b ON m.name = b.name', (err, rows) => {
+        connection.release()
+        if (!err) {
+          console.log(rows)
+          res.render('search/search', { innerJoins: rows })
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/**
+ * This method it responds to the GET request when
+ * the user wans to search for a specific tag.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+ searchController.aggregateExpensive = async (req, res) => {
+  try {
+    /**
+     * DB connection.
+     */
+    const db = mysql.createPool({
+      connectionLimit: 100,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    })
+
+    /**
+     * Exporting the DB connection.
+     *
+     * @param {object} req the Express request.
+     * @param {object} res the Express response.
+     */
+
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      } else {
+        console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+      }
+      connection.query('SELECT m.name AS mName, MAX(m.price) AS mPrice, s.name AS sName, MAX(s.price) AS sPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
+        connection.release()
+        if (!err) {
+          res.render('search/search', { expensive: rows })
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/**
+ * This method it responds to the GET request when
+ * the user wans to search for a specific tag.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+ searchController.aggregateCheapest = async (req, res) => {
+  try {
+    /**
+     * DB connection.
+     */
+    const db = mysql.createPool({
+      connectionLimit: 100,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    })
+
+    /**
+     * Exporting the DB connection.
+     *
+     * @param {object} req the Express request.
+     * @param {object} res the Express response.
+     */
+
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      } else {
+        console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+      }
+      connection.query('SELECT m.name AS mName, MIN(m.price) AS mPrice, s.name AS sName, MIN(s.price) AS sPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
+        connection.release()
+        if (!err) {
+          res.render('search/search', { cheap: rows })
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = searchController
