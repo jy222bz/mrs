@@ -22,7 +22,7 @@
     <select name="name" id="name" required>
      {{#if rows.length}}
      {{#each rows}}
-     <option value="{{this.mName}}">{{this.name}}</option>
+     <option value="{{this.name}}|{{this.id}}">{{this.name}}</option>
      {{/each}}
      {{/if}}
     </select>
@@ -33,9 +33,8 @@
     <input type="number" min="1" id="budget" name="budget" placeholder="Budget in USD" required><br>
     <label for="gross">Gross in USD:</label><br>
     <input type="number" min="1" id="gross" name="gross" placeholder="Gross in USD" required><br>
-    <label for="grossWorldwide">Cumulative Worldwide Gross in USD:</label><br>
-    <input type="number" min="1" id="grossWorldwide" name="grossWorldwide"
-     placeholder="Cumulative Worldwide Gross in USD" required><br>
+    <label for="awards">Number of Award[s]:</label><br>
+    <input type="number" min="0" id="awards" name="awards" placeholder="Number of awards" required><br>
     <br>
     <label for="reviews"> Reviews:</label><br>
     <textarea id="reviews" name="reviews" rows="12" cols="50" placeholder="Write the reviews here...."></textarea>
