@@ -52,7 +52,7 @@ homeController.index = async (req, res) => {
       connection.query('SELECT * FROM box_office_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('home', { rows })
+          res.render('home', { rows, title: 'Home' })
         }
       })
     })

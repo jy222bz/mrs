@@ -9,14 +9,16 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/homeController')
+const controller = require('../controllers/signupController')
+const csrf = require('csurf')
+const proc = csrf()
+router.use(proc)
 
 /**
  * The routes for the home.
  */
 router
-  .get('', controller.index)
-  .get('/', controller.index)
-  .get('/best-box', controller.index)
+  .get('/register', controller.get)
+  .post('/register', controller.post)
 
 module.exports = router

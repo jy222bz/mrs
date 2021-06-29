@@ -45,7 +45,7 @@ controller.get = async (req, res) => {
       connection.query('SELECT * FROM movies_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('main/movies', { rows })
+          res.render('main/movies', { rows, title: 'Movies' })
         }
       })
     })

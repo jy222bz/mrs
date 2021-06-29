@@ -21,31 +21,25 @@ const directors = require('./routes/directorsRouter')
 const movies = require('./routes/moviesRouter')
 const series = require('./routes/seriesesRouter')
 const bestBox = require('./routes/searchRouter')
+const signin = require('./routes/signinRouter')
+const signout = require('./routes/signoutRouter')
+const signup = require('./routes/signupRouter')
 const updateDirector = require('./routes/updateDirectorRouter')
 const hbs = require('express-handlebars')
 const app = express()
 const flash = require('connect-flash')
 const session = require('express-session')
+const passport = require('passport')
+const methodOverride = require('method-override')
 const port = process.env.PORT || 3000
+const initPassport = require('./passport-config')
+// initPassport.init(passport, email => )
 
 /**
  * Set view engine.
  */
 app.engine('hbs', hbs({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
-
-/**
- * Set the session.
- */
-app.use(session({
-  secret: process.env.SECERT,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 2,
-    httpOnly: true
-  }
-}))
 
 /**
  * Middlewares.
@@ -56,9 +50,53 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
 
 /**
+ * Set the session.
+ */
+app.use(session({
+  secret: process.env.SECERT,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
+/**
+ * @param req
+ * @param res
+ * @param next
+ */
+function checkAuthenticated (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/login')
+}
+
+/**
+ * @param req
+ * @param res
+ * @param next
+ */
+function checkNotAuthenticated (req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+app.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+})
+
+/**
  * Routes.
  */
-app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector)
+app.use(checkNotAuthenticated, signin, signup)
+
+app.use(checkAuthenticated, home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signout)
 
 /**
  * It handels the 404 error and renders the error page.

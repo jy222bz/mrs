@@ -1,24 +1,23 @@
 /**
  * @author Jacob Yousif
- * A controller for the create form.
+ * A controller for the home page.
  */
 
 const mysql = require('mysql2')
 require('dotenv').config()
-const addController = {}
+
+const controller = {}
 
 /**
  * This method it responds to the GET request when
- * the user wants to create a snippet.
- * It renders the create form.
+ * the user view the snippets.
+ * It renders the home page.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
-addController.get = async (req, res) => {
+controller.get = async (req, res) => {
   try {
-    const message = req.flash('message')
-    delete req.session.message
     /**
      * DB connection.
      */
@@ -36,6 +35,7 @@ addController.get = async (req, res) => {
      * @param {object} req the Express request.
      * @param {object} res the Express response.
      */
+
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
@@ -43,10 +43,16 @@ addController.get = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('SELECT * FROM movies_table', (err, rows) => {
+      connection.query('SELECT d.fullName, d.age, d.origin, m.mName, s.name FROM directors_table d, movies_table m, series_table s WHERE d.fullName = m.director AND d.fullName = s.director', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-to-bestbox', { rows, message: message, title: 'Add Review' })
+          console.log(rows)
+        }
+      })
+      connection.query('SELECT * FROM box_office_table', (err, rows) => {
+        connection.release()
+        if (!err) {
+          res.render('home', { rows, title: 'Signout' })
         }
       })
     })
@@ -56,16 +62,14 @@ addController.get = async (req, res) => {
 }
 
 /**
- * This method it responds to the Post request when
- * the user wants to create a snippet.
- * It create a snippet and saves in the DB.
+ * This method it responds to the GET request when
+ * the user view the snippets.
+ * It renders the home page.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
-addController.post = async (req, res) => {
-  const { name, rating, budget, gross, awards, reviews } = req.body
-  const values = name.split('|')
+controller.post = async (req, res) => {
   try {
     /**
      * DB connection.
@@ -92,11 +96,16 @@ addController.post = async (req, res) => {
       } else {
         console.log('MySQL is connected. Connection ID: ' + connection.threadId)
       }
-      connection.query('INSERT INTO box_office_table SET name = ?, rating = ?, budget = ?, gross = ?, awards = ?, reviews = ?, movieID = ?', [values[0], rating, budget, gross, awards, reviews, values[1]], (err, rows) => {
+      connection.query('SELECT d.fullName, d.age, d.origin, m.mName, s.name FROM directors_table d, movies_table m, series_table s WHERE d.fullName = m.director AND d.fullName = s.director', (err, rows) => {
         connection.release()
         if (!err) {
-          req.flash('message', 'It was successfully added!')
-          res.redirect('/best-box/add-to-bestbox')
+          console.log(rows)
+        }
+      })
+      connection.query('SELECT * FROM box_office_table', (err, rows) => {
+        connection.release()
+        if (!err) {
+          res.render('home', { rows })
         }
       })
     })
@@ -105,4 +114,4 @@ addController.post = async (req, res) => {
   }
 }
 
-module.exports = addController
+module.exports = controller

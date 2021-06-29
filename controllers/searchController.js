@@ -101,7 +101,7 @@ searchController.crossJoins = async (req, res) => {
       connection.query('SELECT m.name AS name1, s.name AS name2, m.price AS price1, s.price AS price2, (m.price + s.price) AS total FROM movies_table m CROSS JOIN series_table s', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('search/search', { joins: rows })
+          res.render('search/search', { joins: rows, title: 'Search' })
         }
       })
     })

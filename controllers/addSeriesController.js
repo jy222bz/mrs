@@ -47,7 +47,7 @@ controller.get = async (req, res) => {
       connection.query('SELECT * FROM directors_table', (err, rows) => {
         connection.release()
         if (!err) {
-          res.render('add/add-series', { rows, message: message })
+          res.render('add/add-series', { rows, message: message, title: 'Add Series' })
         }
       })
     })
