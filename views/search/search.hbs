@@ -1,44 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
- <meta charset="utf-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1" />
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" type="text/css" href="/css/index.css" />
-<title>{{title}}</title>
-</head>
-
-<body class="body">
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-   </button>
-   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/mutual-directors">Movies & Srieses with mutual Directors</a>
-     </li>
-     <li class="nav-item">
-      <a class="nav-link" href="/cross-join">Sets of two items: one Movie and one Series</a>
-     </li>
-     <li class="nav-item">
-      <a class="nav-link" href="/inner-join">Inner Join</a>
-     </li>
-      <li class="nav-item">
-         <a class="nav-link" href="/aggregate-cheapest">The cheapest: Movie and Series</a>
-      </li>
-      </li>
-      <li class="nav-item">
-         <a class="nav-link" href="/aggregate-expensive">The most expensive: Movie and Series</a>
-      </li>
-    </ul>
-   </div>
-  </div>
- </nav>
- <main id="main" class="main">
+{{> header}}
+<main id="main" class="main">
   {{#if mutual.length}} <h1 class="headline">Movies & Srieses with mutual Directors: </h1>
   <table class="table table-dark table-striped">
    <thead>
@@ -156,7 +117,4 @@
    </tbody>
 </table>
 {{/if}}
- </main>
-</body>
-
-</html>
+</main>

@@ -67,6 +67,7 @@ app.delete('/logout', (req, res) => {
   res.redirect('/login')
 })
 
+
 /**
  * Routes.
  */
