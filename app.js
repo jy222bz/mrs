@@ -61,12 +61,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-
 app.delete('/logout', (req, res) => {
   req.logOut()
   res.redirect('/login')
 })
-
 
 /**
  * Routes.

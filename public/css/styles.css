@@ -21,6 +21,15 @@ th {
   color: #dfe4ea;
 }
 
+h1 {
+  margin: 10px;
+  font-size: 2vw;
+  text-align: center;
+  font-family: 'Chilanka', cursive;
+  color: #c7ecee;
+  margin-bottom: 20px;
+}
+
 .line {
   font-family: Geneva;
   color: white;
@@ -30,6 +39,15 @@ th {
   margin-left: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.h {
+  margin: 10px;
+  margin-top: 15px;
+  font-size: 1vw;
+  text-align: center;
+  font-family: 'Chilanka', cursive;
+  color: white;
 }
 
 .div2 {
