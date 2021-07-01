@@ -61,30 +61,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-/**
- * @param req
- * @param res
- * @param next
- */
-function checkAuthenticated (req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
-  }
-
-  res.redirect('/login')
-}
-
-/**
- * @param req
- * @param res
- * @param next
- */
-function checkNotAuthenticated (req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/')
-  }
-  next()
-}
 
 app.delete('/logout', (req, res) => {
   req.logOut()
@@ -94,9 +70,9 @@ app.delete('/logout', (req, res) => {
 /**
  * Routes.
  */
-app.use(checkNotAuthenticated, signin, signup)
+app.use(signin, signup)
 
-app.use(checkAuthenticated, home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signout)
+app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signout)
 
 /**
  * It handels the 404 error and renders the error page.
