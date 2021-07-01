@@ -1,71 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="/css/styles.css" />
-      <link rel="stylesheet" href="/css/style_form.css" />
-      <title>{{title}}</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-</head>
-
-<body class="body">
-      <main class="sec2" class="table-responsive">
-            <section class="sec3">
-                  <h2>Movie Information:</h2>
-                  <form action="/movies/add-movie" method="POST">
-                        <label for="director">Select Director:</label><br>
-                        <select name="director" id="director" required>
-                              {{#if rows.length}}
-                              {{#each rows}}
-                              <option value="{{this.fullName}}|{{this.id}}">{{this.fullName}}</option>
-                              {{/each}}
-                              {{/if}}
-                        </select>
-                        <br>
-                        <label for="category">Select Category:</label><br>
-                        <select name="category" id="category" required>
-                              <option value="Action">Action</option>
-                              <option value="Crime">Crime</option>
-                              <option value="Drama">Drama</option>
-                              <option value="Adventure">Adventure</option>
-                              <option value="War">War</option>
-                              <option value="Mystery">Mystery</option>
-                              <option value="Thriller">Thriller</option>
-                              <option value="Comedy">Comedy</option>
-                              <option value="Horror">Horror</option>
-                        </select>
-                        <br> <br>
-                        <label for="name">Movie Name:</label><br>
-                        <input type="title" id="name" name="name" placeholder="Movie Name" required><br>
-                        <label for="year">Year:</label><br>
-                        <input type="number" min="1920" max="2021" id="year" name="year" placeholder="Year" required><br>
-                        <label for="length">Length in Minutes:</label><br>
-                        <input type="number" min="1" id="length" name="length" placeholder="Length in minutes." required><br>
-                        <label for="price"> Price in USD:</label><br>
-                        <input type="number" min="1" id="price" name="price" placeholder="Price in USD" required><br>
-                        <label for="ageLimit"> Age Limit:</label><br>
-                        <input type="number" min="1" id="ageLimit" name="ageLimit" placeholder="Age imit" required><br>
-                        <label for="origin">Origin:</label><br>
-                        <input type="title" id="origin" name="origin" placeholder="Origin" required><br>
-                        <label for="language">Language:</label><br>
-                        <input type="title" id="language" name="language" placeholder="Language" required><br>
-                        <br>
-                        <label for="note"> Note:</label><br>
-                        <textarea id="note" name="note" rows="12" cols="50" placeholder="Write the note here...."></textarea>
-                        <input type="submit" value="Add"><br>
-                  </form>
-            </section>
-            {{#if message.length}}
-            <div class="div2">
-                  <p class="line"> {{message}} </p>
-            </div>
-            {{/if}}
-      </main>
-</body>
-
-</html>
+<main class="sec2" class="table-responsive">
+      <section class="sec3">
+            <h2>Movie Information:</h2>
+            <form action="/movies/add-movie" method="POST">
+                  <label for="director">Select Director:</label><br>
+                  <select name="director" id="director" required>
+                        {{#if rows.length}}
+                        {{#each rows}}
+                        <option value="{{this.fullName}}|{{this.id}}">{{this.fullName}}</option>
+                        {{/each}}
+                        {{/if}}
+                  </select>
+                  <br>
+                  <label for="category">Select Category:</label><br>
+                  <select name="category" id="category" required>
+                        <option value="Action">Action</option>
+                        <option value="Crime">Crime</option>
+                        <option value="Drama">Drama</option>
+                        <option value="Adventure">Adventure</option>
+                        <option value="War">War</option>
+                        <option value="Mystery">Mystery</option>
+                        <option value="Thriller">Thriller</option>
+                        <option value="Comedy">Comedy</option>
+                        <option value="Horror">Horror</option>
+                  </select>
+                  <br> <br>
+                  <label for="name">Movie Name:</label><br>
+                  <input type="title" id="name" name="name" placeholder="Movie Name" required><br>
+                  <label for="year">Year:</label><br>
+                  <input type="number" min="1920" max="2021" id="year" name="year" placeholder="Year" required><br>
+                  <label for="length">Length in Minutes:</label><br>
+                  <input type="number" min="1" id="length" name="length" placeholder="Length in minutes." required><br>
+                  <label for="price"> Price in USD:</label><br>
+                  <input type="number" min="1" id="price" name="price" placeholder="Price in USD" required><br>
+                  <label for="ageLimit"> Age Limit:</label><br>
+                  <input type="number" min="1" id="ageLimit" name="ageLimit" placeholder="Age imit" required><br>
+                  <label for="origin">Origin:</label><br>
+                  <input type="title" id="origin" name="origin" placeholder="Origin" required><br>
+                  <label for="language">Language:</label><br>
+                  <input type="title" id="language" name="language" placeholder="Language" required><br>
+                  <br>
+                  <label for="note"> Note:</label><br>
+                  <textarea id="note" name="note" rows="12" cols="50" placeholder="Write the note here...."></textarea>
+                  <input type="submit" value="Add"><br>
+            </form>
+      </section>
+      {{#if message.length}}
+      <div class="div2">
+            <p class="line"> {{message}} </p>
+      </div>
+      {{/if}}
+</main>
