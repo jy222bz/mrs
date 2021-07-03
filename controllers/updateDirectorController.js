@@ -32,7 +32,7 @@ controller.update = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM directors_table WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('SELECT * FROM directors WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
             res.render('update/directors', { rows, title: 'Update Director' })
@@ -73,7 +73,7 @@ controller.updateDirector = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE directors_table d, movies_table m, series_table s SET d.firstName = ?, d.lastName = ?, d.age = ?, d.fullName = ?, d.origin = ?, m.director = ?, s.director = ? WHERE d.id = ? AND m.directorID = ? AND s.directorID = ?', [firstName, lastName, age, fullName, origin, fullName, fullName, id, id, id], (err, rows) => {
+        connection.query('UPDATE directors d, movies_table m, series_table s SET d.firstName = ?, d.lastName = ?, d.age = ?, d.fullName = ?, d.origin = ?, m.director = ?, s.director = ? WHERE d.id = ? AND m.directorID = ? AND s.directorID = ?', [firstName, lastName, age, fullName, origin, fullName, fullName, id, id, id], (err, rows) => {
           connection.release()
           if (!err) {
             res.redirect('/directors')
@@ -112,7 +112,7 @@ controller.delete = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('DELETE FROM directors_table WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('DELETE FROM directors WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
             res.redirect('/directors')

@@ -32,7 +32,7 @@ addController.get = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM movies_table', (err, rows) => {
+        connection.query('SELECT * FROM movies', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('add/add-review', { rows, message: message, title: 'Add Review' })
@@ -74,7 +74,7 @@ addController.post = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('INSERT INTO box_office_table SET name = ?, rating = ?, budget = ?, gross = ?, awards = ?, reviews = ?, movieID = ?', [values[0], rating, budget, gross, awards, reviews, values[1]], (err, rows) => {
+        connection.query('INSERT INTO reviews SET name = ?, rating = ?, budget = ?, gross = ?, awards = ?, reviews = ?, movieID = ?', [values[0], rating, budget, gross, awards, reviews, values[1]], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')

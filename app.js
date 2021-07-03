@@ -51,7 +51,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(session({
   secret: process.env.SECERT,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 2,
+    httpOnly: true
+  }
 }))
 
 /**

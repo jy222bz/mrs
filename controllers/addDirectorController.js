@@ -56,7 +56,7 @@ controller.post = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('INSERT INTO directors_table SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName, lastName, age, fullName, origin], (err, rows) => {
+        connection.query('INSERT INTO directors SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName.toUpperCase(), lastName.toUpperCase(), age, fullName.toUpperCase(), origin], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')

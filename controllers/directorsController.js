@@ -31,7 +31,7 @@ controller.get = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM directors_table', (err, rows) => {
+        connection.query('SELECT * FROM directors', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('main/directors', { rows, title: 'Directors' })

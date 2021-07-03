@@ -32,7 +32,7 @@ controller.get = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM series_table', (err, rows) => {
+        connection.query('SELECT * FROM serieses', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('main/serieses', { rows, title: 'Serieses' })

@@ -31,13 +31,13 @@ homeController.index = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT d.fullName, d.age, d.origin, m.mName, s.name FROM directors_table d, movies_table m, series_table s WHERE d.fullName = m.director AND d.fullName = s.director', (err, rows) => {
+        connection.query('SELECT d.fullName, d.age, d.origin, m.mName, s.name FROM directors d, movies_table m, series_table s WHERE d.fullName = m.director AND d.fullName = s.director', (err, rows) => {
           connection.release()
           if (!err) {
             console.log(rows)
           }
         })
-        connection.query('SELECT * FROM box_office_table', (err, rows) => {
+        connection.query('SELECT * FROM reviews', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('home', { rows, title: 'Home' })
