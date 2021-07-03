@@ -7,7 +7,7 @@ const authenticator = {}
  * @param next
  */
 authenticator.checkAuthenticated = (req) => {
-  if (req.isAuthenticated()) {
+  if (typeof req.session.isAuth !== 'undefined' && req.session.isAuth) {
     return true
   }
 
@@ -20,7 +20,7 @@ authenticator.checkAuthenticated = (req) => {
  * @param next
  */
 authenticator.checkNotAuthenticated = (req) => {
-  if (req.isAuthenticated()) {
+  if (typeof req.session.isAuth !== 'undefined' && req.session.isAuth) {
     return false
   }
   return true

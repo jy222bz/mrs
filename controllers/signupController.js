@@ -2,8 +2,8 @@
  * @author Jacob Yousif
  * A controller for the home page.
  */
-const mysql = require('mysql2')
 require('dotenv').config()
+const db = require('../database')
 const bcrypt = require('bcrypt')
 const auth = require('../validators/authenticator')
 const validator = require('../validators/validatror')
@@ -51,14 +51,6 @@ controller.post = async (req, res) => {
       } else if (!validator.isPassword(password)) {
         res.render('log/register', { message: 'The password is not according to the rules' })
       } else {
-        const db = mysql.createPool({
-          connectionLimit: 1000,
-          host: process.env.DB_HOST,
-          user: process.env.DB_USER,
-          password: process.env.DB_PASSWORD,
-          database: process.env.DB_NAME
-        })
-
         /**
          * Exporting the DB connection.
          *

@@ -2,8 +2,7 @@
  * @author Jacob Yousif
  * A controller for the home page.
  */
-const database = require('../database')
-const mysql = require('mysql2')
+const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const controller = {}
@@ -19,17 +18,6 @@ const controller = {}
 controller.update = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *
@@ -72,17 +60,6 @@ controller.updateDirector = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
       /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
        * Exporting the DB connection.
        *
        * @param {object} req the Express request.
@@ -121,17 +98,6 @@ controller.updateDirector = async (req, res) => {
 controller.delete = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *

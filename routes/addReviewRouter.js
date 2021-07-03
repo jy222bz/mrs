@@ -7,13 +7,13 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/addToMMSController')
+const controller = require('../controllers/addReviewController')
 
 /**
  * The routes for the create form.
  */
 router
-  .get('/best-box/add-to-bestbox', controller.get)
-  .post('/best-box/add-to-bestbox', controller.post)
+  .get('/reviews/add-review', controller.get)
+  .post('/reviews/add-review', controller.post)
 
 module.exports = router

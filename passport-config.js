@@ -1,5 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
-const bcrypt = require('bcrypt')
+const crypt = require('bcrypt')
+const db = require('./database')
+
 /**
  * It intilizes the passport object
  *
@@ -8,28 +10,55 @@ const bcrypt = require('bcrypt')
  * @param getUserByEmail
  * @param getUserByID
  */
-module.exports = function init (passport, getUserByEmail, getUserByID) {
-  /**
-   * @param email
-   * @param password
-   * @param done
-   */
-  const authenticateUser = async (email, password, done) => {
-    const user = getUserByEmail(email)
+module.exports = function init (passport) {
+  passport.use(new LocalStrategy(async ({ usernameField: email }, password, authCheckDone) => {
+    const user = getByEmail(email)
+    console.log(user)
     if (user === null) {
-      return done(null, false, 'No User Match For the Given E-mail!')
+      return authCheckDone(null, false)
     }
-    try {
-      if (await bcrypt.compare(password, user.password)) {
-        return done(null, user)
-      } else {
-        return done(null, false, 'Password Incorrect')
-      }
-    } catch (error) {
-      return done(error)
+    const isMatch = await crypt.compare(password, user.password)
+    if (!isMatch) {
+      return authCheckDone(null, false)
     }
-  }
-  passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUser))
+    return authCheckDone(null, user)
+  }))
   passport.serializeUser((user, done) => done(null, user.id))
-  passport.deserializeUser((user, done) => { return done(null, getUserByID(user.id)) })
+  passport.deserializeUser((id, done) => { return done(null, { id }) })
+}
+
+/**
+ * @param email
+ */
+function getByEmail (email) {
+  var result
+  try {
+  /**
+   * Exporting the DB connection.
+   *
+   * @param {object} req the Express request.
+   * @param {object} res the Express response.
+   */
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      } else {
+        console.log('MySQL is connected. Connection ID: ' + connection.threadId)
+      }
+      connection.query('SELECT * FROM useers WHERE email = ?', [email], (err, rows) => {
+        connection.release()
+        if (!err) {
+          if (rows.length) {
+            result = rows[0]
+          } else {
+            result = null
+          }
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+  return result
 }

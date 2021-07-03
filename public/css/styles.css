@@ -98,7 +98,9 @@ a:hover {
   border: none;
 }
 
-
+.sec2 {
+  margin: 20px;
+} 
 .btn:hover {
   background: #dfe4ea;
 }

@@ -9,13 +9,10 @@
 
 const express = require('express')
 const router = express.Router()
-
+const controller = require('../controllers/signoutController')
 /**
  * The routes for the home.
  */
-router.delete('/logout', (req, res) => {
-  req.logOut()
-  res.redirect('/login')
-})
+router.get('/logout', controller.get)
 
 module.exports = router

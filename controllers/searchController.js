@@ -2,8 +2,7 @@
  * @author Jacob Yousif
  * A controller for the searchform.
  */
-const database = require('../database')
-const mysql = require('mysql2')
+const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const searchController = {}
@@ -40,17 +39,6 @@ searchController.get = async (req, res) => {
 searchController.getMutual = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *
@@ -90,17 +78,6 @@ searchController.getMutual = async (req, res) => {
 searchController.crossJoins = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *

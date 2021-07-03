@@ -2,8 +2,7 @@
  * @author Jacob Yousif
  * A controller for the create form.
  */
-const database = require('../database')
-const mysql = require('mysql2')
+const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const addController = {}
@@ -20,17 +19,6 @@ addController.get = async (req, res) => {
     try {
       const message = req.flash('message')
       delete req.session.message
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *
@@ -72,17 +60,6 @@ addController.post = async (req, res) => {
   const values = director.split('|')
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
       /**
        * Exporting the DB connection.
        *

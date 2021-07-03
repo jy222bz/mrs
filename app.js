@@ -16,11 +16,11 @@ const home = require('./routes/homeRouter')
 const addMovie = require('./routes/addMovieRouter')
 const addDirector = require('./routes/addDirectorRouter')
 const addSeries = require('./routes/addSeriesRouter')
-const search = require('./routes/addToMMSRouter')
+const addReview = require('./routes/addReviewRouter')
 const directors = require('./routes/directorsRouter')
 const movies = require('./routes/moviesRouter')
 const series = require('./routes/seriesesRouter')
-const bestBox = require('./routes/searchRouter')
+const search = require('./routes/searchRouter')
 const signin = require('./routes/signinRouter')
 const signout = require('./routes/signoutRouter')
 const signup = require('./routes/signupRouter')
@@ -29,12 +29,7 @@ const hbs = require('express-handlebars')
 const app = express()
 const flash = require('connect-flash')
 const session = require('express-session')
-const passport = require('passport')
-const methodOverride = require('method-override')
-
 const port = process.env.PORT || 3000
-// const initPassport = require('./passport-config')
-// initPassport.init(passport, email => )
 
 /**
  * Set view engine.
@@ -51,7 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
 
 /**
- * Set the session.
+ * Set the session and passport.
  */
 app.use(session({
   secret: process.env.SECERT,
@@ -59,17 +54,10 @@ app.use(session({
   saveUninitialized: false
 }))
 
-// app.use(passport.session())
-// app.use(methodOverride('_method'))
-
 /**
  * Routes.
  */
-app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signin, signup, signout)
-app.delete('/logout', (req, res) => {
-  req.logOut()
-  res.redirect('/login')
-})
+app.use(home, addMovie, addDirector, addReview, addSeries, search, directors, movies, series, updateDirector, signin, signup, signout)
 
 /**
  * It handels the 404 error and renders the error page.

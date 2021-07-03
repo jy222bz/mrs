@@ -4,9 +4,6 @@
  * @author Jacob Yousif
  * @version 1.0.0
  */
-const passport = require('passport')
-const initPassport = require('../passport-config')
-// initPassport.init(passport, email => )
 
 const express = require('express')
 const router = express.Router()
@@ -17,8 +14,6 @@ const controller = require('../controllers/signinController')
  */
 router
   .get('/login', controller.get)
-  .post('/login', passport.authenticate('local', {
-    successRedirect: '/', failureFlash: true
-  }))
+  .post('/login', controller.post)
 
 module.exports = router

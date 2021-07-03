@@ -2,8 +2,7 @@
  * @author Jacob Yousif
  * A controller for the create form.
  */
-const database = require('../database')
-const mysql = require('mysql2')
+const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const addController = {}
@@ -21,17 +20,6 @@ addController.get = async (req, res) => {
       const message = req.flash('message')
       delete req.session.message
       /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
        * Exporting the DB connection.
        *
        * @param {object} req the Express request.
@@ -47,7 +35,7 @@ addController.get = async (req, res) => {
         connection.query('SELECT * FROM movies_table', (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('add/add-to-bestbox', { rows, message: message, title: 'Add Review' })
+            res.render('add/add-review', { rows, message: message, title: 'Add Review' })
           }
         })
       })
@@ -73,17 +61,6 @@ addController.post = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
       /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
        * Exporting the DB connection.
        *
        * @param {object} req the Express request.
@@ -101,7 +78,7 @@ addController.post = async (req, res) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')
-            res.redirect('/best-box/add-to-bestbox')
+            res.redirect('/reviews/add-review')
           }
         })
       })
