@@ -10,9 +10,6 @@
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/signupController')
-const csrf = require('csurf')
-const proc = csrf()
-router.use(proc)
 
 /**
  * The routes for the home.

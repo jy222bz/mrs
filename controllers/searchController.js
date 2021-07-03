@@ -2,7 +2,7 @@
  * @author Jacob Yousif
  * A controller for the searchform.
  */
-
+const database = require('../database')
 const mysql = require('mysql2')
 require('dotenv').config()
 const auth = require('../validators/authenticator')

@@ -2,7 +2,7 @@
  * @author Jacob Yousif
  * A controller for the home page.
  */
-
+const database = require('../database')
 const mysql = require('mysql2')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
@@ -19,7 +19,7 @@ controller.get = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
     const message = req.flash('message')
     delete req.session.message
-    await res.render('log/signin', { message: message, csrfTocken: req.csrfToken() })
+    await res.render('log/signin', { message: message })
   } else {
     return res.redirect('/login')
   }

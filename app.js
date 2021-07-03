@@ -31,8 +31,9 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 const methodOverride = require('method-override')
+
 const port = process.env.PORT || 3000
-const initPassport = require('./passport-config')
+// const initPassport = require('./passport-config')
 // initPassport.init(passport, email => )
 
 /**
@@ -57,21 +58,18 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(methodOverride('_method'))
 
-app.delete('/logout', (req, res) => {
-  req.logOut()
-  res.redirect('/login')
-})
+// app.use(passport.session())
+// app.use(methodOverride('_method'))
 
 /**
  * Routes.
  */
-app.use(signin, signup)
-
-app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signout)
+app.use(home, addMovie, addDirector, search, addSeries, bestBox, directors, movies, series, updateDirector, signin, signup, signout)
+app.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+})
 
 /**
  * It handels the 404 error and renders the error page.
@@ -96,6 +94,7 @@ app.use('*', (req, res, next) => {
  */
 app.use((err, req, res, next) => {
   res.status(err.status || 500)
+  console.log(err)
   res.render('errors/internal')
 })
 

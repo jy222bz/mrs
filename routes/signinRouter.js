@@ -11,9 +11,7 @@ const initPassport = require('../passport-config')
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/signinController')
-const csrf = require('csurf')
-const proc = csrf()
-router.use(proc)
+
 /**
  * The routes for the home.
  */
