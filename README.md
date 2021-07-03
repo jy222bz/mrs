@@ -1,4 +1,4 @@
-# Movie BLOG WITH SQL
+# MRS - Movie Review System WITH SQL
 ## Installation and Configurations:
 1. ### Clone the repo:
 

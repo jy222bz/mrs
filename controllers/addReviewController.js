@@ -29,13 +29,23 @@ addController.get = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM movies', (err, rows) => {
+        connection.query('SELECT * FROM movies', (err, row) => {
           connection.release()
           if (!err) {
-            res.render('add/add-review', { rows, message: message, title: 'Add Review' })
+            const rows = []
+            row.forEach(element => {
+              rows.push({ id: element.id, name: element.name })
+            })
+            connection.query('SELECT * FROM serieses', (er, row1) => {
+              connection.release()
+              if (!er) {
+                row1.forEach(element => {
+                  rows.push({ id: element.id, name: element.name })
+                })
+                res.render('add/add-review', { rows, message: message, title: 'Add Review' })
+              }
+            })
           }
         })
       })

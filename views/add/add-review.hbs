@@ -1,26 +1,32 @@
 {{> header}}
 <main class="sec2" class="table-responsive">
   <section class="sec3">
-   <h2>Best Movie Information:</h2>
+  <h2>Review Information:</h2>
   <form action="/reviews/add-review" method="POST">
     <label for="name">Select Movie:</label><br>
     <select name="name" id="name" required>
      {{#if rows.length}}
      {{#each rows}}
-     <option value="{{this.name}}|{{this.id}}">{{this.name}}</option>
-     {{/each}}
-     {{/if}}
+    <option value="{{this.name}}|{{this.id}}">{{this.name}}</option>
+    {{/each}}
+    {{/if}}
     </select>
     <br> <br>
     <label for="rating">Rating:</label><br>
     <input type="number" min="1" max="100" id="rating" name="rating" placeholder="Rating: 1-100" required><br>
-    <label for="budget">Budget in USD:</label><br>
-    <input type="number" min="1" id="budget" name="budget" placeholder="Budget in USD" required><br>
-    <label for="gross">Gross in USD:</label><br>
+    <label for="gross">Gross worldwide:</label><br>
     <input type="number" min="1" id="gross" name="gross" placeholder="Gross in USD" required><br>
     <label for="awards">Number of Award[s]:</label><br>
     <input type="number" min="0" id="awards" name="awards" placeholder="Number of awards" required><br>
     <br>
+    <label for="story"> Storyline:</label><br>
+    <textarea id="story" name="story" rows="6" cols="10" placeholder="Write the storyline here...."></textarea><br>
+    <label for="trivia"> Trivia:</label><br>
+    <textarea id="trivia" name="trivia" rows="6" cols="10" placeholder="Write the trivia here...."></textarea><br>
+    <label for="quotes"> Quotes:</label><br>
+    <textarea id="quotes" name="quotes" rows="6" cols="10" placeholder="Write the quotes here...."></textarea><br>
+    <label for="goofs"> Goofs:</label><br>
+    <textarea id="goofs" name="goofs" rows="6" cols="10" placeholder="Write the goofs here...."></textarea><br>
     <label for="reviews"> Reviews:</label><br>
     <textarea id="reviews" name="reviews" rows="12" cols="50" placeholder="Write the reviews here...."></textarea>
     <input type="submit" value="Add"><br>

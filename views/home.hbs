@@ -7,16 +7,19 @@
    </div>
    {{#if rows.length}}
    <br> <br>
-   <h1 class="headline">MMS Top Movies & TV Showes: </h1>
+   <h1 class="headline">MRS: Reviews: </h1>
    <table class="table table-dark table-striped">
       <thead>
          <tr>
             <th scope="col">Name</th>
             <th scope="col">Rating</th>
-            <th scope="col">Budget in USD:</th>
-            <th scope="col">US Gross in USD:</th>
+            <th scope="col">Storyline:</th>
+            <th scope="col">Goofs:</th>
+            <th scope="col">Trivia:</th>
+            <th scope="col">Quotes:</th>
             <th scope="col">Number of Award[s]:</th>
-            <th scope="col">Reviews</th>
+            <th scope="col">Gross worldwide:</th>
+            <th scope="col">Reviews:</th>
          </tr>
       </thead>
       <tbody>
@@ -24,9 +27,12 @@
          <tr>
             <td> <a href="/directors/{{this.id}}">{{this.name}}</a></td>
             <td>{{this.rating}}</td>
-            <td>{{this.budget}}</td>
-            <td>{{this.gross}}</td>
+            <td>{{this.story}}</td>
+            <td>{{this.goofs}}</td>
+            <td>{{this.trivia}}</td>
+            <td>{{this.quotes}}</td>
             <td>{{this.awards}}</td>
+            <td>{{this.gross}}</td>
             <td>{{this.reviews}}</td>
          </tr>
          {{/each}}
