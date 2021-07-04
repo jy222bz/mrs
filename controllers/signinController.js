@@ -47,8 +47,6 @@ controller.post = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT * FROM users WHERE email = ?', [email], async (err, rows) => {
           connection.release()
@@ -57,6 +55,7 @@ controller.post = async (req, res) => {
               if (await crypt.compare(password, rows[0].password)) {
                 req.session.isAuth = true
                 req.session.userID = rows[0].id
+                req.session.author = rows[0].fullName
                 return res.redirect('/')
               } else {
                 return res.render('log/signin', { message: 'There is an error with the passwrod.' })

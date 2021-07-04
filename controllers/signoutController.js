@@ -18,6 +18,7 @@ controller.get = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     req.session.isAuth = false
     req.session.userID = null
+    req.session.author = null
     req.session.destroy()
     return res.redirect('/login')
   } else {

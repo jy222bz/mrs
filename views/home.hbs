@@ -12,20 +12,22 @@
       <thead>
          <tr>
             <th scope="col">Name</th>
+            <th scope="col">Reviewer</th>
             <th scope="col">Rating</th>
             <th scope="col">Storyline:</th>
             <th scope="col">Goofs:</th>
             <th scope="col">Trivia:</th>
             <th scope="col">Quotes:</th>
-            <th scope="col">Number of Award[s]:</th>
-            <th scope="col">Gross worldwide:</th>
+            <th scope="col">Number of Awards:</th>
+            <th scope="col">Gross worldwide in USD:</th>
             <th scope="col">Reviews:</th>
          </tr>
       </thead>
       <tbody>
          {{#each rows}}
          <tr>
-            <td> <a href="/directors/{{this.id}}">{{this.name}}</a></td>
+            <td> <a href="/reviews/{{this.id}}">{{this.movieName}}</a></td>
+            <td>{{this.author}}</td>
             <td>{{this.rating}}</td>
             <td>{{this.story}}</td>
             <td>{{this.goofs}}</td>
@@ -33,7 +35,7 @@
             <td>{{this.quotes}}</td>
             <td>{{this.awards}}</td>
             <td>{{this.gross}}</td>
-            <td>{{this.reviews}}</td>
+            <td>{{this.review}}</td>
          </tr>
          {{/each}}
       </tbody>

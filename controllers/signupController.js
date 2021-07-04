@@ -61,8 +61,6 @@ controller.post = async (req, res) => {
           if (error) {
             console.log(error)
             process.exit(1)
-          } else {
-            console.log('MySQL is connected. The Connection ID: ' + connection.threadId)
           }
           connection.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
             connection.release()
