@@ -27,22 +27,17 @@ addController.get = async (req, res) => {
        */
       db.getConnection((error, connection) => {
         if (error) {
-          console.log(error)
           process.exit(1)
         }
-        connection.query('SELECT * FROM movies', (err, row) => {
+        connection.query('SELECT * FROM movies', (err, row1) => {
           connection.release()
           if (!err) {
             const rows = []
-            row.forEach(element => {
-              rows.push({ id: element.id, name: element.name })
-            })
-            connection.query('SELECT * FROM serieses', (er, row1) => {
+            populate(row1, rows)
+            connection.query('SELECT * FROM serieses', (er, row2) => {
               connection.release()
               if (!er) {
-                row1.forEach(element => {
-                  rows.push({ id: element.id, name: element.name })
-                })
+                populate(row2, rows)
                 res.render('add/add-review', { rows, message: message, title: 'Add Review' })
               }
             })
@@ -66,7 +61,7 @@ addController.get = async (req, res) => {
  * @param {object} res the Express response.
  */
 addController.post = async (req, res) => {
-  const { name, rating, gross, goofs, story, trivia, quotes, awards, review } = req.body
+  const { name, rating, gross, goofs, story, quotes, awards, review } = req.body
   const values = name.split('|')
   if (auth.checkAuthenticated(req)) {
     try {
@@ -81,7 +76,7 @@ addController.post = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
-        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, trivia = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?', [values[0], rating, goofs, gross, story, trivia, quotes, awards, review, values[1], req.session.author, req.session.userID], (err, rows) => {
+        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?', [values[0], rating, gross, goofs, story, quotes, awards, review, values[1], req.session.author, req.session.userID], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')
@@ -95,6 +90,18 @@ addController.post = async (req, res) => {
   } else {
     return res.redirect('/login')
   }
+}
+
+/**
+ * It copies data from one array into another.
+ *
+ * @param {object[]} items the data to be copied from.
+ * @param {object[]} target the collections of all data.
+ */
+function populate (items, target) {
+  items.forEach(element => {
+    target.push({ id: element.id, name: element.name })
+  })
 }
 
 module.exports = addController

@@ -32,7 +32,7 @@ homeController.index = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT * FROM reviews', (err, rows) => {
+      connection.query('SELECT * FROM reviews Order By rating DESC', (err, rows) => {
         connection.release()
         if (!err) {
           if (isAuth) {
