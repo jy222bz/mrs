@@ -13,7 +13,9 @@ npm install
 
 3. ### MySQL:
 ~~~
-You need to install the MySQL package on your local environment and configure the five tables that are required for this application according to the columns. All the tables have an ID column and it is the primary key and it MUST be Auto-Incremental.
+You need to install the MySQL package on your local environment and configure the five 
+tables that are required for this application according to the columns. All the tables 
+have an ID column and it is the primary key and it MUST be Auto-Incremental.
 
 Tables:
      1. users 
@@ -23,11 +25,14 @@ Tables:
      3. movies
            Columns: id, name, category, director, note, year, price, language, ageLimit, directorID, length and origin.
      4. serieses
-           Columns: id, name, category, director, note, year, price, language, ageLimit, directorID, episodes, seasons and origin. 
+           Columns: id, name, category, director, note, year, price, language, ageLimit, directorID, episodes, 
+           seasons and origin. 
      5. reviews
-           Columns: id, movieName, author, authorID, gross, goofs, trivia, story, review, movieID, rating, awards and quotes.
+           Columns: id, movieName, author, authorID, gross, goofs, trivia, story, review, movieID, 
+           rating, awards and quotes.
 
-Furthermore, you need to configure the connection to connect the application with the database. That is by providing an environment variable file (.env) and put the following credentials: 
+Furthermore, you need to configure the connection to connect the application with the database. 
+That is by providing an environment variable file (.env) and put the following credentials: 
 
 1. DB_HOST = localhost
 2. DB_USER = Your database root user
