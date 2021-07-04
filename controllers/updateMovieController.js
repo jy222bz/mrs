@@ -54,7 +54,7 @@ controller.update = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
-controller.updateReview = async (req, res) => {
+controller.updateMovie = async (req, res) => {
   const { rating, gross, goofs, story, quotes, awards, review } = req.body
   if (auth.checkAuthenticated(req)) {
     try {
@@ -111,10 +111,10 @@ controller.delete = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('DELETE FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('DELETE FROM movies WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.redirect('/reviews')
+            res.redirect('/movies')
           }
         })
       })

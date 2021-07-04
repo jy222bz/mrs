@@ -16,6 +16,7 @@ const controller = require('../controllers/updateReviewController')
  */
 router
   .get('/reviews/:id', controller.update)
-  .post('/reviews/:id', controller.review)
+  .post('/reviews/:id', controller.updateReview)
   .get('/delete-review/:id', controller.delete)
+
 module.exports = router

@@ -18,4 +18,5 @@ router
   .get('/directors/:id', controller.update)
   .post('/directors/:id', controller.updateDirector)
   .get('/delete-direcotr/:id', controller.delete)
+
 module.exports = router
