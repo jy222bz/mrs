@@ -29,18 +29,10 @@ addController.get = async (req, res) => {
         if (error) {
           process.exit(1)
         }
-        connection.query('SELECT * FROM movies', (err, row1) => {
+        connection.query('SELECT * FROM movies', (err, rows) => {
           connection.release()
           if (!err) {
-            const rows = []
-            populate(row1, rows)
-            connection.query('SELECT * FROM serieses', (er, row2) => {
-              connection.release()
-              if (!er) {
-                populate(row2, rows)
-                res.render('add/add-review', { rows, message: message, title: 'Add Review' })
-              }
-            })
+            res.render('add/add-review', { rows, message: message, title: 'Add Review' })
           }
         })
       })
@@ -90,18 +82,6 @@ addController.post = async (req, res) => {
   } else {
     return res.redirect('/login')
   }
-}
-
-/**
- * It copies data from one array into another.
- *
- * @param {object[]} items the data to be copied from.
- * @param {object[]} target the collections of all data.
- */
-function populate (items, target) {
-  items.forEach(element => {
-    target.push({ id: element.id, name: element.name })
-  })
 }
 
 module.exports = addController

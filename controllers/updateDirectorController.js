@@ -27,10 +27,7 @@ controller.update = async (req, res) => {
 
       db.getConnection((error, connection) => {
         if (error) {
-          console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT * FROM directors WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
@@ -68,15 +65,17 @@ controller.updateDirector = async (req, res) => {
 
       db.getConnection((error, connection) => {
         if (error) {
-          console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE directors d, movies_table m, series_table s SET d.firstName = ?, d.lastName = ?, d.age = ?, d.fullName = ?, d.origin = ?, m.director = ?, s.director = ? WHERE d.id = ? AND m.directorID = ? AND s.directorID = ?', [firstName, lastName, age, fullName, origin, fullName, fullName, id, id, id], (err, rows) => {
+        connection.query('UPDATE directors SET firstName = ?, lastName = ?, fullName = ?, origin = ?, age = ? WHERE id = ?', [firstName, lastName, fullName, origin, age, id], (err, row) => {
           connection.release()
           if (!err) {
-            res.redirect('/directors')
+            connection.query('UPDATE movies m INNER JOIN directors d ON m.directorID = d.id SET m.director = d.fullName', (er, rows) => {
+              connection.release()
+              if (!er) {
+                res.redirect('/directors')
+              }
+            })
           }
         })
       })
@@ -107,10 +106,7 @@ controller.delete = async (req, res) => {
 
       db.getConnection((error, connection) => {
         if (error) {
-          console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('DELETE FROM directors WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()

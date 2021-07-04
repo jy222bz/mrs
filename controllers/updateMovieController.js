@@ -32,10 +32,10 @@ controller.update = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('SELECT * FROM movies WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('update/reviews', { rows, title: 'Update Review' })
+            res.render('update/movies', { rows, title: 'Update Movie' })
           }
         })
       })
@@ -72,10 +72,10 @@ controller.updateMovie = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+        connection.query('UPDATE movies r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.redirect('/reviews')
+            res.redirect('/movies')
           }
         })
       })

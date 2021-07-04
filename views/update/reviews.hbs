@@ -10,7 +10,7 @@
  <section class="sec3">
   <h2>Review:</h2>
   <form action="/reviews/{{this.id}}" method="POST">
-   <label for="name">Select Picture:</label><br>
+   <label for="name">Select Movie:</label><br>
    <select name="name" id="name" required>
     <option value="{{this.movieName}}|{{this.id}}">{{this.movieName}}</option>
    </select>
@@ -35,7 +35,7 @@
    <label for="review"> Review:</label><br>
    <textarea id="review" name="review" rows="12" cols="50"
     placeholder="Write the review here....">{{this.review}}</textarea>
-   <input type="submit" value="Add"><br>
+   <input type="submit" value="Update"><br>
   </form>
   {{/each}}
   {{/if}}
