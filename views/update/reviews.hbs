@@ -1,0 +1,48 @@
+{{> header}}
+<main class="sec2" class="table-responsive">
+ {{#if rows.length}}
+ {{#each rows}}
+ <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <a type="button" id="deleteReview" href="/delete-review/{{this.id}}" class="btn btn-dark" style="width: 100px">
+   <i class="bi bi-trash"></i>
+  </a>
+ </div>
+ <section class="sec3">
+  <h2>Review:</h2>
+  <form action="/reviews/{{this.id}}" method="POST">
+   <label for="name">Select Picture:</label><br>
+   <select name="name" id="name" required>
+    <option value="{{this.movieName}}|{{this.id}}">{{this.movieName}}</option>
+   </select>
+   <br> <br>
+   <label for="rating">Rating:</label><br>
+   <input type="number" min="1" max="100" id="rating" name="rating" value="{{this.rating}}" required><br>
+   <label for="gross">Gross worldwide in USD:</label><br>
+   <input type="number" min="1" id="gross" name="gross" value="{{this.gross}}" placeholder="Gross in USD" required><br>
+   <label for="awards">Number of Awards:</label><br>
+   <input type="number" min="0" id="awards" name="awards" value="{{this.awards}}" placeholder="Number of awards"
+    required><br>
+   <br>
+   <label for="story"> Storyline:</label><br>
+   <textarea id="story" name="story" rows="6" cols="10"
+    placeholder="Write the storyline here....">{{this.story}}</textarea><br>
+   <label for="quotes"> Quotes:</label><br>
+   <textarea id="quotes" name="quotes" rows="6" cols="10"
+    placeholder="Write the quotes here....">{{this.quotes}}</textarea><br>
+   <label for="goofs"> Goofs:</label><br>
+   <textarea id="goofs" name="goofs" rows="6" cols="10"
+    placeholder="Write the goofs here....">{{this.goofs}}</textarea><br>
+   <label for="review"> Review:</label><br>
+   <textarea id="review" name="review" rows="12" cols="50"
+    placeholder="Write the review here....">{{this.review}}</textarea>
+   <input type="submit" value="Add"><br>
+  </form>
+  {{/each}}
+  {{/if}}
+ </section>
+ {{#if message.length}}
+ <div class="div2">
+  <p class="line"> {{message}} </p>
+ </div>
+ {{/if}}
+</main>
