@@ -23,13 +23,14 @@ Tables:
      2. directors
            Columns: id, age, origin, firstName, lastName and fullName 
      3. movies
-           Columns: id, name, category, director, note, year, price, language, ageLimit, directorID, length and origin.
+           Columns: id, name, category, director, note, year, price, language, 
+           ageLimit, directorID, length and origin.
      4. serieses
-           Columns: id, name, category, director, note, year, price, language, ageLimit, directorID, episodes, 
-           seasons and origin. 
+           Columns: id, name, category, director, note, year, price, language, 
+           ageLimit, directorID, episodes, seasons and origin. 
      5. reviews
-           Columns: id, movieName, author, authorID, gross, goofs, trivia, story, review, movieID, 
-           rating, awards and quotes.
+           Columns: id, movieName, author, authorID, gross, goofs, trivia, 
+           story, review, movieID, rating, awards and quotes.
 
 Furthermore, you need to configure the connection to connect the application with the database. 
 That is by providing an environment variable file (.env) and put the following credentials: 
