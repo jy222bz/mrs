@@ -35,12 +35,13 @@ Tables:
 Furthermore, you need to configure the connection to connect the application with the database. 
 That is by providing an environment variable file (.env) and put the following credentials: 
 
-1. DB_HOST = localhost
-2. DB_USER = Your database root user
-3. DB_PASSWORD = Your database password
-4. DB_NAME = The name of the database
-5. DB_PORT = The databse port
-6. SECERT = Secert text for the session
+1. DB_HOST = localhost.
+2. DB_USER = Your database root user.
+3. DB_PASSWORD = Your database password.
+4. DB_NAME = The name of the database.
+5. DB_PORT = The databse port.
+6. SECERT = Secert text for the session.
+7. PORT = The port for the server.
 ~~~
 
 4. ### Run the application:
@@ -56,4 +57,16 @@ npm run lint
 ~~~
 <br><br><br>
 _____
+## Technologies, Frameworks and Libraries:
+1. JavaScript ES6: By Applying Object-Orientation Paradigm.
+2. Node.js: To conduct server-side programming.
+3. Express.js: To create the APIs of the application.
+4. HTML
+5. CSS
+6. Handlebars (HBS): To serve data and HTML markups dynamically.
+7. bcrypt: To apply security by hashing passwords before storing them.
+8. csurf: To apply security by injecting secert tockens.
+9. Bootstrap: To make the application nice, fast and responsive.
+
+
 
