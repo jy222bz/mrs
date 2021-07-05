@@ -54,7 +54,7 @@ controller.post = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
-        connection.query('INSERT INTO directors SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName.toUpperCase(), lastName.toUpperCase(), age, fullName.toUpperCase(), origin], (err, rows) => {
+        connection.query('INSERT INTO directors SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName.toUpperCase(), lastName.toUpperCase(), age, fullName.toUpperCase(), origin.toUpperCase()], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')
