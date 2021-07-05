@@ -29,8 +29,6 @@ addController.get = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT * FROM directors', (err, rows) => {
           connection.release()

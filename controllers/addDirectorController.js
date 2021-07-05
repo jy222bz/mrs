@@ -53,8 +53,6 @@ controller.post = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('INSERT INTO directors SET firstName = ?, lastName = ?, age = ?, fullName = ?, origin = ?', [firstName.toUpperCase(), lastName.toUpperCase(), age, fullName.toUpperCase(), origin], (err, rows) => {
           connection.release()

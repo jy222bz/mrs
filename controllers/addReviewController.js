@@ -56,7 +56,7 @@ addController.get = async (req, res) => {
  * @param items
  * @param target
  */
- function populate (items, target) {
+function populate (items, target) {
   items.forEach(element => {
     target.push({ id: element.id, name: element.name })
   })

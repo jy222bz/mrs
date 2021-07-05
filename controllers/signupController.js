@@ -62,15 +62,15 @@ controller.post = async (req, res) => {
             console.log(error)
             process.exit(1)
           }
-          connection.query('SELECT * FROM users WHERE email = ?', [email], (err, rows) => {
+          connection.query('SELECT * FROM users WHERE email = ?', [email.toLowerCase()], (err, rows) => {
             connection.release()
             if (!err) {
               if (rows.length) {
                 res.render('log/register', { message: 'The e-mail exists in the Database!' })
               } else {
-                connection.query('INSERT INTO users SET firstName = ?, lastName = ?, fullName = ?, email = ?, password = ?', [firstName.toUpperCase(), lastName.toUpperCase(), fullName, email, hashedPassword], (error, rows) => {
+                connection.query('INSERT INTO users SET firstName = ?, lastName = ?, fullName = ?, email = ?, password = ?', [firstName.toUpperCase(), lastName.toUpperCase(), fullName, email.toLowerCase(), hashedPassword], (e, rows) => {
                   connection.release()
-                  if (!error) {
+                  if (!e) {
                     req.flash('message', 'Successful Registration! Sign-in now with your creditianls.')
                     res.redirect('/login')
                   }
