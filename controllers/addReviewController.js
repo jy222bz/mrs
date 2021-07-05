@@ -30,11 +30,11 @@ addController.get = async (req, res) => {
         if (error) {
           process.exit(1)
         }
-        connection.query('SELECT * FROM movies', (err, row1) => {
+        connection.query('SELECT * FROM movies ORDER BY name', (err, row1) => {
           connection.release()
           if (!err) {
             populate(row1, rows)
-            connection.query('SELECT * FROM serieses', (e, row2) => {
+            connection.query('SELECT * FROM serieses ORDER BY name', (e, row2) => {
               connection.release()
               if (!e) {
                 populate(row2, rows)

@@ -31,10 +31,8 @@ controller.get = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM directors', (err, rows) => {
+        connection.query('SELECT * FROM directors ORDER BY firstName', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('add/add-series', { rows, message: message, title: 'Add Series' })
@@ -73,8 +71,6 @@ controller.post = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('INSERT INTO serieses SET name = ?, seasons = ?, episodes = ?, director = ?, ageLimit = ?, year = ?,  origin = ?, note = ?, category = ?, language = ?,  price = ?, directorID = ?', [name.toUpperCase(), seasons, episodes, values[0], ageLimit, year, origin.toUpperCase(), note, category, language.toUpperCase(), price, values[1]], (err, rows) => {
           connection.release()

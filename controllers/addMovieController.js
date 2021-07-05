@@ -30,7 +30,7 @@ addController.get = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
-        connection.query('SELECT * FROM directors', (err, rows) => {
+        connection.query('SELECT * FROM directors ORDER BY firstName;', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('add/add-movie', { rows, message: message, title: 'Add Movie' })

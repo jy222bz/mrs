@@ -29,10 +29,8 @@ controller.get = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
-        }
-        connection.query('SELECT * FROM serieses', (err, rows) => {
+        } 
+        connection.query('SELECT * FROM serieses ORDER BY name', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('main/serieses', { rows, title: 'Serieses' })
