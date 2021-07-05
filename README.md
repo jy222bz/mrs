@@ -57,6 +57,7 @@ npm run lint
 ~~~
 <br><br><br>
 _____
+
 ## Technologies, Frameworks and Libraries:
 1. JavaScript ES6: Applying Object-Orientation Paradigm.
 2. Node.js: To conduct server-side programming.
@@ -67,6 +68,17 @@ _____
 7. bcrypt: To apply security by hashing passwords before storing them.
 8. csurf: To apply security by injecting secert tockens.
 9. Bootstrap: To make the application nice, fast and responsive.
+10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
+
+___
+
+## Information:
+Author: Jacob Yousif <br>
+Email: jy222bz@ystudent.lnu.se <br>
+Student ID: jy222bz <br>
+Course: Database Threory <br>
+Course Code: 2DV315 <br>
+Linnaeus University <br>
 
 
 
