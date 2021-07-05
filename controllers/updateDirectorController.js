@@ -67,15 +67,10 @@ controller.updateDirector = async (req, res) => {
         if (error) {
           process.exit(1)
         }
-        connection.query('UPDATE directors SET firstName = ?, lastName = ?, fullName = ?, origin = ?, age = ? WHERE id = ?', [firstName, lastName, fullName, origin, age, id], (err, row) => {
+        connection.query('UPDATE directors d LEFT JOIN movies m ON m.directorID = d.id LEFT JOIN serieses s ON s.directorID = d.id SET d.firstName = ?, d.lastName = ?, d.fullName = ?, d.origin = ?, d.age = ?, m.director = ?, s.director = ? WHERE d.id = ?',[firstName, lastName, fullName, origin, age, fullName, fullName, id], (er, rows) => {
           connection.release()
-          if (!err) {
-            connection.query('UPDATE movies m INNER JOIN directors d ON m.directorID = d.id SET m.director = d.fullName', (er, rows) => {
-              connection.release()
-              if (!er) {
-                res.redirect('/directors')
-              }
-            })
+          if (!er) {
+            res.redirect('/directors')
           }
         })
       })
