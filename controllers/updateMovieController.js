@@ -29,8 +29,6 @@ controller.update = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT * FROM movies WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
@@ -55,7 +53,7 @@ controller.update = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.updateMovie = async (req, res) => {
-  const { rating, gross, goofs, story, quotes, awards, review } = req.body
+  const { name, category, year, ageLimit, price, note, length, origin, language } = req.body
   if (auth.checkAuthenticated(req)) {
     try {
       /**
@@ -69,10 +67,8 @@ controller.updateMovie = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE movies r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+        connection.query('UPDATE movies m LEFT JOIN reviews r ON m.id = r.movieID SET m.name = ?, m.ageLimit = ?, m.category = ?, m.note = ?, m.year = ?, m.length = ?, m.price = ?, m.origin = ?, m.language = ?, r.movieName = ? WHERE m.id = ?', [name, ageLimit, category, note, year, length, price, origin.toUpperCase(), language.toUpperCase(), name, req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
             res.redirect('/movies')
@@ -108,8 +104,6 @@ controller.delete = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('DELETE FROM movies WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()

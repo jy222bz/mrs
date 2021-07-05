@@ -19,6 +19,7 @@ addController.get = async (req, res) => {
     try {
       const message = req.flash('message')
       delete req.session.message
+      const rows = []
       /**
        * Exporting the DB connection.
        *
@@ -29,10 +30,17 @@ addController.get = async (req, res) => {
         if (error) {
           process.exit(1)
         }
-        connection.query('SELECT * FROM movies', (err, rows) => {
+        connection.query('SELECT * FROM movies', (err, row1) => {
           connection.release()
           if (!err) {
-            res.render('add/add-review', { rows, message: message, title: 'Add Review' })
+            populate(row1, rows)
+            connection.query('SELECT * FROM serieses', (e, row2) => {
+              connection.release()
+              if (!e) {
+                populate(row2, rows)
+                res.render('add/add-review', { rows: rows, message: message, title: 'Add Series' })
+              }
+            })
           }
         })
       })
@@ -44,6 +52,15 @@ addController.get = async (req, res) => {
   }
 }
 
+/**
+ * @param items
+ * @param target
+ */
+ function populate (items, target) {
+  items.forEach(element => {
+    target.push({ id: element.id, name: element.name })
+  })
+}
 /**
  * This method it responds to the Post request when
  * the user wants to create a snippet.

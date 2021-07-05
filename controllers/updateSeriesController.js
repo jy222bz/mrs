@@ -29,13 +29,11 @@ controller.update = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('SELECT * FROM serieses WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('update/reviews', { rows, title: 'Update Review' })
+            res.render('update/serieses', { rows, title: 'Update Series' })
           }
         })
       })
@@ -55,7 +53,7 @@ controller.update = async (req, res) => {
  * @param {object} res the Express response.
  */
 controller.updateSeries = async (req, res) => {
-  const { rating, gross, goofs, story, quotes, awards, review } = req.body
+  const { name, year, ageLimit, price, note, seasons, episodes, language, origin } = req.body
   if (auth.checkAuthenticated(req)) {
     try {
       /**
@@ -69,10 +67,8 @@ controller.updateSeries = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+        connection.query('UPDATE serieses s LEFT JOIN reviews r ON s.id = r.movieID SET s.name = ?, s.seasons = ?, s.episodes = ?, s.ageLimit = ?, s.year = ?, s.origin = ?, s.note = ?, s.language = ?, s.price = ?, r.movieName = ? WHERE s.id = ?', [name.toUpperCase(), seasons, episodes, ageLimit, year, origin.toUpperCase(), note, language.toUpperCase(), price, name, req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
             res.redirect('/serieses')
@@ -97,19 +93,10 @@ controller.updateSeries = async (req, res) => {
 controller.delete = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('DELETE FROM serieses WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()

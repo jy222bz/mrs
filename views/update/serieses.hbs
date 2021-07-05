@@ -1,0 +1,56 @@
+{{> header}}
+<main class="sec2" class="table-responsive">
+ {{#if rows.length}}
+ {{#each rows}}
+ <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <a type="button" id="deleteSeries" href="/delete-series/{{this.id}}" class="btn btn-dark" style="width: 100px">
+   <i class="bi bi-trash"></i>
+  </a>
+ </div>
+ <section class="sec3">
+  <h2>Series Information:</h2>
+  <form action="/serieses/{{this.id}}" method="POST">
+   <label for="director">Director:</label><br>
+   <select name="director" id="director" required>
+    <option value="{{this.director}}|{{this.directorID}}">{{this.director}}</option>
+   </select>
+   <br>
+   <label for="category">Category:</label><br>
+   <select name="category" id="category" required>
+    <option value="{{this.category}}">{{this.category}}</option>
+   </select>
+   <br> <br>
+   <label for="name">Series Name:</label><br>
+   <input type="title" id="name" value="{{this.name}}" name="name" placeholder="Series Name" required><br>
+   <label for="year">Year:</label><br>
+   <input type="number" min="1920" value="{{this.year}}" max="2021" id="year" name="year" placeholder="Year"
+    required><br>
+   <label for="seasons">Number of Season[s]:</label><br>
+   <input type="number" min="1" value="{{this.seasons}}" id="seasons" name="seasons" placeholder="Number of Seasons"
+    required><br>
+   <label for="episodes">Number of Episode[s]:</label><br>
+   <input type="number" min="1" value="{{this.episodes}}" id="episodes" name="episodes" placeholder="Number of Episodes"
+    required><br>
+   <label for="price"> Price in USD:</label><br>
+   <input type="number" min="1" id="price" value="{{this.price}}" name="price" placeholder="Price in USD" required><br>
+   <label for="ageLimit"> Age Limit:</label><br>
+   <input type="number" min="1" id="ageLimit" value="{{this.ageLimit}}" name="ageLimit" placeholder="Age imit"
+    required><br>
+   <label for="origin">Origin:</label><br>
+   <input type="title" id="origin" name="origin" value="{{this.origin}}" placeholder="Origin" required><br>
+   <label for="language">Language:</label><br>
+   <input type="title" id="language" name="language" value="{{this.language}}" placeholder="Language" required><br>
+   <br>
+   <label for="note"> Note:</label><br>
+   <textarea id="note" name="note" rows="12" cols="50" placeholder="Write the note here....">{{this.note}}</textarea>
+   <input type="submit" value="Add"><br>
+  </form>
+ </section>
+ {{/each}}
+ {{/if}}
+ {{#if message.length}}
+ <div class="div2">
+  <p class="line"> {{message}} </p>
+ </div>
+ {{/if}}
+</main>
