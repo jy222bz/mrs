@@ -18,13 +18,6 @@ const controller = {}
 controller.update = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
@@ -35,7 +28,12 @@ controller.update = async (req, res) => {
         connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('update/reviews', { rows, title: 'Update Review' })
+            if (req.session.userID !== rows[0].authorID) {
+              req.flash('message', 'You are not the author of this review, therefore, you cannot edit it.')
+              return res.redirect('/')
+            } else {
+              return res.render('update/reviews', { rows, title: 'Update Review' })
+            }
           }
         })
       })
@@ -69,13 +67,21 @@ controller.updateReview = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+        connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (er, item) => {
           connection.release()
-          if (!err) {
-            res.redirect('/reviews')
+          if (!er) {
+            if (req.session.userID !== item[0].authorID) {
+              req.flash('message', 'You are not the author of this review, therefore, you cannot edit it.')
+              return res.redirect('/')
+            } else {
+              connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+                connection.release()
+                if (!err) {
+                  res.redirect('/reviews')
+                }
+              })
+            }
           }
         })
       })
@@ -108,13 +114,21 @@ controller.delete = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('DELETE FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
+        connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (er, item) => {
           connection.release()
-          if (!err) {
-            res.redirect('/reviews')
+          if (!er) {
+            if (req.session.userID !== item[0].authorID) {
+              req.flash('message', 'You are not the author of this review, therefore, you cannot delete it.')
+              return res.redirect('/')
+            } else {
+              connection.query('DELETE FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
+                connection.release()
+                if (!err) {
+                  res.redirect('/reviews')
+                }
+              })
+            }
           }
         })
       })

@@ -16,6 +16,8 @@ const homeController = {}
  */
 homeController.index = async (req, res) => {
   var isAuth = false
+  const message = req.flash('message')
+  delete req.session.message
   if (auth.checkAuthenticated(req)) {
     isAuth = true
   }
@@ -36,7 +38,7 @@ homeController.index = async (req, res) => {
         connection.release()
         if (!err) {
           if (isAuth) {
-            res.render('home', { rows, title: 'Home' })
+            res.render('home', { rows, title: 'Home', message: message })
           } else {
             res.render('main/home', { rows, title: 'Home' })
           }
