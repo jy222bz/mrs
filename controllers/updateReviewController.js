@@ -22,8 +22,6 @@ controller.update = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
