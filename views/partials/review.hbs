@@ -1,0 +1,162 @@
+{{#if rows.length}} <h1 class="headline">Review: </h1>
+{{#each rows}}
+<div class="ac">
+ <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Picture Name:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.movieName}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Rating:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.rating}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Awards:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.awards}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Gross in USD:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.gross}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Storyline:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.story}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Goofs:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.goofs}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Quotes:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.quotes}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Review:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.review}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Author:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.author}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Created At:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.createdAT}}
+    </div>
+   </div>
+  </div>
+  <div class="accordion-item">
+   <h2 class="accordion-header" id="headingOne">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+     aria-expanded="true" aria-controls="collapseOne">
+     Last Updated At:
+    </button>
+   </h2>
+   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+    data-bs-parent="#accordionExample">
+    <div class="accordion-body">
+     {{this.updatedAT}}
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+{{/each}}
+{{/if}}

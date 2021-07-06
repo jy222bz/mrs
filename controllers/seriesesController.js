@@ -29,7 +29,7 @@ controller.get = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } 
+        }
         connection.query('SELECT * FROM serieses ORDER BY name', (err, rows) => {
           connection.release()
           if (!err) {
