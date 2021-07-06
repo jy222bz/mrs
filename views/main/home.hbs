@@ -5,42 +5,34 @@
        </div>
        {{#if rows.length}}
        <br> <br>
-       <h1 class="headline">MRS - Reviews: </h1>
+       <h1 class="headline">List of Reviews: </h1>
        <table class="table table-dark table-striped" class="table table-bordered">
               <thead>
                      <tr>
-                            <th scope="col">Picture</th>
-                            <th scope="col">Storyline:</th>
-                            <th scope="col">Goofs:</th>
-                            <th scope="col">Quotes:</th>
-                            <th scope="col">Review:</th>
-                            <th scope="col">Rating</th>
-                            <th scope="col">Awards:</th>
-                            <th scope="col">Gross:</th>
-                            <th scope="col">Reviewer</th>
+                            <th scope="col">Picture:</th>
+                            <th scope="col">Rating:</th>
+                            <th scope="col">Author:</th>
+                            <th scope="col">Created At:</th>
+                            <th scope="col">Last Updated At:</th>
                             <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                   {{#each rows}}
-                                   <tr>
+                     </tr>
+                     </thead>
+                     <tbody>
+                            {{#each rows}}
+                            <tr>
                             <td> {{this.movieName}}</td>
-                            <td>{{this.story}}</td>
-                            <td>{{this.goofs}}</td>
-                            <td>{{this.quotes}}</td>
-                            <td>{{this.review}}</td>
                             <td>{{this.rating}}</td>
-                            <td>{{this.awards}}</td>
-                            <td>{{this.gross}} USD</td>
                             <td>{{this.author}}</td>
+                            <td>{{this.createdAT}}</td>
+                            <td>{{this.updatedAT}}</td>
                             <td> <a href="/reviews/read/{{this.id}}"><i class="bi bi-book"></i></a></td>
-                            </tr>
-                            {{/each}}
-                            </tbody>
-                            </table>
-                            {{else}}
-                            <div class="container-fluid pt-5 pb-5">
-                                   <h1 class="headline">No Data In The Database </h1>
-                            </div>
-                            {{/if}}
+                     </tr>
+                     {{/each}}
+                     </tbody>
+                     </table>
+                     {{else}}
+                     <div class="container-fluid pt-5 pb-5">
+                            <h1 class="headline">No Data In The Database </h1>
+                     </div>
+                     {{/if}}
 </main>

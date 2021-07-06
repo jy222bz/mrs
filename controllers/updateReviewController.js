@@ -75,7 +75,7 @@ controller.updateReview = async (req, res) => {
               req.flash('message', 'You are not the author of this review, therefore, you cannot edit it.')
               return res.redirect('/')
             } else {
-              connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ?, r.updatedAT = ?, WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, date, req.params.id], (err, rows) => {
+              connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ?, r.updatedAT = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, date, req.params.id], (err, rows) => {
                 connection.release()
                 if (!err) {
                   res.redirect('/reviews')
