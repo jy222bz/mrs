@@ -221,7 +221,7 @@ searchController.aggregateCheapest = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
-        connection.query('SELECT movieID, MAX(rating) AS rate, m.price AS mprice, s.price AS sprice, m.category AS mcategory, s.category AS scategory, m.name AS movie, s.name AS series, d.fullName AS director, d.origin AS origin FROM reviews LEFT JOIN movies m ON m.id = movieID LEFT JOIN serieses s ON s.id = movieID LEFT JOIN directors d ON d.id = m.directorID OR d.id = s.directorID', (err, rows) => {
+        connection.query('SELECT r.movieID, r.rating AS rate FROM reviews r WHERE r.rating = (SELECT MAX(rating) FROM reviews)', (err, rows) => {
           connection.release()
           if (!err) {
             console.log(rows)
@@ -232,8 +232,5 @@ searchController.aggregateCheapest = async (req, res) => {
       console.log(error)
     }
 }
-SELECT DISTINCT t1.id, max(t1.rev) as maxthing, max(t2.content)
-    FROM Table1 AS t1
-    JOIN Table1 AS t2 ON t2.id = t1.id AND t2.rev = (SELECT max(rev) FROM Table1 t3 WHERE t3.id = t1.id)
-    GROUP BY t1.id
+
 module.exports = searchController
