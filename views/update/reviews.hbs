@@ -2,11 +2,6 @@
 <main class="sec2" class="table-responsive">
  {{#if rows.length}}
  {{#each rows}}
- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <a type="button" id="deleteReview" href="/delete-review/{{this.id}}" class="btn btn-dark" style="width: 100px">
-   <i class="bi bi-trash"></i>
-  </a>
- </div>
  <section class="sec3">
   <h2>Review:</h2>
   <form action="/reviews/{{this.id}}" method="POST">

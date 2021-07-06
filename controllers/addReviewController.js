@@ -5,6 +5,7 @@
 const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
+const moment = require('moment')
 const addController = {}
 /**
  * This method it responds to the GET request when
@@ -85,7 +86,8 @@ addController.post = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
-        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?', [values[0], rating, gross, goofs, story, quotes, awards, review, values[1], req.session.author, req.session.userID], (err, rows) => {
+        const date = moment(new Date()).format('dddd, MMMM Do YYYY, h:mm:ss a')
+        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?, createdAT = ?, updatedAT = ?', [values[0], rating, gross, goofs, story, quotes, awards, review, values[1], req.session.author, req.session.userID, date, date], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')

@@ -18,6 +18,7 @@
                             <th scope="col">Awards:</th>
                             <th scope="col">Gross:</th>
                             <th scope="col">Reviewer</th>
+                            <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -32,6 +33,7 @@
                             <td>{{this.awards}}</td>
                             <td>{{this.gross}} USD</td>
                             <td>{{this.author}}</td>
+                            <td> <a href="/reviews/read/{{this.id}}"><i class="bi bi-book"></i></a></td>
                             </tr>
                             {{/each}}
                             </tbody>

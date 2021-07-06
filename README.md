@@ -30,7 +30,7 @@ Tables:
            ageLimit, directorID, episodes, seasons and origin. 
      5. reviews
            Columns: id, movieName, author, authorID, gross, goofs, story, 
-           review, movieID, rating, awards and quotes.
+           review, movieID, rating, awards, quotes, createdAT and updatedAT.
 
 Furthermore, you need to configure the connection to connect the application with the database. 
 That is by providing an environment variable file (.env) and put the following credentials: 

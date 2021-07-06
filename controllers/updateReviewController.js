@@ -6,6 +6,7 @@ const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const controller = {}
+const moment = require('moment')
 
 /**
  * This method it responds to the GET request when
@@ -66,6 +67,7 @@ controller.updateReview = async (req, res) => {
           console.log(error)
           process.exit(1)
         }
+        const date = moment(new Date()).format('dddd, MMMM Do YYYY, h:mm:ss a')
         connection.query('SELECT * FROM reviews WHERE id = ?', [req.params.id], (er, item) => {
           connection.release()
           if (!er) {
@@ -73,7 +75,7 @@ controller.updateReview = async (req, res) => {
               req.flash('message', 'You are not the author of this review, therefore, you cannot edit it.')
               return res.redirect('/')
             } else {
-              connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ? WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, req.params.id], (err, rows) => {
+              connection.query('UPDATE reviews r SET r.rating = ?, r.gross = ?, r.goofs = ?, r.story = ?, r.quotes = ?, r.awards = ?, r.review = ?, r.updatedAT = ?, WHERE id = ?', [rating, gross, goofs, story, quotes, awards, review, date, req.params.id], (err, rows) => {
                 connection.release()
                 if (!err) {
                   res.redirect('/reviews')

@@ -3,11 +3,6 @@
   {{#if rows.length}}
   {{#each rows}}
   <form action="/directors/{{this.id}}" method="POST">
-   <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <a type="button" id="deleteDirector" href="/delete-direcotr/{{this.id}}" class="btn btn-dark" style="width: 100px">
-     <i class="bi bi-trash"></i>
-    </a>
-   </div>
    <section class="sec3">
     <h2>Director information:</h2>
     <label for="firstName">First Name:</label><br>
