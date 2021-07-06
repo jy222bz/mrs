@@ -6,14 +6,8 @@ const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const searchController = {}
-/**
- *
-if (auth.checkAuthenticated(req)) {
 
-} else {
-  return res.redirect('/login')
-}
- */
+
 /**
  * This method it responds to the GET request when
  * the user wans to search for a specific tag.
@@ -22,11 +16,7 @@ if (auth.checkAuthenticated(req)) {
  * @param {object} res the Express response.
  */
 searchController.get = async (req, res) => {
-  if (auth.checkAuthenticated(req)) {
-    res.render('search/search')
-  } else {
-    return res.redirect('/login')
-  }
+  searchController.aggregateCheapest(req, res)
 }
 
 /**
@@ -89,8 +79,6 @@ searchController.crossJoins = async (req, res) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
         connection.query('SELECT m.name AS name1, s.name AS name2, m.price AS price1, s.price AS price2, (m.price + s.price) AS total FROM movies_table m CROSS JOIN series_table s', (err, rows) => {
           connection.release()
@@ -118,17 +106,6 @@ searchController.innerJoins = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
       /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
        * Exporting the DB connection.
        *
        * @param {object} req the Express request.
@@ -142,7 +119,7 @@ searchController.innerJoins = async (req, res) => {
         } else {
           console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT m.name, m.director, m.category, b.rating, b.gross, b.grossWorldwide FROM movies_table m INNER JOIN box_office_table b ON m.name = b.name', (err, rows) => {
+        connection.query('SELECT m.name, m.director, m.category, b.rating FROM movies m INNER JOIN reviews b ON m.name = b.name', (err, rows) => {
           connection.release()
           if (!err) {
             console.log(rows)
@@ -168,16 +145,6 @@ searchController.innerJoins = async (req, res) => {
 searchController.innerJoins = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
 
       /**
        * Exporting the DB connection.
@@ -219,32 +186,12 @@ searchController.innerJoins = async (req, res) => {
 searchController.aggregateExpensive = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT m.name AS mName, MAX(m.price) AS mPrice, s.name AS sName, MAX(s.price) AS sPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
+        connection.query('SELECT * MAX(m.price) AS mPrice, m.name AS mName, s.name AS sName, MAX(s.price) AS sPrice FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
           connection.release()
           if (!err) {
             res.render('search/search', { expensive: rows })
@@ -267,46 +214,26 @@ searchController.aggregateExpensive = async (req, res) => {
  * @param {object} res the Express response.
  */
 searchController.aggregateCheapest = async (req, res) => {
-  if (auth.checkAuthenticated(req)) {
+
     try {
-      /**
-       * DB connection.
-       */
-      const db = mysql.createPool({
-        connectionLimit: 100,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME
-      })
-
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
           process.exit(1)
-        } else {
-          console.log('MySQL is connected. Connection ID: ' + connection.threadId)
         }
-        connection.query('SELECT m.name AS mName, MIN(m.price) AS mPrice, s.name AS sName, MIN(s.price) AS Price FROM movies_table m, series_table s ORDER BY m.name', (err, rows) => {
+        connection.query('SELECT movieID, MAX(rating) AS rate, m.price AS mprice, s.price AS sprice, m.category AS mcategory, s.category AS scategory, m.name AS movie, s.name AS series, d.fullName AS director, d.origin AS origin FROM reviews LEFT JOIN movies m ON m.id = movieID LEFT JOIN serieses s ON s.id = movieID LEFT JOIN directors d ON d.id = m.directorID OR d.id = s.directorID', (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('search/search', { cheap: rows })
+            console.log(rows)
           }
         })
       })
     } catch (error) {
       console.log(error)
     }
-  } else {
-    return res.redirect('/login')
-  }
 }
-
+SELECT DISTINCT t1.id, max(t1.rev) as maxthing, max(t2.content)
+    FROM Table1 AS t1
+    JOIN Table1 AS t2 ON t2.id = t1.id AND t2.rev = (SELECT max(rev) FROM Table1 t3 WHERE t3.id = t1.id)
+    GROUP BY t1.id
 module.exports = searchController

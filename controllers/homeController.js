@@ -78,7 +78,7 @@ homeController.read = async (req, res) => {
         connection.release()
         if (!err) {
           if (isAuth) {
-            res.render('review/review1', { rows, title: 'Home', message: message })
+            res.render('review/review1', { rows, title: 'Home'})
           } else {
             res.render('review/review2', { rows, title: 'Home' })
           }

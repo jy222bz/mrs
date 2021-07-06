@@ -7,13 +7,13 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/searchController')
+const controller = require('../controllers/funFactsController')
 
 /**
  * The route for the search bar.
  */
 router
-  .get('/search', controller.get)
+  .get('/fun-facts', controller.get)
   .get('/mutual-directors', controller.getMutual)
   .get('/cross-join', controller.crossJoins)
   .get('/inner-join', controller.innerJoins)
