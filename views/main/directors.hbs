@@ -12,14 +12,16 @@
         <th scope="col">Name</th>
         <th scope="col">Age</th>
         <th scope="col">Origin</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       {{#each rows}}
       <tr>
-        <td> <a href="/directors/{{this.id}}">{{this.fullName}}</a></td>
+        <td> {{this.fullName}}</td>
         <td> {{this.age}}</td>
         <td> {{this.origin}}</td>
+          <td> <a href="/directors/{{this.id}}"><i class="bi bi-pencil"></i></a></td>
       </tr>
       {{/each}}
     </tbody>
