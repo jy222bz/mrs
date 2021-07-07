@@ -1,9 +1,12 @@
 {{> main2}}
 <main class="sec2" class="table-responsive">
        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-
+              <button type="button" id="addReview" class="btn btn-dark" style="width: 100px">
+                     <i class="bi bi-plus-lg"></i>
+              </button>
        </div>
        {{#if rows.length}}
+       {{> bottom}}
        <br> <br>
        <h1 class="headline">List of Reviews: </h1>
        <table class="table table-dark table-striped" class="table table-bordered">
@@ -15,11 +18,12 @@
                             <th scope="col">Created At:</th>
                             <th scope="col">Last Updated At:</th>
                             <th scope="col"></th>
+
                      </tr>
-                     </thead>
-                     <tbody>
-                            {{#each rows}}
-                            <tr>
+              </thead>
+              <tbody>
+                     {{#each rows}}
+                     <tr>
                             <td> {{this.movieName}}</td>
                             <td>{{this.rating}}</td>
                             <td>{{this.author}}</td>
@@ -28,11 +32,11 @@
                             <td> <a href="/reviews/read/{{this.id}}"><i class="bi bi-book"></i></a></td>
                      </tr>
                      {{/each}}
-                     </tbody>
-                     </table>
-                     {{else}}
-                     <div class="container-fluid pt-5 pb-5">
-                            <h1 class="headline">No Data In The Database </h1>
-                     </div>
-                     {{/if}}
+              </tbody>
+              </table>
+              {{else}}
+              <div class="container-fluid pt-5 pb-5">
+              <h1 class="headline">No Data! </h1>
+              </div>
+              {{/if}}
 </main>
