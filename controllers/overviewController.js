@@ -123,9 +123,9 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
         if (!err) {
           topNonEnglishSeries = rows
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/funfacts1', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
+            res.render('extra/overview1', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
           } else {
-            res.render('extra/funfacts2', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
+            res.render('extra/overview2', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
           }
         }
       })

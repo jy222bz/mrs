@@ -20,7 +20,7 @@ const addReview = require('./routes/addReviewRouter')
 const directors = require('./routes/directorsRouter')
 const movies = require('./routes/moviesRouter')
 const series = require('./routes/seriesesRouter')
-const funFacts = require('./routes/funFactsRouter')
+const overview = require('./routes/overviewRouter')
 const signin = require('./routes/signinRouter')
 const signout = require('./routes/signoutRouter')
 const signup = require('./routes/signupRouter')
@@ -64,7 +64,7 @@ app.use(session({
 /**
  * Routes.
  */
-app.use(home, addMovie, addDirector, addReview, addSeries, funFacts, directors, movies, series, updateDirector, signin, signup, signout, updateReview, updateMovie, updateSeries)
+app.use(home, addMovie, addDirector, addReview, addSeries, overview, directors, movies, series, updateDirector, signin, signup, signout, updateReview, updateMovie, updateSeries)
 
 /**
  * It handels the 404 error and renders the error page.

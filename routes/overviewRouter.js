@@ -7,12 +7,12 @@
 
 const express = require('express')
 const router = express.Router()
-const controller = require('../controllers/funFactsController')
+const controller = require('../controllers/overviewController')
 
 /**
  * The route for the search bar.
  */
 router
-  .get('/fun-facts', controller.get)
+  .get('/overview', controller.get)
 
 module.exports = router
