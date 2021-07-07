@@ -14,7 +14,7 @@ npm install
 3. ### MySQL:
 ~~~
 You need to install the MySQL package on your local environment and configure the five 
-tables that are required for this application according to the columns. All the tables 
+tables that are required for this application according to the columns and you need to ctrete the VIEW as well. All the tables 
 have an ID column and it is the primary key and it MUST be Auto-Incremental.
 
 Tables:
@@ -31,6 +31,27 @@ Tables:
      5. reviews
            Columns: id, movieName, author, authorID, gross, goofs, story, 
            review, movieID, rating, awards, quotes, createdAT and updatedAT.
+
+VIEW:
+CREATE VIEW `mms_db`.`top_films_view` AS
+    SELECT 
+        `r`.`rating` AS `rate`,
+        `r`.`id` AS `id`,
+        `m`.`name` AS `movie`,
+        `m`.`category` AS `mcategory`,
+        `m`.`price` AS `mprice`,
+        `m`.`director` AS `mdirector`,
+        `s`.`name` AS `series`,
+        `s`.`category` AS `scategory`,
+        `s`.`price` AS `sprice`,
+        `s`.`director` AS `sdirector`
+    FROM
+        ((`mms_db`.`reviews` `r`
+        LEFT JOIN `mms_db`.`movies` `m` ON ((`m`.`id` = `r`.`movieID`)))
+        LEFT JOIN `mms_db`.`serieses` `s` ON ((`s`.`id` = `r`.`movieID`)))
+    WHERE
+        (`r`.`rating` > 79)
+    ORDER BY `r`.`rating` DESC
 
 Furthermore, you need to configure the connection to connect the application with the database. 
 That is by providing an environment variable file (.env) and put the following credentials: 
