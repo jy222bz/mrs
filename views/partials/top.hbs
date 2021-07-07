@@ -1,0 +1,35 @@
+<main id="main" class="sec2">
+  {{#if top.length}}
+  <br> <br>
+  <h1 class="headline">Top Rated Movies[s] With Rate Above 79%: </h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Rate</th>
+        <th scope="col">Movie Name</th>
+        <th scope="col">Director</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each top}}
+      <tr>
+        {{#if this.movie.length}}
+        <td> {{this.rate}}</td>
+        <td>{{this.movie}}</td>
+        <td>{{this.mdirector}}</td>
+        <td>{{this.mcategory}}</td>
+        <td>{{this.mprice}} USD</td>
+        <td> <a href="/reviews/read/{{this.id}}"><i class="bi bi-book"></i></a></td>
+        {{/if}}
+        {{/each}}
+    </tbody>
+  </table>
+  <br> <br>
+  <h1 class="headline">The Facts are based on the information that is provided by the Reviewers!</h1>
+  {{else}}
+  <h1 class="headline">There is no data at this time.</h1>
+  {{/if}}
+</main>

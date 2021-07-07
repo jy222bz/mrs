@@ -1,0 +1,25 @@
+<main id="main" class="sec2">
+  {{#if authors.length}}
+  <br> <br>
+  <h1 class="headline">Active Reviewer[s]: </h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Reviewer:</th>
+        <th scope="col">Number of Reviews:</th>
+        <th scope="col">Contact Information:</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each authors}}
+      <tr>
+        <td> {{this.author}}</td>
+        <td> {{this.count}}</td>
+        <td>{{this.contact}}</td>
+        {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <h1 class="headline">There is no data at this time.</h1>
+  {{/if}}
+</main>
