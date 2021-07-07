@@ -64,7 +64,7 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT d.fullName AS director, d.origin AS origin, m.name AS movie, s.name AS series FROM directors d INNER JOIN movies m ON m.directorID = d.id INNER JOIN serieses s ON s.directorID = d.id', (err, rows) => {
+      connection.query('SELECT d.fullName AS director, d.origin AS origin, m.name AS movie, s.name AS series FROM directors d INNER JOIN movies m ON m.directorID = d.id INNER JOIN serieses s ON s.directorID = d.id ORDER BY director', (err, rows) => {
         connection.release()
         if (!err) {
           directors = rows
@@ -84,14 +84,14 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.getTopNonEnglish = async (req, res) => {
+searchController.getTopNonEnglish = async (req, res) => {
   try {
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT m.name, m.origin, m.director, m.category, m.language, r.rating AS rate FROM movies m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA"', (err, rows) => {
+      connection.query('SELECT m.name, m.origin, m.director, m.category, m.language, r.rating AS rate FROM movies m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
         connection.release()
         if (!err) {
           topNonEnglishMovie = rows
@@ -111,14 +111,14 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.getTopNonEnglishSeries = async (req, res) => {
+searchController.getTopNonEnglishSeries = async (req, res) => {
   try {
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT m.name, m.origin, m.director, m.language, m.category, r.rating AS rate FROM serieses m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA"', (err, rows) => {
+      connection.query('SELECT m.name, m.origin, m.director, m.language, m.category, r.rating AS rate FROM serieses m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
         connection.release()
         if (!err) {
           topNonEnglishSeries = rows

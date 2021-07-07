@@ -18,6 +18,6 @@ router
   .get('', controller.index)
   .get('/', controller.index)
   .get('/reviews', controller.index)
-  .get('/reviews/read/:id', controller.read)
+  .post('/search', controller.find)
 
 module.exports = router
