@@ -9,6 +9,8 @@ const searchController = {}
 var top
 var directors
 var authors
+var topNonEnglishMovie
+var topNonEnglishSeries
 
 /**
  * This method it responds to the GET request when
@@ -55,7 +57,7 @@ searchController.getTopPicturesView = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
+searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
   try {
     db.getConnection((error, connection) => {
       if (error) {
@@ -82,7 +84,65 @@ searchController.getTopPicturesView = async (req, res) => {
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
- searchController.getAuthors = async (req, res) => {
+ searchController.getTopNonEnglish = async (req, res) => {
+  try {
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      }
+      connection.query('SELECT m.name, m.origin, m.director, m.category, m.language, r.rating AS rate FROM movies m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA"', (err, rows) => {
+        connection.release()
+        if (!err) {
+          topNonEnglishMovie = rows
+          searchController.getTopNonEnglishSeries(req, res)
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/**
+ * This method it responds to the GET request when
+ * the user wans to search for a specific tag.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+ searchController.getTopNonEnglishSeries = async (req, res) => {
+  try {
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      }
+      connection.query('SELECT m.name, m.origin, m.director, m.language, m.category, r.rating AS rate FROM serieses m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA"', (err, rows) => {
+        connection.release()
+        if (!err) {
+          topNonEnglishSeries = rows
+          if (auth.checkAuthenticated(req)) {
+            res.render('extra/funfacts1', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
+          } else {
+            res.render('extra/funfacts2', { top: top, both: directors, authors: authors, nonEnglishMovie: topNonEnglishMovie, nonEnglishSeries: topNonEnglishSeries })
+          }
+        }
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+/**
+ * This method it responds to the GET request when
+ * the user wans to search for a specific tag.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+searchController.getAuthors = async (req, res) => {
   try {
     db.getConnection((error, connection) => {
       if (error) {
@@ -93,12 +153,7 @@ searchController.getTopPicturesView = async (req, res) => {
         connection.release()
         if (!err) {
           authors = rows
-          console.log(authors)
-          if (auth.checkAuthenticated(req)) {
-            res.render('extra/funfacts1', { top: top, both: directors, authors: authors })
-          } else {
-            res.render('extra/funfacts2', { top: top, both: directors, authors: authors })
-          }
+          searchController.getTopNonEnglish(req, res)
         }
       })
     })
