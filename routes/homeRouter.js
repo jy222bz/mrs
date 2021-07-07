@@ -17,7 +17,8 @@ const controller = require('../controllers/homeController')
 router
   .get('', controller.index)
   .get('/', controller.index)
+  .get('/reviews/read/:id', controller.read)
   .get('/reviews', controller.index)
-  .post('/search', controller.find)
+  .post('/', controller.find)
 
 module.exports = router
