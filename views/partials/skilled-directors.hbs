@@ -1,0 +1,27 @@
+<main id="main" class="sec2">
+  <br> <br>
+  {{#if rows.length}}
+  <h1 class="headline">Directors who directed movie[s] as well as series[es]: </h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Director</th>
+        <th scope="col">Movie Name</th>
+        <th scope="col">Series Name</th>
+        <th scope="col">Director Origin</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <td> {{this.director}}</td>
+        <td>{{this.movie}}</td>
+        <td>{{this.series}}</td>
+        <td>{{this.origin}}</td>
+        {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <h1 class="headline">There is no data at this time.</h1>
+  {{/if}}
+</main>

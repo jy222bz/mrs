@@ -114,7 +114,11 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
       connection.query('SELECT d.fullName AS director, d.origin AS origin, m.name AS movie, s.name AS series FROM directors d INNER JOIN movies m ON m.directorID = d.id INNER JOIN serieses s ON s.directorID = d.id ORDER BY director', (err, rows) => {
         connection.release()
         if (!err) {
-          searchController.getAuthors(req, res)
+          if (auth.checkAuthenticated(req)) {
+            res.render('extra/skilled-directors1', { rows })
+          } else {
+            res.render('extra/skilled-directors2', { rows })
+          }
         }
       })
     })

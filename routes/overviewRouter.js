@@ -18,4 +18,6 @@ router
   .get('/active-reviewers', controller.getReviewers)
   .get('/toprated-nonenglish-movies', controller.getTopNonEnglishRated)
   .get('/toprated-nonenglish-serieses', controller.getTopRatedNonEnglisSerieses)
+  .get('/skilled-directors', controller.getDirectorsForMoviesAndSerieses)
+
 module.exports = router
