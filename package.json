@@ -1,5 +1,5 @@
 {
- "name": "movie-management-system-with-sql",
+ "name": "movie-review-system-with-sql",
  "version": "1.0.0",
  "description": "Aa application that supports Data Managment with MySQL.",
  "main": "app.js",
