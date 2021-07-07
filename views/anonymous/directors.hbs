@@ -1,0 +1,27 @@
+{{> header2}}
+<main class="sec2" class="table-responsive">
+  {{#if rows.length}} <h1 class="headline">Directors: </h1>
+  <table class="table table-dark table-striped" class="navbar-nav me-auto mb-2 mb-lg-0">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Origin</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <td> {{this.fullName}}</td>
+        <td> {{this.age}}</td>
+        <td> {{this.origin}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{else}}
+  <div class="container-fluid pt-5 pb-5">
+    <h1 class="headline">No Data In The Database </h1>
+  </div>
+  {{/if}}
+</main>

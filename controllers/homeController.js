@@ -40,7 +40,7 @@ homeController.index = async (req, res) => {
           if (isAuth) {
             res.render('home', { rows, title: 'Home', message: message })
           } else {
-            res.render('main/home', { rows, title: 'Home',  message: message })
+            res.render('main/home', { rows, title: 'Home', message: message })
           }
         }
       })
@@ -84,7 +84,7 @@ homeController.find = async (req, res) => {
           if (isAuth) {
             res.render('home', { rows, title: 'Home', message: message })
           } else {
-            res.render('main/home', { rows, title: 'Home',  message: message })
+            res.render('main/home', { rows, title: 'Home', message: message })
           }
         }
       })

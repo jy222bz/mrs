@@ -15,32 +15,32 @@ const controller = {}
  * @param {object} res the Express response.
  */
 controller.get = async (req, res) => {
-  if (auth.checkAuthenticated(req)) {
-    try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
+  try {
+    /**
+     * Exporting the DB connection.
+     *
+     * @param {object} req the Express request.
+     * @param {object} res the Express response.
+     */
 
-      db.getConnection((error, connection) => {
-        if (error) {
-          console.log(error)
-          process.exit(1)
-        }
-        connection.query('SELECT * FROM directors ORDER BY firstName', (err, rows) => {
-          connection.release()
-          if (!err) {
+    db.getConnection((error, connection) => {
+      if (error) {
+        console.log(error)
+        process.exit(1)
+      }
+      connection.query('SELECT * FROM directors ORDER BY firstName', (err, rows) => {
+        connection.release()
+        if (!err) {
+          if (auth.checkAuthenticated(req)) {
             res.render('main/directors', { rows, title: 'Directors' })
+          } else {
+            res.render('anonymous/directors', { rows, title: 'Directors' })
           }
-        })
+        }
       })
-    } catch (error) {
-      console.log(error)
-    }
-  } else {
-    return res.redirect('/login')
+    })
+  } catch (error) {
+    console.log(error)
   }
 }
 module.exports = controller
