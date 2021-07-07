@@ -14,8 +14,9 @@ npm install
 3. ### MySQL:
 ~~~
 You need to install the MySQL package on your local environment and configure the five 
-tables that are required for this application according to the columns and you need to ctrete the VIEW as well. All the tables 
-have an ID column and it is the primary key and it MUST be Auto-Incremental.
+tables that are required for this application according to the columns and you need to
+create the VIEW as well. All the tables have an ID column and it is the primary key
+and it MUST be Auto-Incremental.
 
 Tables:
      1. users 
