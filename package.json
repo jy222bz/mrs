@@ -1,7 +1,7 @@
 {
  "name": "movie-review-system-with-sql",
  "version": "1.0.0",
- "description": "Aa application that supports Data Managment with MySQL.",
+ "description": "MRS is an application that supports Data Managment with MySQL.",
  "main": "app.js",
  "scripts": {
   "start": "nodemon app.js",
