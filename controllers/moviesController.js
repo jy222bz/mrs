@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the create form.
+ * A controller for the movies page.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,22 +8,15 @@ const auth = require('../validators/authenticator')
 const controller = {}
 
 /**
- * This method it responds to the GET request when
- * the user wants to create a snippet.
- * It renders the create form.
+ * This method responds to the GET request when
+ * the user wants to view the movies.
+ * It renders the movies page.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
  */
 controller.get = async (req, res) => {
   try {
-    /**
-     * Exporting the DB connection.
-     *
-     * @param {object} req the Express request.
-     * @param {object} res the Express response.
-     */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)

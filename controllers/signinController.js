@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the home page.
+ * A controller for the signin page.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,12 +8,13 @@ const auth = require('../validators/authenticator')
 const crypt = require('bcrypt')
 const controller = {}
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * This method responds to the GET request when
+ * the user wants to sign in.
+ * It renders the sign in form.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.get = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
@@ -26,23 +27,17 @@ controller.get = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * This method responds to the POST request when
+ * the user logs in.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.post = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
     const { email, password } = req.body
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)

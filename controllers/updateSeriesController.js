@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the home page.
+ * A controller for the update series page.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,23 +8,16 @@ const auth = require('../validators/authenticator')
 const controller = {}
 
 /**
- * This method it responds to the GET request when
- * the user wants to view a snippet.
- * It renders the snippet page.
+ * This method responds to the GET request when
+ * the user wants to update a series.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.update = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
@@ -46,23 +39,17 @@ controller.update = async (req, res) => {
 }
 
 /**
- * This method it responds to the DELETE request when
- * the user wans to delete a snippet.
+ * This method it responds to the POST request when
+ * the user submits the info for update.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.updateSeries = async (req, res) => {
   const { name, year, ageLimit, price, note, seasons, episodes, language, origin } = req.body
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
@@ -84,11 +71,12 @@ controller.updateSeries = async (req, res) => {
 }
 
 /**
- * This method it responds to the DELETE request when
- * the user wans to delete a snippet.
+ * This method responds to the DELETE request when
+ * the user wans to delete a series.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.delete = async (req, res) => {
   if (auth.checkAuthenticated(req)) {

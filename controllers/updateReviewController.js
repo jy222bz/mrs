@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the home page.
+ * A controller for the update review page.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -9,12 +9,12 @@ const controller = {}
 const moment = require('moment')
 
 /**
- * This method it responds to the GET request when
- * the user wants to view a snippet.
- * It renders the snippet page.
+ * This method responds to the GET request when
+ * the user wants to update a review.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.update = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
@@ -45,23 +45,17 @@ controller.update = async (req, res) => {
 }
 
 /**
- * This method it responds to the DELETE request when
- * the user wans to delete a snippet.
+ * This method responds to the Post request when
+ * the user submits the info.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.updateReview = async (req, res) => {
   const { rating, gross, goofs, story, quotes, awards, review } = req.body
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
@@ -94,22 +88,16 @@ controller.updateReview = async (req, res) => {
 }
 
 /**
- * This method it responds to the DELETE request when
- * the user wans to delete a snippet.
+ * This method responds to the DELETE request when
+ * the user wans to delete a review.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.delete = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)

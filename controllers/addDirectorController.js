@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the create form.
+ * A controller for the add director form.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,9 +8,9 @@ const auth = require('../validators/authenticator')
 const controller = {}
 
 /**
- * This method it responds to the GET request when
- * the user wants to add director to the collection of directors.
- * It renders the create form.
+ * This method responds to the GET request when
+ * the user wants to add a director to the collection of directors.
+ * It renders the add director form.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -31,8 +31,8 @@ controller.get = async (req, res) => {
 }
 
 /**
- * This method it responds to the Post request when
- * the user wants to create a snippet.
+ * This method responds to the Post request when
+ * the user wants to add the director to the database.
  * It adds the director to the database.
  *
  * @param {object} req the Express request.

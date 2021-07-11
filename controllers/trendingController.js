@@ -17,6 +17,7 @@ var collected = []
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.get = async (req, res) => {
   try {
@@ -70,7 +71,7 @@ controller.find = async (req, res) => {
 }
 
 /**
- * It checks the authentication and renders the find page and present the results of the check.
+ * It checks the authentication and renders the find page and presents the results of the check.
  *
  * @param {object[]} exist an object array.
  * @param {object[]} none an object array.

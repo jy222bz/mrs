@@ -6,9 +6,10 @@ const db = require('../database')
 require('dotenv').config()
 const auth = require('../validators/authenticator')
 const homeController = {}
+
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
+ * This method responds to the GET request when
+ * the user wants the home page.
  * It renders the home page.
  *
  * @param {object} req the Express request.
@@ -22,13 +23,6 @@ homeController.index = async (req, res) => {
     isAuth = true
   }
   try {
-    /**
-     * Exporting the DB connection.
-     *
-     * @param {object} req the Express request.
-     * @param {object} res the Express response.
-     */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
@@ -51,9 +45,8 @@ homeController.index = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * This method responds to the GET request when
+ * the user wants to search for a specific review or reviewer.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -66,13 +59,6 @@ homeController.find = async (req, res) => {
     isAuth = true
   }
   try {
-    /**
-     * Exporting the DB connection.
-     *
-     * @param {object} req the Express request.
-     * @param {object} res the Express response.
-     */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)
@@ -95,8 +81,10 @@ homeController.find = async (req, res) => {
 }
 
 /**
- * @param req
- * @param res
+ * It renders the page for a review, to view a single review.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
  */
 homeController.read = async (req, res) => {
   var isAuth = false
@@ -105,13 +93,6 @@ homeController.read = async (req, res) => {
     isAuth = true
   }
   try {
-    /**
-     * Exporting the DB connection.
-     *
-     * @param {object} req the Express request.
-     * @param {object} res the Express response.
-     */
-
     db.getConnection((error, connection) => {
       if (error) {
         console.log(error)

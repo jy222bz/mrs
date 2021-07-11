@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the searchform.
+ * A controller for the extra infomation.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,8 +8,8 @@ const auth = require('../validators/authenticator')
 const searchController = {}
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the top tated movies.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -38,8 +38,8 @@ searchController.getTopRated = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the reviewers and their contact information.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -68,8 +68,8 @@ searchController.getReviewers = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the top rated serieses.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -98,8 +98,8 @@ searchController.getTopRatedSerieses = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the skilled directors.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -128,8 +128,8 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the top rated Non-English movies.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -158,8 +158,8 @@ searchController.getTopNonEnglishRated = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user wans to search for a specific tag.
+ * This method responds to the GET request when
+ * the user wans to view the top rated Non-English serieses.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.

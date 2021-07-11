@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the create form.
+ * A controller for the add series form.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -8,25 +8,19 @@ const auth = require('../validators/authenticator')
 const controller = {}
 
 /**
- * This method it responds to the GET request when
- * the user wants to create a snippet.
- * It renders the create form.
+ * This method responds to the GET request when
+ * the user wants to add a series.
+ * It renders the add series form.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.get = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
     try {
       const message = req.flash('message')
       delete req.session.message
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)
@@ -48,25 +42,19 @@ controller.get = async (req, res) => {
 }
 
 /**
- * This method it responds to the Post request when
- * the user wants to create a snippet.
- * It create a snippet and saves in the DB.
+ * This method responds to the Post request when
+ * the user wants to add the series to the database.
+ * It saves the series in the database.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.post = async (req, res) => {
   const { director, category, name, year, ageLimit, price, note, seasons, episodes, language, origin } = req.body
   const values = director.split('|')
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)

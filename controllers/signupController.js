@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the home page.
+ * A controller for the signup page.
  */
 require('dotenv').config()
 const db = require('../database')
@@ -9,12 +9,13 @@ const auth = require('../validators/authenticator')
 const validator = require('../validators/validatror')
 const controller = {}
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * This method responds to the GET request when
+ * the user wants to signup
+ * It renders the signup page.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.get = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
@@ -31,12 +32,12 @@ controller.get = async (req, res) => {
 }
 
 /**
- * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * This method it responds to the Post request when
+ * submits the info.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} the Express redirection.
  */
 controller.post = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
@@ -51,34 +52,7 @@ controller.post = async (req, res) => {
       } else if (!validator.isPassword(password)) {
         res.render('log/register', { message: 'The password is not according to the rules' })
       } else {
-        /**
-         * Exporting the DB connection.
-         *
-         * @param {object} req the Express request.
-         * @param {object} res the Express response.
-         */
-        db.getConnection((error, connection) => {
-          if (error) {
-            console.log(error)
-            process.exit(1)
-          }
-          connection.query('SELECT * FROM users WHERE email = ?', [email.toLowerCase()], (err, rows) => {
-            connection.release()
-            if (!err) {
-              if (rows.length) {
-                res.render('log/register', { message: 'The e-mail exists in the Database!' })
-              } else {
-                connection.query('INSERT INTO users SET firstName = ?, lastName = ?, fullName = ?, email = ?, password = ?', [firstName.toUpperCase(), lastName.toUpperCase(), fullName, email.toLowerCase(), hashedPassword], (e, rows) => {
-                  connection.release()
-                  if (!e) {
-                    req.flash('message', 'Successful Registration! Sign-in now with your creditianls.')
-                    res.redirect('/login')
-                  }
-                })
-              }
-            }
-          })
-        })
+        render(req, res, email, firstName, lastName, fullName, hashedPassword)
       }
     } catch (error) {
       console.log(error)
@@ -87,5 +61,40 @@ controller.post = async (req, res) => {
   } else {
     return res.redirect('/')
   }
+}
+/**
+ * It saves the information in the database and renders the login page.
+ *
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ * @param {string} email the user's email.
+ * @param {string} firstName the user's first name.
+ * @param {string} lastName the user's last name.
+ * @param {string} fullName the user's full name.
+ * @param {string} hashedPassword the hashed password.
+ */
+function render (req, res, email, firstName, lastName, fullName, hashedPassword) {
+  db.getConnection((error, connection) => {
+    if (error) {
+      console.log(error)
+      process.exit(1)
+    }
+    connection.query('SELECT * FROM users WHERE email = ?', [email.toLowerCase()], (err, rows) => {
+      connection.release()
+      if (!err) {
+        if (rows.length) {
+          res.render('log/register', { message: 'The e-mail exists in the Database!' })
+        } else {
+          connection.query('INSERT INTO users SET firstName = ?, lastName = ?, fullName = ?, email = ?, password = ?', [firstName.toUpperCase(), lastName.toUpperCase(), fullName, email.toLowerCase(), hashedPassword], (e, rows) => {
+            connection.release()
+            if (!e) {
+              req.flash('message', 'Successful Registration! Sign-in now with your creditianls.')
+              res.redirect('/login')
+            }
+          })
+        }
+      }
+    })
+  })
 }
 module.exports = controller
