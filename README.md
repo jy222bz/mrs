@@ -11,7 +11,7 @@ clone https://github.com/jy222bz/movie-review-system-with-sql.git
 npm install
 ~~~
 
-3. ### MySQ Installation and Configurations:
+3. ### MySQL Installation and Configurations:
 ~~~
 You need to install the MySQL package on your local environment and configure the five 
 tables that are required for this application according to the columns and you need to
