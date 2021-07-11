@@ -9,11 +9,12 @@ const controller = {}
 
 /**
  * This method it responds to the GET request when
- * the user wants to create a snippet.
+ * the user wants to add director to the collection of directors.
  * It renders the create form.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} res the Express redirection.
  */
 controller.get = async (req, res) => {
   if (auth.checkAuthenticated(req)) {
@@ -32,10 +33,11 @@ controller.get = async (req, res) => {
 /**
  * This method it responds to the Post request when
  * the user wants to create a snippet.
- * It create a snippet and saves in the DB.
+ * It adds the director to the database.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
+ * @returns {object} res the Express redirection.
  */
 controller.post = async (req, res) => {
   const { firstName, lastName, age, origin } = req.body
@@ -47,6 +49,7 @@ controller.post = async (req, res) => {
        *
        * @param {object} req the Express request.
        * @param {object} res the Express response.
+       * @returns {object} res the Express redirection.
        */
 
       db.getConnection((error, connection) => {
