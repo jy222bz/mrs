@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A update series Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -12,7 +12,7 @@ const router = express.Router()
 const controller = require('../controllers/updateSeriesController')
 
 /**
- * The routes for the home.
+ * The routes for the update series form.
  */
 router
   .get('/serieses/:id', controller.update)

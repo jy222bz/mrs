@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * The main entery point to the server.
+ * The main entery point to the application for the frontend.
  */
 
 /**

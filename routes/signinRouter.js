@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A sign-in Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/signinController')
 
 /**
- * The routes for the home.
+ * The routes for the sign-in.
  */
 router
   .get('/login', controller.get)

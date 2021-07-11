@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A signup Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -12,7 +12,7 @@ const router = express.Router()
 const controller = require('../controllers/signupController')
 
 /**
- * The routes for the home.
+ * The routes for the signup.
  */
 router
   .get('/register', controller.get)

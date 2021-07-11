@@ -1,5 +1,14 @@
 const mysql = require('mysql2')
 
+/**
+ * @author Jacob Yousif
+ * The database connection.
+ */
+
+/**
+ * Connecting the database and exporting the connection.
+ *
+ */
 const db = mysql.createPool({
   connectionLimit: 1000,
   host: process.env.DB_HOST,

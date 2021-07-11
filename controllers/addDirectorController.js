@@ -44,14 +44,6 @@ controller.post = async (req, res) => {
   const fullName = firstName + ' ' + lastName
   if (auth.checkAuthenticated(req)) {
     try {
-      /**
-       * Exporting the DB connection.
-       *
-       * @param {object} req the Express request.
-       * @param {object} res the Express response.
-       * @returns {object} res the Express redirection.
-       */
-
       db.getConnection((error, connection) => {
         if (error) {
           console.log(error)

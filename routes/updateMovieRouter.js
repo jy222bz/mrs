@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A update movie Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -12,7 +12,7 @@ const router = express.Router()
 const controller = require('../controllers/updateMovieController')
 
 /**
- * The routes for the home.
+ * The routes for the update movie form.
  */
 router
   .get('/movies/:id', controller.update)

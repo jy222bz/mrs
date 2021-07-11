@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A Home Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0

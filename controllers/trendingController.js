@@ -22,12 +22,12 @@ controller.get = async (req, res) => {
   try {
     const popularMoviesUrl = 'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
     const popularShowsUrl = 'https://www.imdb.com/chart/tvmeter/?ref_=nv_tvv_mptv'
-    scrapPopularPictures(popularMoviesUrl, 'Movie').then(() => {
+    await scrapPopularPictures(popularMoviesUrl, 'Movie').then(() => {
       scrapPopularPictures(popularShowsUrl, 'Series').then(() => {
         if (auth.checkAuthenticated(req)) {
-          res.render('extra/trending1', { rows: collected })
+          return res.render('extra/trending1', { rows: collected })
         } else {
-          res.render('extra/trending2', { rows: collected })
+          return res.render('extra/trending2', { rows: collected })
         }
       })
     })

@@ -1,16 +1,14 @@
 /**
  * @author Jacob Yousif
- * A router for the create form.
+ * A router for the add director form.
  */
-
-'use strict'
 
 const express = require('express')
 const router = express.Router()
 const controller = require('../controllers/addDirectorController')
 
 /**
- * The routes for the create form.
+ * The routes for the add director form.
  */
 router
   .get('/directors/add-director', controller.get)

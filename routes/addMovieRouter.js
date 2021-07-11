@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A router for the create form.
+ * A router for the add movie form.
  */
 
 'use strict'
@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/addMovieController')
 
 /**
- * The routes for the create form.
+ * The routes for the add movie form.
  */
 router
   .get('/movies/add-movie', controller.get)

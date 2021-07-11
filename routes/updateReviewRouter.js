@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A update review Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -12,7 +12,7 @@ const router = express.Router()
 const controller = require('../controllers/updateReviewController')
 
 /**
- * The routes for the home.
+ * The routes for update review form.
  */
 router
   .get('/reviews/:id', controller.update)

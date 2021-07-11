@@ -1,5 +1,5 @@
 /**
- * Home Router.
+ * A update director Router.
  *
  * @author Jacob Yousif
  * @version 1.0.0
@@ -12,7 +12,7 @@ const router = express.Router()
 const controller = require('../controllers/updateDirectorController')
 
 /**
- * The routes for the home.
+ * The routes update director form.
  */
 router
   .get('/directors/:id', controller.update)

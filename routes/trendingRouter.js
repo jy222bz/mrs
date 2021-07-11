@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A router for the create form.
+ * A router for the trending page.
  */
 
 'use strict'
@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/trendingController')
 
 /**
- * The routes for the create form.
+ * The routes for the trending page.
  */
 router
   .get('/trending', controller.get)

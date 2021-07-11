@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A router for the search bar.
+ * A router for the extra information page.
  */
 
 'use strict'
@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/overviewController')
 
 /**
- * The route for the search bar.
+ * The routes for the top-rated Non-English and English movies and serieses, reviewers, and skilled directors.
  */
 router
   .get('/toprated-movies', controller.getTopRated)

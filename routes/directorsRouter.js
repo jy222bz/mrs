@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A router for the create form.
+ * A router for the directors page.
  */
 
 'use strict'
@@ -10,7 +10,7 @@ const router = express.Router()
 const controller = require('../controllers/directorsController')
 
 /**
- * The routes for the create form.
+ * The routes for the directors page.
  */
 router.get('/directors', controller.get)
 
