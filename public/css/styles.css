@@ -20,6 +20,7 @@ td {
 th {
   color: #dfe4ea;
 }
+
 .par {
   text-transform: uppercase;
   margin-top: 20px;
@@ -28,6 +29,7 @@ th {
   font-size: 20px;
   color: black;
 }
+
 h1 {
   margin: 10px;
   font-size: 2vw;
@@ -71,7 +73,7 @@ h1 {
   resize: none;
 }
 
-.ac{
+.ac {
   margin: 30px;
 }
 
@@ -104,7 +106,8 @@ a:hover {
 
 .sec2 {
   margin: 20px;
-} 
+}
+
 .btn:hover {
   background: #dfe4ea;
 }
