@@ -1,9 +1,9 @@
-const mysql = require('mysql2')
-
 /**
  * @author Jacob Yousif
  * The database connection.
  */
+
+const mysql = require('mysql2')
 
 /**
  * Connecting the database and exporting the connection.
