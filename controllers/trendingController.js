@@ -1,6 +1,6 @@
 /**
  * @author Jacob Yousif
- * A controller for the home page.
+ * A controller for the Trending page.
  */
 const db = require('../database')
 require('dotenv').config()
@@ -12,8 +12,8 @@ var collected = []
 
 /**
  * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * the user view the Trending movies and tv shows from IMDB.
+ * It renders the Trending page.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -38,8 +38,7 @@ controller.get = async (req, res) => {
 
 /**
  * This method it responds to the GET request when
- * the user view the snippets.
- * It renders the home page.
+ * the user check whether a picture exists in the database.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -54,18 +53,14 @@ controller.find = async (req, res) => {
       connection.query('SELECT m.name, s.name FROM movies m, serieses s WHERE m.name = ? OR s.name = ?', [req.params.id, req.params.id], (err, row) => {
         connection.release()
         var exist = []
-        var non = []
+        var none = []
         if (!err) {
           if (row.length && row.length > 0) {
             exist.push({ name: req.params.id.toUpperCase() })
           } else {
-            non.push({ name: req.params.id.toUpperCase() })
+            none.push({ name: req.params.id.toUpperCase() })
           }
-          if (auth.checkAuthenticated(req)) {
-            res.render('extra/find1', { exist, non })
-          } else {
-            res.render('extra/find2', { exist, non })
-          }
+          render(exist, none, req, res)
         }
       })
     })
@@ -75,9 +70,26 @@ controller.find = async (req, res) => {
 }
 
 /**
- * @param url
- * @param collection
- * @param type
+ * It checks the authentication and renders the find page and present the results of the check.
+ *
+ * @param {object[]} exist an object array.
+ * @param {object[]} none an object array.
+ * @param {object} req the Express request.
+ * @param {object} res the Express response.
+ */
+function render (exist, none, req, res) {
+  if (auth.checkAuthenticated(req)) {
+    res.render('extra/find1', { exist, none })
+  } else {
+    res.render('extra/find2', { exist, none })
+  }
+}
+
+/**
+ * It scrapes the IMDB page and collects the titles and the rates of the Pictures that are equal or greater than 6.
+ *
+ * @param {string} url for the target page for web-scraping.
+ * @param {string} type whether a movie or series.
  */
 async function scrapPopularPictures (url, type) {
   fetch(`${url}`)
