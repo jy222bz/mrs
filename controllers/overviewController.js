@@ -51,7 +51,7 @@ searchController.getReviewers = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT r.authorID, COUNT(*) AS count, r.author, a.email AS contact FROM reviews r INNER JOIN users a ON a.id = r.authorID GROUP BY r.author ORDER BY count DESC', (err, rows) => {
+      connection.query('SELECT review.authorID, COUNT(*) AS count, review.author, user.email AS contact FROM reviews review INNER JOIN users user ON user.id = review.authorID GROUP BY review.author ORDER BY count DESC', (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
@@ -111,7 +111,7 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT d.fullName AS director, d.origin AS origin, m.name AS movie, s.name AS series FROM directors d INNER JOIN movies m ON m.directorID = d.id INNER JOIN serieses s ON s.directorID = d.id ORDER BY director', (err, rows) => {
+      connection.query('SELECT director.fullName AS director, director.origin AS origin, movie.name AS movie, series.name AS series FROM directors director INNER JOIN movies movie ON movie.directorID = director.id INNER JOIN serieses series ON series.directorID = director.id ORDER BY director', (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
@@ -141,7 +141,7 @@ searchController.getTopNonEnglishRated = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT m.name, m.origin, m.director, m.category, m.language, r.rating AS rate FROM movies m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
+      connection.query('SELECT movie.name, movie.origin, movie.director, movie.category, movie.language, review.rating AS rate FROM movies movie INNER JOIN reviews review ON review.movieID = movie.id WHERE movie.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND movie.origin <> "UK" AND movie.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
@@ -171,7 +171,7 @@ searchController.getTopRatedNonEnglisSerieses = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT m.name, m.origin, m.director, m.language, m.category, r.rating AS rate FROM serieses m INNER JOIN reviews r ON r.movieID = m.id WHERE m.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND m.origin <> "UK" AND m.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
+      connection.query('SELECT series.name, series.origin, series.director, series.language, series.category, review.rating AS rate FROM serieses series INNER JOIN reviews review ON review.movieID = series.id WHERE series.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND series.origin <> "UK" AND series.origin <> "USA" ORDER BY rate DESC', (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {

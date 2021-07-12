@@ -69,7 +69,7 @@ function render (connection, res, rows, message) {
  */
 function populate (items, target) {
   items.forEach(element => {
-    target.push({ id: element.id, name: element.name })
+    target.push({ id: element.id, name: element.name, directorID: element.directorID })
   })
 }
 
@@ -93,7 +93,7 @@ addController.post = async (req, res) => {
           process.exit(1)
         }
         const date = moment(new Date()).format('dddd, MMMM Do YYYY, h:mm:ss a')
-        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?, createdAT = ?, updatedAT = ?', [values[0], rating, gross, goofs, story, quotes, awards, review, values[1], req.session.author, req.session.userID, date, date], (err, rows) => {
+        connection.query('INSERT INTO reviews SET movieName = ?, rating = ?, gross = ?, goofs = ?, story = ?, quotes = ?, awards = ?, review = ?, movieID = ?, author = ?, authorID = ?, createdAT = ?, updatedAT = ?, directorID = ?', [values[0], rating, gross, goofs, story, quotes, awards, review, values[1], req.session.author, req.session.userID, date, date, values[2]], (err, rows) => {
           connection.release()
           if (!err) {
             req.flash('message', 'It was successfully added!')
