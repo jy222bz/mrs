@@ -108,6 +108,9 @@ async function scrapPopularPictures (url, type) {
           collected.push({ rate: Number(rate), id: title, type: type })
         }
       })
+      collected.sort((a, b) => {
+        return a.rate - b.rate
+      })
     })
 }
 module.exports = controller
