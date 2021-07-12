@@ -7,7 +7,7 @@
     <select name="name" id="name" required>
      {{#if rows.length}}
      {{#each rows}}
-    <option value="{{this.name}}|{{this.id}}">{{this.name}}</option>
+    <option value="{{this.name}}|{{this.id}}|{{this.directorID}}">{{this.name}}</option>
     {{/each}}
     {{/if}}
     </select>

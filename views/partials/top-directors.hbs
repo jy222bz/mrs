@@ -1,0 +1,27 @@
+<main id="main" class="sec2">
+  {{#if rows.length}}
+  <br> <br>
+  <h1 class="headline">List of Top Directors who their Pictures were rated 75 % and above: </h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name:</th>
+        <th scope="col">Origin:</th>
+        <th scope="col">Age:</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <td> {{this.fullName}}</td>
+        <td> {{this.origin}}</td>
+        <td>{{this.age}}</td>
+        {{/each}}
+    </tbody>
+  </table>
+  <br> <br>
+  <h1 class="headline">The Facts are based on the information that is provided by the Reviewers!</h1>
+  {{else}}
+  <h1 class="headline">There is no data at this time.</h1>
+  {{/if}}
+</main>
