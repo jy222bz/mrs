@@ -39,6 +39,8 @@ controller.get = async (req, res) => {
           }
         })
         return collected
+      }).then(collected => {
+        return collected
       })
     var serieses = await fetch(`${popularShowsUrl}`)
       .then(response => response.text())
@@ -56,6 +58,8 @@ controller.get = async (req, res) => {
             collected.push({ rate: Number(rate), id: title, type: 'Series' })
           }
         })
+        return collected
+      }).then(collected => {
         return collected
       })
     const collection = [].concat(movies, serieses)
@@ -121,6 +125,5 @@ function render (exist, none, req, res) {
     res.render('extra/find2', { exist, none })
   }
 }
-
 
 module.exports = controller
