@@ -25,10 +25,13 @@ controller.get = async (req, res) => {
     const popularShowsUrl = 'https://www.imdb.com/chart/tvmeter/?ref_=nv_tvv_mptv'
     await scrapPopularPictures(popularMoviesUrl, 'Movie').then(() => {
       scrapPopularPictures(popularShowsUrl, 'Series').then(() => {
+        collected.sort((a, b) => {
+          return a.rate - b.rate
+        })
         if (auth.checkAuthenticated(req)) {
-          return res.render('extra/trending1', { rows: collected })
+          res.render('extra/trending1', { rows: collected })
         } else {
-          return res.render('extra/trending2', { rows: collected })
+          res.render('extra/trending2', { rows: collected })
         }
       })
     })
@@ -51,7 +54,7 @@ controller.find = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT m.name, s.name FROM movies m, serieses s WHERE m.name = ? OR s.name = ?', [req.params.id, req.params.id], (err, row) => {
+      connection.query('SELECT movie.name, series.name FROM movies movie, serieses series WHERE movie.name = ? OR series.name = ?', [req.params.id, req.params.id], (err, row) => {
         connection.release()
         var exist = []
         var none = []
@@ -109,8 +112,5 @@ async function scrapPopularPictures (url, type) {
         }
       })
     })
-  collected.sort((a, b) => {
-    return a.rate - b.rate
-  })
 }
 module.exports = controller
