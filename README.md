@@ -31,28 +31,28 @@ Tables:
            ageLimit, directorID, episodes, seasons and origin. 
      5. reviews
            Columns: id, movieName, author, authorID, gross, goofs, story, 
-           review, movieID, rating, awards, quotes, createdAT and updatedAT.
+           review, movieID, directorID, rating, awards, quotes, createdAT and updatedAT.
 
 VIEW:
 CREATE VIEW `mms_db`.`top_films_view` AS
     SELECT 
-        `r`.`rating` AS `rate`,
-        `r`.`id` AS `id`,
-        `m`.`name` AS `movie`,
-        `m`.`category` AS `mcategory`,
-        `m`.`price` AS `mprice`,
-        `m`.`director` AS `mdirector`,
-        `s`.`name` AS `series`,
-        `s`.`category` AS `scategory`,
-        `s`.`price` AS `sprice`,
-        `s`.`director` AS `sdirector`
+        `review`.`rating` AS `rate`,
+        `review`.`id` AS `id`,
+        `movie`.`name` AS `movie`,
+        `movie`.`category` AS `mcategory`,
+        `movie`.`price` AS `mprice`,
+        `movie`.`director` AS `mdirector`,
+        `serieses`.`name` AS `series`,
+        `serieses`.`category` AS `scategory`,
+        `serieses`.`price` AS `sprice`,
+        `serieses`.`director` AS `sdirector`
     FROM
-        ((`mms_db`.`reviews` `r`
-        LEFT JOIN `mms_db`.`movies` `m` ON ((`m`.`id` = `r`.`movieID`)))
-        LEFT JOIN `mms_db`.`serieses` `s` ON ((`s`.`id` = `r`.`movieID`)))
+        ((`mms_db`.`reviews` `review`
+        LEFT JOIN `mms_db`.`movies` `movie` ON ((`movie`.`id` = `review`.`movieID`)))
+        LEFT JOIN `mms_db`.`serieses` `serieses` ON ((`serieses`.`id` = `review`.`movieID`)))
     WHERE
-        (`r`.`rating` > 79)
-    ORDER BY `r`.`rating` DESC
+        (`review`.`rating` > 79)
+    ORDER BY `review`.`rating` DESC
 
 Furthermore, you need to configure the connection to connect the application with the database. 
 That is by providing an environment variable file (.env) and put the following credentials: 
