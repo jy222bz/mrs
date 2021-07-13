@@ -8,7 +8,6 @@ const auth = require('../validators/authenticator')
 const controller = {}
 const fetch = require('node-fetch')
 const cheerio = require('cheerio')
-var collected = []
 
 /**
  * This method it responds to the GET request when
@@ -23,18 +22,52 @@ controller.get = async (req, res) => {
   try {
     const popularMoviesUrl = 'https://www.imdb.com/chart/moviemeter/?ref_=nv_mv_mpm'
     const popularShowsUrl = 'https://www.imdb.com/chart/tvmeter/?ref_=nv_tvv_mptv'
-    await scrapPopularPictures(popularMoviesUrl, 'Movie').then(() => {
-      scrapPopularPictures(popularShowsUrl, 'Series').then(() => {
-        collected.sort((a, b) => {
-          return a.rate - b.rate
+    var movies = await fetch(`${popularMoviesUrl}`)
+      .then(response => response.text())
+      .then(body => {
+        var collected = []
+        const $ = cheerio.load(body)
+        $('#main > div > span > div > div > div.lister > table > tbody > tr').each((index, element) => {
+          const $element = $(element)
+          const $title = $element.find('td.titleColumn')
+          const $rate = $element.find('td.ratingColumn.imdbRating')
+          const result = $title.text().split('(')
+          const title = result[0].trim()
+          const rate = $rate.text().trim()
+          if (rate.length && rate.length > 0 && Number(rate) > 5.9) {
+            collected.push({ rate: Number(rate), id: title, type: 'Movie' })
+          }
         })
-        if (auth.checkAuthenticated(req)) {
-          res.render('extra/trending1', { rows: collected })
-        } else {
-          res.render('extra/trending2', { rows: collected })
-        }
+        return collected
       })
+    var serieses = await fetch(`${popularShowsUrl}`)
+      .then(response => response.text())
+      .then(body => {
+        var collected = []
+        const $ = cheerio.load(body)
+        $('#main > div > span > div > div > div.lister > table > tbody > tr').each((index, element) => {
+          const $element = $(element)
+          const $title = $element.find('td.titleColumn')
+          const $rate = $element.find('td.ratingColumn.imdbRating')
+          const result = $title.text().split('(')
+          const title = result[0].trim()
+          const rate = $rate.text().trim()
+          if (rate.length && rate.length > 0 && Number(rate) > 5.9) {
+            collected.push({ rate: Number(rate), id: title, type: 'Series' })
+          }
+        })
+        return collected
+      })
+    const collection = [].concat(movies, serieses)
+    console.log(collection)
+    collection.sort((a, b) => {
+      return a.rate - b.rate
     })
+    if (auth.checkAuthenticated(req)) {
+      res.render('extra/trending1', { rows: collection })
+    } else {
+      res.render('extra/trending2', { rows: collection })
+    }
   } catch (error) {
     console.log(error)
   }
@@ -89,28 +122,5 @@ function render (exist, none, req, res) {
   }
 }
 
-/**
- * It scrapes the IMDB page and collects the titles and the rates of the Pictures that are equal or greater than 6.
- *
- * @param {string} url for the target page for web-scraping.
- * @param {string} type whether a movie or series.
- */
-async function scrapPopularPictures (url, type) {
-  fetch(`${url}`)
-    .then(response => response.text())
-    .then(body => {
-      const $ = cheerio.load(body)
-      $('#main > div > span > div > div > div.lister > table > tbody > tr').each((index, element) => {
-        const $element = $(element)
-        const $title = $element.find('td.titleColumn')
-        const $rate = $element.find('td.ratingColumn.imdbRating')
-        const result = $title.text().split('(')
-        const title = result[0].trim()
-        const rate = $rate.text().trim()
-        if (rate.length && rate.length > 0 && Number(rate) > 5.9) {
-          collected.push({ rate: Number(rate), id: title, type: type })
-        }
-      })
-    })
-}
+
 module.exports = controller
