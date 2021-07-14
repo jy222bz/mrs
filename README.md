@@ -42,14 +42,14 @@ CREATE VIEW `mms_db`.`top_films_view` AS
         `movie`.`category` AS `mcategory`,
         `movie`.`price` AS `mprice`,
         `movie`.`director` AS `mdirector`,
-        `serieses`.`name` AS `series`,
-        `serieses`.`category` AS `scategory`,
-        `serieses`.`price` AS `sprice`,
-        `serieses`.`director` AS `sdirector`
+        `series`.`name` AS `series`,
+        `series`.`category` AS `scategory`,
+        `series`.`price` AS `sprice`,
+        `series`.`director` AS `sdirector`
     FROM
         ((`mms_db`.`reviews` `review`
         LEFT JOIN `mms_db`.`movies` `movie` ON ((`movie`.`id` = `review`.`movieID`)))
-        LEFT JOIN `mms_db`.`serieses` `serieses` ON ((`serieses`.`id` = `review`.`movieID`)))
+        LEFT JOIN `mms_db`.`serieses` `series` ON ((`series`.`id` = `review`.`movieID`)))
     WHERE
         (`review`.`rating` > 79)
     ORDER BY `review`.`rating` DESC
