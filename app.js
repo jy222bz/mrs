@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: false }))
 
 /**
- * Set the session and passport.
+ * Set the session.
  */
 app.use(session({
   secret: process.env.SECERT,
