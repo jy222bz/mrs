@@ -17,12 +17,8 @@ const cheerio = require('cheerio')
  * @param {object} res the Express response.
  */
 controller.findReview = async (req, res) => {
-  var isAuth = false
   const message = req.flash('message')
   delete req.session.message
-  if (auth.checkAuthenticated(req)) {
-    isAuth = true
-  }
   try {
     db.getConnection((error, connection) => {
       if (error) {
@@ -32,7 +28,7 @@ controller.findReview = async (req, res) => {
       connection.query('SELECT * FROM reviews WHERE movieName LIKE ? OR author LIKE ? ORDER BY rating DESC', ['%' + req.body.search + '%', '%' + req.body.search + '%'], (err, rows) => {
         connection.release()
         if (!err) {
-          if (isAuth) {
+          if (auth.checkAuthenticated(req)) {
             res.render('home', { rows, title: 'Home', message: message, url: '/find-review' })
           } else {
             res.render('main/home', { rows, title: 'Home', message: message, url: '/find-review' })
