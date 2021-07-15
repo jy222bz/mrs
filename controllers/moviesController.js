@@ -26,9 +26,9 @@ controller.get = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('main/movies', { rows, title: 'Movies' })
+            res.render('main/movies', { rows, title: 'Movies', url: '/find-movie' })
           } else {
-            res.render('anonymous/movies', { rows, title: 'Movies' })
+            res.render('anonymous/movies', { rows, title: 'Movies', url: '/find-movie' })
           }
         }
       })

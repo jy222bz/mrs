@@ -30,6 +30,7 @@ const updateSeries = require('./routes/updateSeriesRouter')
 const updateMovie = require('./routes/updateMovieRouter')
 const trending = require('./routes/trendingRouter')
 const topDirectors = require('./routes/topDirectorsRouter')
+const search = require('./routes/searchRouter')
 const hbs = require('express-handlebars')
 const app = express()
 const flash = require('connect-flash')
@@ -66,7 +67,7 @@ app.use(session({
 /**
  * Routes.
  */
-app.use(home, addMovie, addDirector, addReview, trending, addSeries, overview, directors, movies, series, updateDirector, signin, signup, signout, updateReview, updateMovie, updateSeries, topDirectors)
+app.use(home, addMovie, addDirector, addReview, trending, addSeries, overview, directors, movies, series, search, updateDirector, signin, signup, signout, updateReview, updateMovie, updateSeries, topDirectors)
 
 /**
  * It handels the 404 error and renders the error page.

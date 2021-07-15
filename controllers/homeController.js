@@ -32,9 +32,9 @@ homeController.index = async (req, res) => {
         connection.release()
         if (!err) {
           if (isAuth) {
-            res.render('home', { rows, title: 'Home', message: message })
+            res.render('home', { rows, title: 'Home', message: message, url: '/find-review' })
           } else {
-            res.render('main/home', { rows, title: 'Home', message: message })
+            res.render('main/home', { rows, title: 'Home', message: message, url: '/find-review' })
           }
         }
       })

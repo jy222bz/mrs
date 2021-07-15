@@ -26,9 +26,9 @@ controller.get = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-directors1', { rows })
+            res.render('extra/top-directors1', { rows, url: '/find-top-director' })
           } else {
-            res.render('extra/top-directors2', { rows })
+            res.render('extra/top-directors2', { rows, url: '/find-top-director' })
           }
         }
       })

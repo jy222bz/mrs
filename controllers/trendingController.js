@@ -63,14 +63,13 @@ controller.get = async (req, res) => {
         return collected
       })
     const collection = [].concat(movies, serieses)
-    console.log(collection)
     collection.sort((a, b) => {
       return a.rate - b.rate
     })
     if (auth.checkAuthenticated(req)) {
-      res.render('extra/trending1', { rows: collection })
+      res.render('extra/trending1', { rows: collection, url: '/find-trending' })
     } else {
-      res.render('extra/trending2', { rows: collection })
+      res.render('extra/trending2', { rows: collection, url: '/find-trending' })
     }
   } catch (error) {
     console.log(error)

@@ -25,9 +25,9 @@ searchController.getTopRated = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top1', { top: rows })
+            res.render('extra/top1', { top: rows, url: '/find-top-movie' })
           } else {
-            res.render('extra/top2', { top: rows })
+            res.render('extra/top2', { top: rows, url: '/find-top-movie' })
           }
         }
       })
@@ -55,9 +55,9 @@ searchController.getReviewers = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/reviewers1', { authors: rows })
+            res.render('extra/reviewers1', { authors: rows, url: '/find-reviewer' })
           } else {
-            res.render('extra/reviewers2', { authors: rows })
+            res.render('extra/reviewers2', { authors: rows, url: '/find-reviewer' })
           }
         }
       })
@@ -85,9 +85,9 @@ searchController.getTopRatedSerieses = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-series1', { top: rows })
+            res.render('extra/top-series1', { top: rows, url: '/find-top-series' })
           } else {
-            res.render('extra/top-series2', { top: rows })
+            res.render('extra/top-series2', { top: rows, url: '/find-top-series' })
           }
         }
       })
@@ -115,9 +115,9 @@ searchController.getDirectorsForMoviesAndSerieses = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/skilled-directors1', { rows })
+            res.render('extra/skilled-directors1', { rows, url: '/find-uni-director' })
           } else {
-            res.render('extra/skilled-directors2', { rows })
+            res.render('extra/skilled-directors2', { rows, url: '/find-uni-director' })
           }
         }
       })
@@ -145,9 +145,9 @@ searchController.getTopNonEnglishRated = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-nonenglish-movies1', { rows })
+            res.render('extra/top-nonenglish-movies1', { rows, url: '/find-top-nonenglish-movie' })
           } else {
-            res.render('extra/top-nonenglish-movies2', { rows })
+            res.render('extra/top-nonenglish-movies2', { rows, url: '/find-top-nonenglish-movie' })
           }
         }
       })
@@ -175,9 +175,9 @@ searchController.getTopRatedNonEnglisSerieses = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-nonenglish-series1', { rows })
+            res.render('extra/top-nonenglish-series1', { rows, url: '/find-top-nonenglish-series' })
           } else {
-            res.render('extra/top-nonenglish-series2', { rows })
+            res.render('extra/top-nonenglish-series2', { rows, url: '/find-top-nonenglish-series' })
           }
         }
       })
