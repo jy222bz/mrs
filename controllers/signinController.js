@@ -20,7 +20,7 @@ controller.get = async (req, res) => {
   if (auth.checkNotAuthenticated(req)) {
     const message = req.flash('message')
     delete req.session.message
-    await res.render('log/signin', { message: message,  url: '/find-review' })
+    await res.render('log/signin', { message: message, url: '/find-review' })
   } else {
     return res.redirect('/')
   }
@@ -53,10 +53,10 @@ controller.post = async (req, res) => {
                 req.session.author = rows[0].fullName
                 return res.redirect('/')
               } else {
-                return res.render('log/signin', { message: 'There is an error with the passwrod.',  url: '/find-review' })
+                return res.render('log/signin', { message: 'There is an error with the passwrod.', url: '/find-review' })
               }
             } else {
-              return res.render('log/signin', { message: 'There is an error with the email.',  url: '/find-review' })
+              return res.render('log/signin', { message: 'There is an error with the email.', url: '/find-review' })
             }
           }
         })
