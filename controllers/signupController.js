@@ -22,7 +22,7 @@ controller.get = async (req, res) => {
     try {
       const message = req.flash('message')
       delete req.session.message
-      res.render('log/register', { message: message, title: 'Signup' })
+      res.render('log/register', { message: message, title: 'Signup', url: '/find-review' })
     } catch (error) {
       console.log(error)
     }
@@ -46,17 +46,17 @@ controller.post = async (req, res) => {
       const fullName = firstName.toUpperCase() + ' ' + lastName.toUpperCase()
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
       if (!validator.isName(firstName) || !validator.isName(lastName)) {
-        res.render('log/register', { message: 'The format of the e-mail is not correct' })
+        res.render('log/register', { message: 'The format of the e-mail is not correct', url: '/find-review' })
       } else if (!validator.isEmail(email)) {
-        res.render('log/register', { message: 'The name contains invalid characters.' })
+        res.render('log/register', { message: 'The name contains invalid characters.', url: '/find-review' })
       } else if (!validator.isPassword(password)) {
-        res.render('log/register', { message: 'The password is not according to the rules' })
+        res.render('log/register', { message: 'The password is not according to the rules', url: '/find-review' })
       } else {
         render(req, res, email, firstName, lastName, fullName, hashedPassword)
       }
     } catch (error) {
       console.log(error)
-      res.render('log/register', { message: 'There was an error with the registration!' })
+      res.render('log/register', { message: 'There was an error with the registration!', url: '/find-review' })
     }
   } else {
     return res.redirect('/')
