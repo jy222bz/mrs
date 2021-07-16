@@ -10,8 +10,7 @@ const fetch = require('node-fetch')
 const cheerio = require('cheerio')
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target review and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -42,8 +41,7 @@ controller.findReview = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target director and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -74,8 +72,7 @@ controller.findDirector = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target movie and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -106,8 +103,7 @@ controller.findMovie = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target series and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -138,8 +134,7 @@ controller.findSeries = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target top movie and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -170,8 +165,7 @@ controller.findTopMovie = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target top series and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -202,8 +196,7 @@ controller.findTopSeries = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target non-english movie and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -234,8 +227,7 @@ controller.findTopNonenglishMovie = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target non-english series and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -266,8 +258,7 @@ controller.findTopNonenglishSeries = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target uni-director and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -298,8 +289,7 @@ controller.findUniDirector = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target top director and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -330,8 +320,7 @@ controller.findTopDirector = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wans to view the reviewers and their contact information.
+ * It finds the target review movie and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
@@ -360,8 +349,7 @@ controller.findReviewer = async (req, res) => {
 }
 
 /**
- * This method responds to the GET request when
- * the user wants to search for a specific review or reviewer.
+ * It finds the target trending picture movie and renders it.
  *
  * @param {object} req the Express request.
  * @param {object} res the Express response.
