@@ -214,7 +214,7 @@ controller.findTopNonenglishMovie = async (req, res) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-nonenglish-movies1', { rows, title: 'Top Non-English Movies', message: message, url:  '/find-top-nonenglish-movie' })
+            res.render('extra/top-nonenglish-movies1', { rows, title: 'Top Non-English Movies', message: message, url: '/find-top-nonenglish-movie' })
           } else {
             res.render('extra/top-nonenglish-movies2', { rows, title: 'Top Non-English Movies', message: message, url: '/find-top-nonenglish-movie' })
           }

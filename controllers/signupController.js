@@ -83,7 +83,7 @@ function render (req, res, email, firstName, lastName, fullName, hashedPassword)
       connection.release()
       if (!err) {
         if (rows.length) {
-          res.render('log/register', { message: 'The e-mail exists in the Database!' })
+          res.render('log/register', { message: 'The e-mail exists in the Database!', url: '/find-review' })
         } else {
           connection.query('INSERT INTO users SET firstName = ?, lastName = ?, fullName = ?, email = ?, password = ?', [firstName.toUpperCase(), lastName.toUpperCase(), fullName, email.toLowerCase(), hashedPassword], (e, rows) => {
             connection.release()
