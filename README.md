@@ -95,8 +95,8 @@ _____
 8. csurf: To apply security by injecting secert tockens.
 9. Bootstrap: To make the application nice, fast and responsive.
 10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
-10. node-fetch:  API.
-11. cheerio: To be able select elements during web scraping.
+11. node-fetch:  API.
+12. cheerio: To be able select elements during web scraping.
 
 ___
 
