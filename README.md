@@ -20,7 +20,7 @@ npm install
 You need to install the MySQL package on your local environment and configure the five 
 tables that are required for this application according to their columns and you need to
 create the VIEW as well. All the tables have an ID column and it is the primary key
-and it MUST be Auto-Incremental.
+and it MUST be Auto-Incremental. Ref: (materials\db)
 
 Tables:
      1. users 
@@ -96,7 +96,7 @@ _____
 9. Bootstrap: To make the application nice, fast and responsive.
 10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
 10. node-fetch:  API.
-10. cheerio: To be able select elements during web scraping.
+11. cheerio: To be able select elements during web scraping.
 
 ___
 
