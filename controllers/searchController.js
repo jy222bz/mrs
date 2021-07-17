@@ -210,13 +210,13 @@ controller.findTopNonenglishMovie = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT movie.name AS name, movie.origin, movie.director, movie.category, movie.language, review.rating AS rate FROM movies movie INNER JOIN reviews review ON review.movieID = movie.id WHERE movie.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND movie.origin <> "UK" AND movie.origin <> "USA" AND name LIKE ? ORDER BY rate DESC', ['%' + req.body.search + '%'], (err, rows) => {
+      connection.query('SELECT movie.name AS name, movie.origin, movie.director, movie.category, movie.language, review.rating AS rate FROM movies movie INNER JOIN reviews review ON review.movieID = movie.id WHERE movie.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND movie.language <> "English" AND name LIKE ? ORDER BY rate DESC', ['%' + req.body.search + '%'], (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
-            res.render('extra/top-nonenglish-movies1', { rows, title: 'Top Non-English Movies', message: message, url: '/find-top-nonenglish-movie' })
+            res.render('extra/top-nonenglish-movies1', { rows, title: 'Top Non-English Movies', message: message, url:  '/find-top-nonenglish-movie' })
           } else {
-            res.render('extra/top-series2', { rows, title: 'Top Series', message: message, url: '/find-top-series' })
+            res.render('extra/top-nonenglish-movies2', { rows, title: 'Top Non-English Movies', message: message, url: '/find-top-nonenglish-movie' })
           }
         }
       })
@@ -241,7 +241,7 @@ controller.findTopNonenglishSeries = async (req, res) => {
         console.log(error)
         process.exit(1)
       }
-      connection.query('SELECT series.name AS name, series.origin, series.director, series.language, series.category, review.rating AS rate FROM serieses series INNER JOIN reviews review ON review.movieID = series.id WHERE series.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND series.origin <> "UK" AND series.origin <> "USA" AND name LIKE ? ORDER BY rate DESC', ['%' + req.body.search + '%'], (err, rows) => {
+      connection.query('SELECT series.name AS name, series.origin, series.director, series.language, series.category, review.rating AS rate FROM serieses series INNER JOIN reviews review ON review.movieID = series.id WHERE series.id IN (SELECT movieID FROM reviews WHERE rating > 79) AND series.language <> "English" AND name LIKE ? ORDER BY rate DESC', ['%' + req.body.search + '%'], (err, rows) => {
         connection.release()
         if (!err) {
           if (auth.checkAuthenticated(req)) {
