@@ -5,8 +5,6 @@
 
 /**
  * The required imports:
- * Express, express-session, connect-mongodb-session, path,
- * morgan, the routers and flash.
  */
 const express = require('express')
 require('dotenv').config()
