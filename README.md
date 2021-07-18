@@ -1,4 +1,4 @@
-# Welcome To MRS
+# Welcome to MRS
 
 ![image info](https://github.com/jy222bz/crud-with-sql/blob/43cc6e27d86c132a2591a483cc0de0133aa8858a/materials/ui/ui2.png)
 
