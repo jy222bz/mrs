@@ -104,7 +104,7 @@ ___
 Author: Jacob Yousif <br>
 E-mail: jy222bz@ystudent.lnu.se <br>
 Student ID: jy222bz <br>
-Course: Database Threory <br>
+Course: Database Theory <br>
 Course Code: 2DV315 <br>
 Linnaeus University <br>
 &copy; 2021 Jacob Yousif
