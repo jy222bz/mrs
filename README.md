@@ -93,7 +93,7 @@ _____
 6. Handlebars (HBS): To serve data and HTML markups dynamically.
 7. bcrypt: To apply security by hashing passwords before storing them.
 8. csurf: To apply security by injecting secert tockens.
-9. Bootstrap: To make the application nice, fast and responsive.
+9. Bootstrap: To make the application user-friendly, fast and responsive.
 10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
 11. node-fetch:  API.
 12. cheerio: To be able select elements during web scraping.
