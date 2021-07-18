@@ -102,7 +102,7 @@ ___
 
 ## Information:
 Author: Jacob Yousif <br>
-E-mail: jy222bz@ystudent.lnu.se <br>
+E-mail: jy222bz@student.lnu.se <br>
 Student ID: jy222bz <br>
 Course: Database Theory <br>
 Course Code: 2DV315 <br>
