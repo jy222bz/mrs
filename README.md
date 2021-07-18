@@ -84,7 +84,7 @@ npm run lint
 <br><br><br>
 _____
 
-## Technologies, Frameworks and Libraries:
+## Technologies, and Libraries:
 1. JavaScript ES6: Applying Object-Orientation Paradigm.
 2. Node.js: To conduct server-side programming.
 3. Express.js: To create the APIs of the application.
