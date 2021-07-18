@@ -7,7 +7,7 @@
 1. ### Clone the repo:
 
 ~~~
-clone https://github.com/jy222bz/movie-review-system-with-sql.git
+clone https://github.com/jy222bz/mrs.git
 ~~~
 
 2. ### Install the dependencies:
