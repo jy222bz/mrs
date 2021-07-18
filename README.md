@@ -96,7 +96,7 @@ _____
 9. Bootstrap: To make the application user-friendly, fast and responsive.
 10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
 11. node-fetch:  API.
-12. cheerio: To be able select elements during web scraping.
+12. cheerio: To be able parse and select elements during web scraping.
 
 ___
 
