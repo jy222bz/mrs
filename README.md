@@ -1,6 +1,6 @@
 # Welcome To MRS
 
-![image info]https://github.com/jy222bz/crud-with-sql/blob/43cc6e27d86c132a2591a483cc0de0133aa8858a/materials/ui/ui2.png)
+![image info](https://github.com/jy222bz/crud-with-sql/blob/43cc6e27d86c132a2591a483cc0de0133aa8858a/materials/ui/ui2.png)
 
 # MRS - Movie Review System WITH MySQL Database
 ## Installation and Configurations:
@@ -95,7 +95,7 @@ _____
 8. csurf: To apply security by injecting secert tockens.
 9. Bootstrap: To make the application user-friendly, fast and responsive.
 10. MySQL: To provide data storage and queries and to support authentication and CRUD functionalities.
-11. node-fetch:  To make HTTP requests to web servers.
+11. node-fetch: To make HTTP requests.
 12. cheerio: To be able parse and select elements during web-scraping.
 
 ___
