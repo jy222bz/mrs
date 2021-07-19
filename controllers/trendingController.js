@@ -66,10 +66,12 @@ controller.get = async (req, res) => {
     collection.sort((a, b) => {
       return a.rate - b.rate
     })
+    var message1 = "Today's Trend From IMDB. Some of the following Pictures may not exist in the MRS database at the moment."
+    var message2 = 'List of Trending Movie[s] and Series[es] FROM IMDB:'
     if (auth.checkAuthenticated(req)) {
-      res.render('extra/trending1', { rows: collection, url: '/find-trending' })
+      res.render('extra/trending1', { rows: collection, message1: message1, message2: message2, url: '/find-trending' })
     } else {
-      res.render('extra/trending2', { rows: collection, url: '/find-trending' })
+      res.render('extra/trending2', { rows: collection, message1: message1, message2: message2, url: '/find-trending' })
     }
   } catch (error) {
     console.log(error)
@@ -119,9 +121,9 @@ controller.find = async (req, res) => {
  */
 function render (exist, none, req, res) {
   if (auth.checkAuthenticated(req)) {
-    res.render('extra/find1', { exist, none,  url: '/find-trending' })
+    res.render('extra/find1', { exist, none, url: '/find-trending' })
   } else {
-    res.render('extra/find2', { exist, none,  url: '/find-trending' })
+    res.render('extra/find2', { exist, none, url: '/find-trending' })
   }
 }
 

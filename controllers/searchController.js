@@ -403,9 +403,9 @@ controller.findTrending = async (req, res) => {
       return a.rate - b.rate
     })
     if (auth.checkAuthenticated(req)) {
-      res.render('extra/trending1', { rows: collection, url: '/find-trending' })
+      res.render('extra/trending1', { rows: collection, message1: 'The search is conduted in the Trending List of IMDB', message2: 'The result of the search:', url: '/find-trending' })
     } else {
-      res.render('extra/trending2', { rows: collection, url: '/find-trending' })
+      res.render('extra/trending2', { rows: collection, message1: 'The search is conducted in the Trending List of IMDB', message2: 'The result of the search:', url: '/find-trending' })
     }
   } catch (error) {
     console.log(error)
