@@ -119,9 +119,9 @@ controller.find = async (req, res) => {
  */
 function render (exist, none, req, res) {
   if (auth.checkAuthenticated(req)) {
-    res.render('extra/find1', { exist, none })
+    res.render('extra/find1', { exist, none,  url: '/find-trending' })
   } else {
-    res.render('extra/find2', { exist, none })
+    res.render('extra/find2', { exist, none,  url: '/find-trending' })
   }
 }
 

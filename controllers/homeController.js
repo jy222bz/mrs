@@ -68,9 +68,9 @@ homeController.find = async (req, res) => {
         connection.release()
         if (!err) {
           if (isAuth) {
-            res.render('home', { rows, title: 'Home', message: message })
+            res.render('home', { rows, title: 'Home', message: message, url: '/find-review' })
           } else {
-            res.render('main/home', { rows, title: 'Home', message: message })
+            res.render('main/home', { rows, title: 'Home', message: message, url: '/find-review' })
           }
         }
       })
@@ -102,9 +102,9 @@ homeController.read = async (req, res) => {
         connection.release()
         if (!err) {
           if (isAuth) {
-            res.render('review/review1', { rows, title: 'Home' })
+            res.render('review/review1', { rows, title: 'Home', url: '/find-review' })
           } else {
-            res.render('review/review2', { rows, title: 'Home' })
+            res.render('review/review2', { rows, title: 'Home', url: '/find-review' })
           }
         }
       })
