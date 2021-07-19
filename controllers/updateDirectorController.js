@@ -25,7 +25,7 @@ controller.update = async (req, res) => {
         connection.query('SELECT * FROM directors WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('update/directors', { rows, title: 'Update Director' })
+            res.render('update/directors', { rows, title: 'Update Director', url: '/find-director' })
           }
         })
       })

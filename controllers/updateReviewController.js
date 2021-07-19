@@ -31,7 +31,7 @@ controller.update = async (req, res) => {
               req.flash('message', 'You are not the author of this review, therefore, you cannot edit it.')
               return res.redirect('/')
             } else {
-              return res.render('update/reviews', { rows, title: 'Update Review' })
+              return res.render('update/reviews', { rows, title: 'Update Review', url: '/find-review' })
             }
           }
         })

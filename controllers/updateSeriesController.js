@@ -26,7 +26,7 @@ controller.update = async (req, res) => {
         connection.query('SELECT * FROM serieses WHERE id = ?', [req.params.id], (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('update/serieses', { rows, title: 'Update Series' })
+            res.render('update/serieses', { rows, title: 'Update Series', url: '/find-series' })
           }
         })
       })
