@@ -21,7 +21,7 @@ controller.get = async (req, res) => {
     try {
       const message = req.flash('message')
       delete req.session.message
-      await res.render('add/add-director', { message: message, title: 'Add Director' })
+      await res.render('add/add-director', { message: message, title: 'Add Director', url: '/find-director' })
     } catch (error) {
       console.log(error)
     }

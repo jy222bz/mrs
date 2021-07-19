@@ -29,7 +29,7 @@ controller.get = async (req, res) => {
         connection.query('SELECT * FROM directors ORDER BY firstName', (err, rows) => {
           connection.release()
           if (!err) {
-            res.render('add/add-series', { rows, message: message, title: 'Add Series' })
+            res.render('add/add-series', { rows, message: message, title: 'Add Series', url: '/find-series' })
           }
         })
       })

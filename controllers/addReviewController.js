@@ -54,7 +54,7 @@ function render (connection, res, rows, message) {
         connection.release()
         if (!e) {
           populate(row2, rows)
-          res.render('add/add-review', { rows: rows, message: message, title: 'Add Series' })
+          res.render('add/add-review', { rows: rows, message: message, title: 'Add Review', url: '/find-review' })
         }
       })
     }
